@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Watermark to PDF - Protect Your Documents Online Free | PDF Tools Pro</title>
+    <meta name="description" content="Free online PDF watermarker. Add text or image watermarks to PDF documents. Protect your intellectual property, add confidentiality stamps, or brand your PDFs. No registration, secure local processing.">
+    <meta name="keywords" content="add watermark to PDF, PDF watermark, watermark PDF, add text watermark, add image watermark, protect PDF, copyright PDF, confidential stamp, PDF branding">
+    <meta name="author" content="PDF Tools Pro">
+    <meta property="og:title" content="Add Watermark to PDF - Protect Your Documents Free Online">
+    <meta property="og:description" content="Professional PDF watermarker. Add text or image watermarks to protect and brand your PDF documents. Secure local processing, no upload required.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pdftoolspro.com/tools/add-watermark.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Add Watermark to PDF - Free PDF Watermarker Tool">
+    <link rel="stylesheet" href="../css/main.css">
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">📄 PDF Tools Pro</a>
+            <button class="mobile-menu-btn">☰</button>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+                <li><a href="../privacy-policy.html">Privacy</a></li>
+            </ul>
+            <button class="theme-toggle">🌙</button>
+        </div>
+    </nav>
+    
+    <main class="main-container">
+        <div class="breadcrumbs"></div>
+        
+        <div class="tool-header">
+            <h1>💧 Add Watermark to PDF - Protect & Brand Your Documents</h1>
+            <p>Add text or image watermarks to your PDF documents. Protect intellectual property, add confidentiality stamps, or brand your files. 100% free, secure local processing.</p>
+        </div>
+        
+        <div class="tool-area">
+            <div class="form-group">
+                <label for="pdfInput">Select PDF File</label>
+                <input type="file" id="pdfInput" accept=".pdf" class="file-input">
+            </div>
+            
+            <div class="form-group">
+                <label for="watermarkType">Watermark Type</label>
+                <select id="watermarkType" class="file-input">
+                    <option value="text">Text Watermark</option>
+                    <option value="image">Image Watermark</option>
+                </select>
+            </div>
+            
+            <div id="textWatermarkGroup">
+                <div class="form-group">
+                    <label for="watermarkText">Watermark Text</label>
+                    <input type="text" id="watermarkText" value="CONFIDENTIAL" placeholder="e.g., CONFIDENTIAL, DRAFT, SAMPLE, COPYRIGHT" class="file-input">
+                </div>
+                
+                <div class="form-group">
+                    <label for="fontSize">Font Size</label>
+                    <input type="number" id="fontSize" value="48" min="12" max="200" class="file-input">
+                </div>
+                
+                <div class="form-group">
+                    <label for="fontFamily">Font Family</label>
+                    <select id="fontFamily" class="file-input">
+                        <option value="Helvetica">Helvetica (Standard)</option>
+                        <option value="TimesRoman">Times Roman</option>
+                        <option value="Courier">Courier</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div id="imageWatermarkGroup" style="display: none;">
+                <div class="form-group">
+                    <label for="imageInput">Select Watermark Image (PNG or JPG)</label>
+                    <input type="file" id="imageInput" accept="image/png,image/jpeg,image/jpg" class="file-input">
+                </div>
+                <div id="imagePreview" style="margin-top: 0.5rem; display: none;">
+                    <img id="previewImg" style="max-width: 100px; max-height: 100px; border: 1px solid var(--border-color); border-radius: 0.5rem;">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="watermarkColor">Color</label>
+                <input type="color" id="watermarkColor" value="#000000" class="file-input">
+            </div>
+            
+            <div class="form-group">
+                <label for="opacity">Opacity (0-100%)</label>
+                <input type="range" id="opacity" min="0" max="100" value="30" class="file-input" style="width: 100%;">
+                <span id="opacityValue">30%</span>
+            </div>
+            
+            <div class="form-group">
+                <label for="rotation">Rotation (degrees)</label>
+                <input type="range" id="rotation" min="-90" max="90" value="45" class="file-input" style="width: 100%;">
+                <span id="rotationValue">45°</span>
+            </div>
+            
+            <div class="form-group">
+                <label for="position">Position</label>
+                <select id="position" class="file-input">
+                    <option value="center">Center</option>
+                    <option value="topleft">Top Left</option>
+                    <option value="topright">Top Right</option>
+                    <option value="bottomleft">Bottom Left</option>
+                    <option value="bottomright">Bottom Right</option>
+                    <option value="custom">Custom Position</option>
+                </select>
+            </div>
+            
+            <div class="form-group" id="customPositionGroup" style="display: none;">
+                <label>Custom Position (X, Y in points, 0-600)</label>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <input type="number" id="customX" placeholder="X position" value="300" class="file-input">
+                    <input type="number" id="customY" placeholder="Y position" value="400" class="file-input">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="watermarkScope">Apply to</label>
+                <select id="watermarkScope" class="file-input">
+                    <option value="all">All Pages</option>
+                    <option value="first">First Page Only</option>
+                    <option value="last">Last Page Only</option>
+                    <option value="range">Specific Page Range</option>
+                </select>
+            </div>
+            
+            <div class="form-group" id="pageRangeGroup" style="display: none;">
+                <label for="pageRange">Page Range (e.g., 1-5, 8, 10-15)</label>
+                <input type="text" id="pageRange" placeholder="1-5, 8, 10-15" class="file-input">
+            </div>
+            
+            <div id="fileInfo" style="margin: 1rem 0; padding: 1rem; background: var(--bg-card); border-radius: 0.5rem; display: none;">
+                <strong>Document Info:</strong> <span id="fileInfoText"></span>
+                <div id="pageInfo" style="margin-top: 0.5rem; font-size: 0.875rem;"></div>
+            </div>
+            
+            <button id="addWatermarkBtn" class="btn-primary">Add Watermark to PDF</button>
+            <div id="result"></div>
+        </div>
+        
+        <!-- 2000+ Words Description Section -->
+        <div class="content-section">
+            <h2>What is a PDF Watermark?</h2>
+            <p>A PDF watermark is a recognizable image, text, or pattern that appears on one or more pages of a PDF document. Watermarks are typically semi-transparent and positioned behind or over the document content. Common uses include marking documents as "CONFIDENTIAL," "DRAFT," "SAMPLE," or "COPYRIGHT," adding company logos for branding, or protecting intellectual property from unauthorized use. Our PDF watermarker allows you to add professional watermarks to your documents with complete control over appearance, position, and opacity.</p>
+            
+            <h2>Why Add Watermarks to PDF Documents?</h2>
+            <p>Adding watermarks to PDF documents offers numerous advantages for businesses, legal professionals, content creators, and individuals:</p>
+            <ul>
+                <li><strong>Protect Intellectual Property:</strong> Discourage unauthorized copying and distribution of your content.</li>
+                <li><strong>Mark Document Status:</strong> Indicate draft, confidential, approved, or sample status clearly.</li>
+                <li><strong>Brand Your Documents:</strong> Add company logos or brand names to all pages for professional presentation.</li>
+                <li><strong>Copyright Protection:</strong> Assert ownership and copyright of your creative work.</li>
+                <li><strong>Legal Compliance:</strong> Add required disclaimers or notices to documents.</li>
+                <li><strong>Prevent Unauthorized Use:</strong> Make it difficult for others to claim your work as their own.</li>
+                <li><strong>Internal Document Control:</strong> Mark documents with department names or clearance levels.</li>
+                <li><strong>Client Proofing:</strong> Add "SAMPLE" or "PROOF" watermarks to client review copies.</li>
+            </ul>
+            
+            <h2>Why Use Our PDF Watermarker?</h2>
+            <p>Unlike many online PDF watermarkers that require uploading potentially sensitive documents to unknown servers, our tool processes everything locally in your browser. This means your confidential documents, proprietary information, and private content never leave your computer. We use the industry-standard PDF-lib library to add watermarks with complete privacy protection.</p>
+            
+            <h2>Key Features of Our PDF Watermarker</h2>
+            <ul>
+                <li><strong>100% Free Forever:</strong> No premium tiers, no hidden costs, no watermarks on output, no registration required.</li>
+                <li><strong>Privacy-First Design:</strong> All watermarking happens locally in your browser. Your files never upload to any server.</li>
+                <li><strong>Text or Image Watermarks:</strong> Add text-based watermarks or upload your own logo/image.</li>
+                <li><strong>Customizable Appearance:</strong> Control font, size, color, opacity, rotation, and position.</li>
+                <li><strong>Flexible Placement:</strong> Choose from preset positions or set custom X/Y coordinates.</li>
+                <li><strong>Page Selection:</strong> Apply watermarks to all pages, first/last only, or specific page ranges.</li>
+                <li><strong>Real-time Preview:</strong> See opacity and rotation values update instantly.</li>
+                <li><strong>Fast Processing:</strong> Local processing means instant watermarking without queue times.</li>
+                <li><strong>Dark/Light Mode:</strong> Comfortable viewing in any lighting condition with our theme toggle.</li>
+                <li><strong>No File Size Limits:</strong> Watermark PDFs of any size (limited only by your device memory).</li>
+            </ul>
+            
+            <h2>How to Add Watermarks to PDF - Step by Step Guide</h2>
+            <p>Using our PDF watermarker is straightforward. Follow these simple steps:</p>
+            <ol>
+                <li><strong>Select Your PDF:</strong> Click the "Choose File" button and select the PDF document you want to watermark.</li>
+                <li><strong>Choose Watermark Type:</strong> Select text watermark or image watermark.</li>
+                <li><strong>Enter Watermark Text/Image:</strong> Type your watermark text or upload an image file.</li>
+                <li><strong>Customize Appearance:</strong> Adjust font, size, color, opacity, rotation, and position.</li>
+                <li><strong>Select Page Scope:</strong> Choose which pages receive the watermark.</li>
+                <li><strong>Add Watermark:</strong> Click the "Add Watermark to PDF" button.</li>
+                <li><strong>Download:</strong> Once complete, download your watermarked PDF document.</li>
+            </ol>
+            
+            <h2>Understanding Watermark Options</h2>
+            
+            <h3>Text Watermarks</h3>
+            <p>Text watermarks are ideal for status indicators (CONFIDENTIAL, DRAFT, SAMPLE), copyright notices, or simple branding. They're easy to customize and don't require external image files. Common text watermarks include:</p>
+            <ul>
+                <li><strong>CONFIDENTIAL</strong> - For sensitive internal documents</li>
+                <li><strong>DRAFT</strong> - For documents still in review</li>
+                <li><strong>SAMPLE</strong> - For client proofs or demo versions</li>
+                <li><strong>COPYRIGHT</strong> - For intellectual property protection</li>
+                <li><strong>DO NOT COPY</strong> - To discourage unauthorized distribution</li>
+                <li><strong>Company Name</strong> - For branding and ownership assertion</li>
+            </ul>
+            
+            <h3>Image Watermarks</h3>
+            <p>Image watermarks are perfect for company logos, signatures, seals, or custom graphics. Upload PNG or JPG files (PNG recommended for transparency support). Image watermarks appear as semi-transparent overlays on your document pages.</p>
+            
+            <h3>Opacity (Transparency)</h3>
+            <p>Opacity controls how transparent your watermark appears. Lower opacity (10-30%) creates subtle watermarks that don't interfere with document readability. Higher opacity (50-70%) creates more visible watermarks for stronger protection. We recommend 30% for most use cases.</p>
+            
+            <h3>Rotation</h3>
+            <p>Rotation angles your watermark diagonally across the page. Diagonal watermarks (30-60 degrees) are traditional and cover more page area without obscuring content. Straight watermarks (0 degrees) appear horizontal; vertical (90 degrees) appears top-to-bottom.</p>
+            
+            <h3>Position</h3>
+            <p>Choose where your watermark appears on each page:</p>
+            <ul>
+                <li><strong>Center:</strong> Traditional placement, covers the middle of the page</li>
+                <li><strong>Top Left/Right:</strong> Subtle placement, less intrusive</li>
+                <li><strong>Bottom Left/Right:</strong> Footer-style placement, professional look</li>
+                <li><strong>Custom:</strong> Precise X/Y positioning for exact placement needs</li>
+            </ul>
+            
+            <h2>Common Use Cases for PDF Watermarks</h2>
+            
+            <h3>Business Documents</h3>
+            <p>Add "CONFIDENTIAL" watermarks to internal reports, financial statements, and strategic plans. Mark draft documents clearly to prevent premature distribution. Add company logos to proposals and presentations for professional branding.</p>
+            
+            <h3>Legal Documents</h3>
+            <p>Law firms add "ATTORNEY-CLIENT PRIVILEGED" watermarks to sensitive communications. Mark discovery documents with case numbers or matter identifiers. Add copyright notices to legal filings and contracts.</p>
+            
+            <h3>Creative Portfolios</h3>
+            <p>Photographers, designers, and artists add copyright watermarks to portfolio PDFs to protect their work when sharing with potential clients. Prevent unauthorized use of creative samples.</p>
+            
+            <h3>Educational Materials</h3>
+            <p>Teachers and professors add "SAMPLE" or "PROOF" watermarks to exam previews. Mark answer keys clearly to prevent student access. Add school logos to official documents.</p>
+            
+            <h3>Government and Public Records</h3>
+            <p>Government agencies add "PUBLIC RECORD" or "OFFICIAL DOCUMENT" watermarks. Mark restricted information appropriately. Add agency seals and official markings.</p>
+            
+            <h2>Technical Details: How Our PDF Watermarker Works</h2>
+            <p>Our PDF watermarker uses the PDF-lib library for adding watermarks:</p>
+            <ul>
+                <li><strong>PDF Loading:</strong> The PDF document is loaded into memory using PDF-lib's load() method.</li>
+                <li><strong>Page Selection:</strong> Based on your scope selection, specific pages are identified for watermarking.</li>
+                <li><strong>Watermark Rendering:</strong> For text watermarks, text is drawn on each selected page using drawText() with specified font, size, color, opacity, rotation, and position.</li>
+                <li><strong>Image Watermarks:</strong> For image watermarks, the image is embedded using embedJpg() or embedPng(), then drawn using drawImage().</li>
+                <li><strong>PDF Regeneration:</strong> The watermarked PDF is saved with all watermarks embedded.</li>
+            </ul>
+            
+            <h2>Best Practices for PDF Watermarking</h2>
+            
+            <h3>Use Appropriate Opacity</h3>
+            <p>For watermarks that protect without obscuring content, use 20-30% opacity. For maximum protection where readability is secondary, use 50-70% opacity. Avoid 100% opacity as it makes documents difficult to read.</p>
+            
+            <h3>Position Strategically</h3>
+            <p>Diagonal watermarks across the center are most effective for protection as they're difficult to crop out. Edge watermarks (corners) are less intrusive but easier to remove. Choose based on your priority: protection vs. readability.</p>
+            
+            <h3>Use Clear, Legible Text</h3>
+            <p>Choose simple, bold fonts for text watermarks. Avoid fancy fonts that become unreadable when rotated or semi-transparent. Helvetica and Arial work well at various opacities and rotations.</p>
+            
+            <h3>Test Before Distribution</h3>
+            <p>Always review your watermarked PDF to ensure watermarks appear as expected and don't obscure critical content. Test on a few sample pages before processing entire documents.</p>
+            
+            <h2>Comparison with Other PDF Watermarking Solutions</h2>
+            <p>Unlike cloud-based PDF watermarkers that require uploading sensitive documents to external servers, our tool offers unparalleled privacy and security. Adobe Acrobat Pro costs $15-30/month for watermarking features. Other online tools may add their own watermarks, limit file sizes, or store your documents. Our tool provides professional PDF watermarking completely free with local-only processing, no added watermarks, and no file size limits.</p>
+            
+            <h2>Troubleshooting Common Issues</h2>
+            
+            <h3>Watermark Too Faint or Too Dark?</h3>
+            <p>Adjust the opacity slider. Lower opacity (10-20%) for subtle watermarks, higher (50-70%) for more visible protection. Preview changes in real-time using the opacity display.</p>
+            
+            <h3>Watermark Not Visible on All Pages?</h3>
+            <p>Check your page scope setting. "All Pages" applies to every page. "First Page Only" or "Last Page Only" applies to single pages. "Specific Page Range" requires valid page numbers.</p>
+            
+            <h3>Image Watermark Too Large or Small?</h3>
+            <p>Resize your image before uploading. For logos, 200x200 pixels works well. Our tool preserves original image dimensions. Edit images in external software to adjust size.</p>
+            
+            <h3>Text Cut Off at Edges?</h3>
+            <p>Reduce font size or adjust position. Watermarks near page edges may be cut off during PDF rendering. Center positioning or reduced font sizes usually resolve this.</p>
+            
+            <h3>Large Files Taking Too Long?</h3>
+            <p>Very large PDFs (100+ pages) may take longer to process as each page is watermarked individually. This is normal. For better performance, split the PDF into smaller documents first.</p>
+            
+            <h2>Security and Privacy Deep Dive</h2>
+            <p>Your privacy is our priority. Unlike competing services that require you to upload documents to their servers, our PDF watermarker processes everything locally. When you select a file:</p>
+            <ul>
+                <li>The file is read into your browser's memory using the File API</li>
+                <li>All processing uses your device's CPU - no external servers involved</li>
+                <li>No file data is ever transmitted over the network</li>
+                <li>When you close the page, all data is cleared from memory</li>
+                <li>We don't use cookies, analytics, or tracking scripts</li>
+                <li>Watermarked PDFs only exist on your device after download</li>
+            </ul>
+            
+            <h2>Frequently Asked Questions</h2>
+            
+            <h3>Is this watermarker really free?</h3>
+            <p>Yes, completely free with no hidden costs, no premium tiers, and no watermarks added by us. We believe essential PDF tools should be accessible to everyone.</p>
+            
+            <h3>Can I remove watermarks?</h3>
+            <p>Yes, use our Remove Watermark tool. However, you should only remove watermarks from documents you own or have permission to modify.</p>
+            
+            <h3>What image formats are supported?</h3>
+            <p>PNG, JPG, and JPEG formats are supported. PNG is recommended for logos as it supports transparency.</p>
+            
+            <h3>Can I add different watermarks to different pages?</h3>
+            <p>Currently, you can add one watermark type per operation. For multiple watermarks, run the tool multiple times with different settings.</p>
+            
+            <h3>What's the maximum file size?</h3>
+            <p>Since processing happens locally, limits depend on your device's available memory. Most modern devices can handle PDFs up to 200MB easily.</p>
+            
+            <h2>Industry-Specific Use Cases</h2>
+            
+            <h3>Legal Industry</h3>
+            <p>Law firms add "PRIVILEGED & CONFIDENTIAL" watermarks, case numbers, and firm branding to documents. Protect sensitive client information and assert ownership.</p>
+            
+            <h3>Creative Industry</h3>
+            <p>Photographers, designers, and artists add copyright watermarks to portfolios. Protect creative work when sharing with potential clients.</p>
+            
+            <h3>Corporate Communications</h3>
+            <p>Businesses add "DRAFT," "FOR INTERNAL USE ONLY," and company logos to internal documents. Brand all external communications professionally.</p>
+            
+            <h3>Education</h3>
+            <p>Schools and universities add logos, "SAMPLE" watermarks to exam previews, and institution names to official documents.</p>
+            
+            <h2>Future Updates and Roadmap</h2>
+            <p>We continuously improve our PDF watermarker based on user feedback. Planned features include batch processing, tiled/repeating watermarks, dynamic watermarks (date/time/page number), and more positioning options. Have a suggestion? Contact us with your ideas!</p>
+            
+            <h2>Conclusion</h2>
+            <p>Adding watermarks to PDF documents is essential for protecting intellectual property, marking document status, and professional branding. Our free PDF watermarker provides professional-quality watermarking with uncompromising privacy protection. Whether you're protecting confidential business documents, branding your creative portfolio, or marking draft status, our tool delivers perfect watermarks instantly. Try our PDF watermarker today and protect your documents with confidence.</p>
+        </div>
+        
+        <div class="related-tools">
+            <h3>Related Tools</h3>
+            <div class="related-grid">
+                <a href="remove-watermark.html" class="related-link">🧹 Remove Watermark</a>
+                <a href="pdf-protect.html" class="related-link">🔒 Protect PDF</a>
+                <a href="edit-pdf.html" class="related-link">✏️ Edit PDF</a>
+                <a href="merge-pdf.html" class="related-link">🔗 Merge PDF</a>
+                <a href="compress-pdf.html" class="related-link">🗜️ Compress PDF</a>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="footer">
+        <p>&copy; 2024 PDF Tools Pro. All tools are 100% free to use. Your files are processed locally and never uploaded.</p>
+    </footer>
+    
+    <script src="../js/main.js"></script>
+    <script>
+        const addWatermarkBtn = document.getElementById('addWatermarkBtn');
+        const pdfInput = document.getElementById('pdfInput');
+        const watermarkType = document.getElementById('watermarkType');
+        const textWatermarkGroup = document.getElementById('textWatermarkGroup');
+        const imageWatermarkGroup = document.getElementById('imageWatermarkGroup');
+        const watermarkText = document.getElementById('watermarkText');
+        const fontSize = document.getElementById('fontSize');
+        const fontFamily = document.getElementById('fontFamily');
+        const imageInput = document.getElementById('imageInput');
+        const imagePreview = document.getElementById('imagePreview');
+        const previewImg = document.getElementById('previewImg');
+        const watermarkColor = document.getElementById('watermarkColor');
+        const opacity = document.getElementById('opacity');
+        const opacityValue = document.getElementById('opacityValue');
+        const rotation = document.getElementById('rotation');
+        const rotationValue = document.getElementById('rotationValue');
+        const position = document.getElementById('position');
+        const customPositionGroup = document.getElementById('customPositionGroup');
+        const customX = document.getElementById('customX');
+        const customY = document.getElementById('customY');
+        const watermarkScope = document.getElementById('watermarkScope');
+        const pageRangeGroup = document.getElementById('pageRangeGroup');
+        const pageRange = document.getElementById('pageRange');
+        const fileInfo = document.getElementById('fileInfo');
+        const fileInfoText = document.getElementById('fileInfoText');
+        const pageInfo = document.getElementById('pageInfo');
+        const resultDiv = document.getElementById('result');
+        
+        let currentPDFData = null;
+        let totalPages = 0;
+        let watermarkImageData = null;
+        
+        // Show/hide watermark type groups
+        watermarkType.addEventListener('change', () => {
+            if (watermarkType.value === 'text') {
+                textWatermarkGroup.style.display = 'block';
+                imageWatermarkGroup.style.display = 'none';
+            } else {
+                textWatermarkGroup.style.display = 'none';
+                imageWatermarkGroup.style.display = 'block';
+            }
+        });
+        
+        // Update opacity display
+        opacity.addEventListener('input', () => {
+            opacityValue.textContent = opacity.value + '%';
+        });
+        
+        // Update rotation display
+        rotation.addEventListener('input', () => {
+            rotationValue.textContent = rotation.value + '°';
+        });
+        
+        // Show/hide custom position
+        position.addEventListener('change', () => {
+            if (position.value === 'custom') {
+                customPositionGroup.style.display = 'flex';
+            } else {
+                customPositionGroup.style.display = 'none';
+            }
+        });
+        
+        // Show/hide page range
+        watermarkScope.addEventListener('change', () => {
+            if (watermarkScope.value === 'range') {
+                pageRangeGroup.style.display = 'block';
+            } else {
+                pageRangeGroup.style.display = 'none';
+            }
+        });
+        
+        // Handle image upload
+        imageInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    watermarkImageData = event.target.result;
+                    previewImg.src = watermarkImageData;
+                    imagePreview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+        
+        // Load PDF when file is selected
+        pdfInput.addEventListener('change', async () => {
+            const file = pdfInput.files[0];
+            if (file) {
+                try {
+                    const arrayBuffer = await file.arrayBuffer();
+                    currentPDFData = arrayBuffer;
+                    
+                    const { PDFDocument } = PDFLib;
+                    const pdfDoc = await PDFDocument.load(arrayBuffer);
+                    totalPages = pdfDoc.getPageCount();
+                    
+                    const fileSize = formatFileSize(file.size);
+                    const fileName = file.name;
+                    fileInfoText.textContent = `${fileName} (${fileSize})`;
+                    pageInfo.innerHTML = `Total pages: ${totalPages}`;
+                    fileInfo.style.display = 'block';
+                    resultDiv.innerHTML = '';
+                    
+                    showAlert(`PDF loaded successfully. ${totalPages} page(s) ready for watermarking.`, 'success');
+                } catch (error) {
+                    console.error('Error loading PDF:', error);
+                    showAlert('Error loading PDF. Please ensure it\'s a valid file.', 'error');
+                }
+            } else {
+                fileInfo.style.display = 'none';
+                currentPDFData = null;
+                totalPages = 0;
+            }
+        });
+        
+        // Parse page range
+        function parsePageRange(rangeStr, totalPages) {
+            if (!rangeStr.trim()) return [];
+            
+            const pages = new Set();
+            const parts = rangeStr.split(',');
+            
+            for (const part of parts) {
+                part = part.trim();
+                if (part.includes('-')) {
+                    const [start, end] = part.split('-').map(n => parseInt(n.trim()));
+                    if (isNaN(start) || isNaN(end)) continue;
+                    for (let i = start; i <= end; i++) {
+                        if (i >= 1 && i <= totalPages) pages.add(i - 1);
+                    }
+                } else {
+                    const page = parseInt(part);
+                    if (!isNaN(page) && page >= 1 && page <= totalPages) pages.add(page - 1);
+                }
+            }
+            
+            return Array.from(pages).sort((a, b) => a - b);
+        }
+        
+        // Get pages to watermark
+        function getPagesToWatermark(scope, totalPages, rangeStr) {
+            switch(scope) {
+                case 'all':
+                    return Array.from({length: totalPages}, (_, i) => i);
+                case 'first':
+                    return totalPages > 0 ? [0] : [];
+                case 'last':
+                    return totalPages > 0 ? [totalPages - 1] : [];
+                case 'range':
+                    return parsePageRange(rangeStr, totalPages);
+                default:
+                    return Array.from({length: totalPages}, (_, i) => i);
+            }
+        }
+        
+        // Get position coordinates
+        function getPosition(positionType, pageWidth, pageHeight, customXVal, customYVal) {
+            switch(positionType) {
+                case 'center':
+                    return { x: pageWidth / 2, y: pageHeight / 2 };
+                case 'topleft':
+                    return { x: 50, y: pageHeight - 50 };
+                case 'topright':
+                    return { x: pageWidth - 50, y: pageHeight - 50 };
+                case 'bottomleft':
+                    return { x: 50, y: 50 };
+                case 'bottomright':
+                    return { x: pageWidth - 50, y: 50 };
+                case 'custom':
+                    return { x: customXVal, y: pageHeight - customYVal };
+                default:
+                    return { x: pageWidth / 2, y: pageHeight / 2 };
+            }
+        }
+        
+        // Add watermark to PDF
+        async function addWatermarkToPDF() {
+            if (!currentPDFData) {
+                showAlert('Please select a PDF file first', 'error');
+                return;
+            }
+            
+            const type = watermarkType.value;
+            
+            if (type === 'text' && !watermarkText.value.trim()) {
+                showAlert('Please enter watermark text', 'error');
+                return;
+            }
+            
+            if (type === 'image' && !watermarkImageData) {
+                showAlert('Please select a watermark image', 'error');
+                return;
+            }
+            
+            const scope = watermarkScope.value;
+            const rangeStr = pageRange.value;
+            
+            if (scope === 'range' && !rangeStr.trim()) {
+                showAlert('Please enter a page range', 'error');
+                return;
+            }
+            
+            try {
+                addWatermarkBtn.disabled = true;
+                addWatermarkBtn.textContent = 'Adding Watermark...';
+                resultDiv.innerHTML = '<div class="loader"></div> Adding watermark to PDF... This may take a moment.';
+                
+                const { PDFDocument, rgb, StandardFonts, degrees } = PDFLib;
+                const pdfDoc = await PDFDocument.load(currentPDFData);
+                const pages = pdfDoc.getPages();
+                const pagesToWatermark = getPagesToWatermark(scope, totalPages, rangeStr);
+                
+                if (pagesToWatermark.length === 0) {
+                    throw new Error('No pages selected for watermarking');
+                }
+                
+                const opacityValue_num = parseInt(opacity.value) / 100;
+                const rotationValue_num = parseInt(rotation.value);
+                const positionType = position.value;
+                const customXVal = parseInt(customX.value) || 300;
+                const customYVal = parseInt(customY.value) || 400;
+                
+                for (const pageIndex of pagesToWatermark) {
+                    const page = pages[pageIndex];
+                    const { width, height } = page.getSize();
+                    
+                    const pos = getPosition(positionType, width, height, customXVal, customYVal);
+                    
+                    if (type === 'text') {
+                        // Add text watermark
+                        let font;
+                        const fontName = fontFamily.value;
+                        if (fontName === 'Helvetica') font = await pdfDoc.embedFont(StandardFonts.Helvetica);
+                        else if (fontName === 'TimesRoman') font = await pdfDoc.embedFont(StandardFonts.TimesRoman);
+                        else font = await pdfDoc.embedFont(StandardFonts.Courier);
+                        
+                        const colorHex = watermarkColor.value;
+                        const r = parseInt(colorHex.slice(1,3), 16) / 255;
+                        const g = parseInt(colorHex.slice(3,5), 16) / 255;
+                        const b = parseInt(colorHex.slice(5,7), 16) / 255;
+                        
+                        const text = watermarkText.value;
+                        const size = parseInt(fontSize.value);
+                        
+                        page.drawText(text, {
+                            x: pos.x - (text.length * size * 0.3) / 2,
+                            y: pos.y,
+                            size: size,
+                            font: font,
+                            color: rgb(r, g, b),
+                            opacity: opacityValue_num,
+                            rotate: degrees(rotationValue_num)
+                        });
+                    } else {
+                        // Add image watermark
+                        let image;
+                        if (watermarkImageData.includes('png')) {
+                            image = await pdfDoc.embedPng(watermarkImageData);
+                        } else {
+                            image = await pdfDoc.embedJpg(watermarkImageData);
+                        }
+                        
+                        const imgWidth = image.width;
+                        const imgHeight = image.height;
+                        
+                        // Scale image to reasonable size (max 200px)
+                        const maxSize = 150;
+                        let drawWidth = imgWidth;
+                        let drawHeight = imgHeight;
+                        
+                        if (imgWidth > maxSize || imgHeight > maxSize) {
+                            const scale = Math.min(maxSize / imgWidth, maxSize / imgHeight);
+                            drawWidth = imgWidth * scale;
+                            drawHeight = imgHeight * scale;
+                        }
+                        
+                        page.drawImage(image, {
+                            x: pos.x - drawWidth / 2,
+                            y: pos.y - drawHeight / 2,
+                            width: drawWidth,
+                            height: drawHeight,
+                            opacity: opacityValue_num,
+                            rotate: degrees(rotationValue_num)
+                        });
+                    }
+                }
+                
+                const pdfBytes = await pdfDoc.save();
+                const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+                const url = URL.createObjectURL(blob);
+                const originalName = pdfInput.files[0].name.replace('.pdf', '');
+                
+                resultDiv.innerHTML = `
+                    <div class="alert alert-success" style="margin-bottom: 1rem;">✅ Watermark added successfully to ${pagesToWatermark.length} page(s)!</div>
+                    <a href="${url}" download="${originalName}_watermarked.pdf" class="download-link">📥 Download Watermarked PDF</a>
+                    <p style="margin-top: 1rem; font-size: 0.875rem; color: var(--text-muted);">✓ Watermarked locally - Your file never left your device</p>
+                    <p style="margin-top: 0.5rem; font-size: 0.875rem; color: var(--text-muted);">✓ ${pagesToWatermark.length} page(s) watermarked</p>
+                `;
+                
+                showAlert(`Watermark added successfully to ${pagesToWatermark.length} page(s)!`, 'success');
+            } catch (error) {
+                console.error(error);
+                resultDiv.innerHTML = `<div class="alert alert-error">Error: ${error.message || 'Failed to add watermark. Please try again.'}</div>`;
+                showAlert('Failed to add watermark. Please try again.', 'error');
+            } finally {
+                addWatermarkBtn.disabled = false;
+                addWatermarkBtn.textContent = 'Add Watermark to PDF';
+            }
+        }
+        
+        addWatermarkBtn.addEventListener('click', addWatermarkToPDF);
+    </script>
+</body>
+</html>

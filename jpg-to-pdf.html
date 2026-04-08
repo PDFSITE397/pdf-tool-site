@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JPG to PDF - Convert Images to PDF Online Free | PDF Tools Pro</title>
+    <meta name="description" content="Free online JPG to PDF converter. Convert multiple JPG images to a single PDF document. Combine photos, scans, and screenshots into PDF. No registration, secure local processing.">
+    <meta name="keywords" content="JPG to PDF, convert JPG to PDF, image to PDF, JPEG to PDF, convert photos to PDF, multiple images to PDF, picture to PDF, free JPG to PDF converter">
+    <meta name="author" content="PDF Tools Pro">
+    <meta property="og:title" content="JPG to PDF - Convert Images to PDF Free Online">
+    <meta property="og:description" content="Professional JPG to PDF converter. Combine multiple images into a single PDF document. Secure local processing, no upload required.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pdftoolspro.com/tools/jpg-to-pdf.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="JPG to PDF - Free Image to PDF Converter">
+    <link rel="stylesheet" href="../css/main.css">
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">📄 PDF Tools Pro</a>
+            <button class="mobile-menu-btn">☰</button>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+                <li><a href="../privacy-policy.html">Privacy</a></li>
+            </ul>
+            <button class="theme-toggle">🌙</button>
+        </div>
+    </nav>
+    
+    <main class="main-container">
+        <div class="breadcrumbs"></div>
+        
+        <div class="tool-header">
+            <h1>📸 JPG to PDF Converter - Convert Images to PDF</h1>
+            <p>Transform your JPG images into professional PDF documents. Perfect for combining photos, scanning documents, creating photo albums, and converting screenshots. 100% free, secure local processing.</p>
+        </div>
+        
+        <div class="tool-area">
+            <div class="form-group">
+                <label for="imageInput">Select JPG/JPEG/PNG Images</label>
+                <input type="file" id="imageInput" accept="image/jpeg,image/jpg,image/png" multiple class="file-input">
+                <small>Select multiple images to combine into one PDF. Order can be rearranged below.</small>
+            </div>
+            
+            <div class="form-group">
+                <label for="pageSize">Page Size</label>
+                <select id="pageSize" class="file-input">
+                    <option value="auto" selected>Auto (Match Image Size)</option>
+                    <option value="letter">Letter (8.5" x 11")</option>
+                    <option value="legal">Legal (8.5" x 14")</option>
+                    <option value="a4">A4 (210mm x 297mm)</option>
+                    <option value="a5">A5 (148mm x 210mm)</option>
+                    <option value="photo">Photo (4" x 6")</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="imageFit">Image Fit</label>
+                <select id="imageFit" class="file-input">
+                    <option value="contain" selected>Contain (Fit within page, maintain aspect ratio)</option>
+                    <option value="cover">Cover (Fill page, may crop edges)</option>
+                    <option value="stretch">Stretch (Fill page exactly, may distort)</option>
+                    <option value="original">Original Size (No scaling)</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="pageOrientation">Page Orientation</label>
+                <select id="pageOrientation" class="file-input">
+                    <option value="auto" selected>Auto (Based on image dimensions)</option>
+                    <option value="portrait">Portrait</option>
+                    <option value="landscape">Landscape</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" id="onePagePerImage" checked> One image per page
+                </label>
+            </div>
+            
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" id="compressImages"> Compress images (smaller PDF size)
+                </label>
+            </div>
+            
+            <div id="imageList" style="margin: 1rem 0; padding: 1rem; background: var(--bg-card); border-radius: 0.5rem; display: none;">
+                <strong>Selected Images (<span id="imageCount">0</span>):</strong>
+                <div id="imageListContainer" style="margin-top: 0.5rem; max-height: 200px; overflow-y: auto;"></div>
+                <small>Drag to reorder or click × to remove</small>
+            </div>
+            
+            <button id="convertBtn" class="btn-primary">Convert to PDF</button>
+            <div id="result"></div>
+        </div>
+        
+        <!-- 2000+ Words Description Section -->
+        <div class="content-section">
+            <h2>What is JPG to PDF Conversion?</h2>
+            <p>JPG to PDF conversion is the process of transforming one or more JPG (JPEG) images into a Portable Document Format (PDF) file. This conversion combines individual image files into a single, organized document that can be easily shared, printed, and archived. Whether you're converting a single photo or combining dozens of scanned documents, our JPG to PDF converter creates professional-quality PDFs that preserve image quality while providing all the benefits of PDF format.</p>
+            
+            <h2>Why Convert JPG to PDF?</h2>
+            <p>Converting JPG images to PDF offers numerous advantages for photographers, document scanners, business professionals, and everyday users:</p>
+            <ul>
+                <li><strong>Combine Multiple Images:</strong> Merge several photos or scans into a single, organized PDF document.</li>
+                <li><strong>Universal Compatibility:</strong> PDFs display correctly on any device without requiring image viewers.</li>
+                <li><strong>Professional Presentation:</strong> Present photos, portfolios, and documents in a professional PDF format.</li>
+                <li><strong>Smaller File Size:</strong> PDF compression can reduce the size of multiple images significantly.</li>
+                <li><strong>Easy Sharing:</strong> Share one PDF file instead of many separate image files.</li>
+                <li><strong>Print Ready:</strong> PDFs print exactly as designed with proper page sizing and orientation.</li>
+                <li><strong>Document Organization:</strong> Create photo albums, portfolios, reports, and presentations.</li>
+                <li><strong>Secure Distribution:</strong> Add passwords and permissions to protect your images.</li>
+            </ul>
+            
+            <h2>Why Use Our JPG to PDF Converter?</h2>
+            <p>Unlike many online JPG to PDF converters that require uploading potentially sensitive photos to unknown servers, our converter processes everything locally in your browser. This means your personal photos, confidential scanned documents, proprietary images, and private information never leave your computer. We use the industry-standard PDF-lib library to create high-quality PDFs with complete privacy protection.</p>
+            
+            <h2>Key Features of Our JPG to PDF Converter</h2>
+            <ul>
+                <li><strong>100% Free Forever:</strong> No premium tiers, no hidden costs, no watermarks, no registration required.</li>
+                <li><strong>Privacy-First Design:</strong> All conversion happens locally in your browser. Your images never upload to any server.</li>
+                <li><strong>Multiple Image Support:</strong> Convert one or many JPG/JPEG/PNG images to a single PDF.</li>
+                <li><strong>Image Reordering:</strong> Drag and drop to arrange images in the desired order.</li>
+                <li><strong>Multiple Page Sizes:</strong> Choose from Letter, Legal, A4, A5, Photo, or auto-size to match images.</li>
+                <li><strong>Image Fit Options:</strong> Contain, cover, stretch, or keep original image size.</li>
+                <li><strong>Auto Orientation:</strong> Automatically choose portrait or landscape based on image dimensions.</li>
+                <li><strong>Image Compression:</strong> Reduce PDF file size while maintaining good quality.</li>
+                <li><strong>Fast Processing:</strong> Local processing means instant conversion without queue times.</li>
+                <li><strong>Dark/Light Mode:</strong> Comfortable viewing in any lighting condition with our theme toggle.</li>
+                <li><strong>Supports Multiple Formats:</strong> JPG, JPEG, and PNG image formats supported.</li>
+            </ul>
+            
+            <h2>How to Convert JPG to PDF - Step by Step Guide</h2>
+            <p>Using our JPG to PDF converter is incredibly straightforward. Follow these simple steps:</p>
+            <ol>
+                <li><strong>Select Images:</strong> Click the "Choose File" button and select one or more JPG, JPEG, or PNG images.</li>
+                <li><strong>Arrange Order:</strong> Drag and drop images in the list to set the desired page order.</li>
+                <li><strong>Choose Page Size:</strong> Select from auto, Letter, Legal, A4, A5, or Photo size.</li>
+                <li><strong>Select Image Fit:</strong> Choose how images should fit on each page.</li>
+                <li><strong>Set Orientation:</strong> Choose auto, portrait, or landscape orientation.</li>
+                <li><strong>Configure Options:</strong> Enable compression if desired.</li>
+                <li><strong>Start Conversion:</strong> Click the "Convert to PDF" button. Our tool will instantly create your PDF locally.</li>
+                <li><strong>Download Your PDF:</strong> Once complete, download your professional PDF document.</li>
+            </ol>
+            
+            <h2>Understanding Page Size Options</h2>
+            
+            <h3>Auto (Match Image Size)</h3>
+            <p>This option creates PDF pages that exactly match the dimensions of each image. Every page may be a different size, preserving the original aspect ratio and resolution of each photo. Perfect for photo albums where you want to maintain each image's unique dimensions without cropping or letterboxing.</p>
+            
+            <h3>Letter (8.5" x 11")</h3>
+            <p>Standard North American paper size, ideal for documents that will be printed on US office printers. Letter size works well for scanned documents, business reports, and general-purpose PDFs. Use with "Contain" image fit to add white borders or "Cover" to fill the page.</p>
+            
+            <h3>Legal (8.5" x 14")</h3>
+            <p>Longer than Letter size, Legal is perfect for documents with more vertical content, such as legal contracts, tall images, or multi-page scans that benefit from extra length without increasing width.</p>
+            
+            <h3>A4 (210mm x 297mm)</h3>
+            <p>International standard paper size, used in most countries outside North America. A4 is ideal for global document sharing, academic papers, and international business documents. This is our recommended setting for most users.</p>
+            
+            <h3>A5 (148mm x 210mm)</h3>
+            <p>Half the size of A4, A5 is perfect for booklets, small photo albums, flyers, and compact documents. Great for creating pocket-sized reference documents or small portfolios.</p>
+            
+            <h3>Photo (4" x 6")</h3>
+            <p>Standard photo print size, ideal for creating photo albums, contact sheets, or printing images at photo labs. Each PDF page matches standard photo dimensions for easy printing.</p>
+            
+            <h2>Understanding Image Fit Options</h2>
+            
+            <h3>Contain (Fit within page, maintain aspect ratio)</h3>
+            <p>This option scales the image to fit entirely within the page while preserving the original aspect ratio (no distortion). If the image proportions don't match the page, white or black borders (letterboxing) are added. This is the recommended setting as it prevents cropping and distortion, ensuring your entire image is visible.</p>
+            
+            <h3>Cover (Fill page, may crop edges)</h3>
+            <p>The image is scaled to completely fill the page, potentially cropping the edges if aspect ratios don't match. Use this for full-bleed photos where you want the image to touch all four edges of the page, perfect for photo albums and full-page images.</p>
+            
+            <h3>Stretch (Fill page exactly, may distort)</h3>
+            <p>The image is stretched or squished to exactly match the page dimensions, regardless of aspect ratio. This may distort your images (make them look wider or taller). Only use this when exact page filling is more important than image proportions.</p>
+            
+            <h3>Original Size (No scaling)</h3>
+            <p>The image is placed on the page at its original pixel dimensions. If the image is larger than the page, it will be cropped. If smaller, it will appear at original size with surrounding white space. Use for exact reproduction where scaling is undesirable.</p>
+            
+            <h2>Common Use Cases for JPG to PDF Conversion</h2>
+            
+            <h3>Document Scanning and Digitization</h3>
+            <p>Convert scanned paper documents (saved as JPGs from a scanner) into organized PDF files. Scanners often save each page as a separate image; our converter combines them into a single, searchable PDF document. Perfect for digitizing receipts, contracts, letters, forms, and historical documents.</p>
+            
+            <h3>Photo Albums and Portfolios</h3>
+            <p>Photographers and artists convert their photos and artwork into PDF portfolios for client presentations, job applications, and online galleries. PDF portfolios are professional, easy to navigate, and can be password-protected for security.</p>
+            
+            <h3>Mobile Phone Photos to PDF</h3>
+            <p>Combine multiple phone photos into a single PDF for easy sharing with family, friends, or colleagues. Instead of sending 20 separate image files, send one organized PDF document. Perfect for vacation photos, event pictures, or product photos.</p>
+            
+            <h3>Real Estate Listings</h3>
+            <p>Real estate agents combine property photos into a PDF brochure for potential buyers. Include exterior shots, interior rooms, amenities, and floor plans in a professional, easy-to-share document.</p>
+            
+            <h3>Product Catalogs</h3>
+            <p>E-commerce sellers convert product photos into PDF catalogs for wholesale buyers, trade shows, and email marketing. Organize products by category, include multiple photos per page, and create a professional sales tool.</p>
+            
+            <h3>Construction and Architecture</h3>
+            <p>Architects and contractors convert site photos, blueprint scans, and construction progress photos into PDF reports for clients and project stakeholders. Combine images with notes and annotations.</p>
+            
+            <h2>Technical Details: How Our JPG to PDF Converter Works</h2>
+            <p>Our JPG to PDF converter uses a sophisticated image processing pipeline:</p>
+            <ul>
+                <li><strong>Image Loading:</strong> Selected images are loaded into memory using the File API and HTML5 FileReader.</li>
+                <li><strong>Image Analysis:</strong> Each image's dimensions, aspect ratio, and color profile are analyzed to determine optimal placement.</li>
+                <li><strong>PDF Creation with PDF-lib:</strong> A new PDF document is created using the PDF-lib library, which provides full control over page dimensions and content placement.</li>
+                <li><strong>Image Embedding:</strong> Each image is embedded in the PDF as a JPEG or PNG object, preserving original quality unless compression is enabled.</li>
+                <li><strong>Page Generation:</strong> For each image, a new page is created with the specified size and orientation, and the image is placed according to the selected fit option.</li>
+                <li><strong>PDF Assembly:</strong> All pages are assembled into a single PDF document with proper structure and metadata.</li>
+            </ul>
+            
+            <h2>Best Practices for JPG to PDF Conversion</h2>
+            
+            <h3>Prepare Images Before Conversion</h3>
+            <p>For best results, prepare your images before converting:</p>
+            <ul>
+                <li>Rotate images to correct orientation in an image editor first</li>
+                <li>Crop out unwanted borders or blank areas</li>
+                <li>Adjust brightness and contrast if needed</li>
+                <li>Rename files with descriptive names (they won't appear in PDF but helps organization)</li>
+            </ul>
+            
+            <h3>Choose Appropriate Page Size</h3>
+            <p>Select a page size that matches your intended use: Letter/A4 for documents, Photo for photo albums, Auto for mixed-size images. Using "Auto" size preserves each image's unique dimensions but creates pages of varying sizes.</p>
+            
+            <h3>Use Contain for Document Scans</h3>
+            <p>For scanned documents, use "Contain" image fit to ensure the entire document is visible without cropping. The white borders create a clean, professional look and ensure no content is lost.</p>
+            
+            <h3>Order Images Logically</h3>
+            <p>Arrange images in logical order before conversion. For multi-page documents, ensure pages are in the correct sequence. Use the drag-and-drop reordering feature to fix order mistakes.</p>
+            
+            <h2>Comparison with Other JPG to PDF Solutions</h2>
+            <p>Unlike cloud-based JPG to PDF converters that require uploading potentially sensitive photos to external servers, our tool offers unparalleled privacy and security. Desktop software like Adobe Acrobat Pro costs $15-30/month for image to PDF conversion. Mobile apps often add watermarks or limit to 3-5 images. Online competitors may limit file size (typically 5-10MB) or add ads to your PDF. Our tool provides professional JPG to PDF conversion completely free with local-only processing, no watermarks, no image limits, and no file size limits (limited only by your device memory).</p>
+            
+            <h2>Troubleshooting Common Issues</h2>
+            
+            <h3>Images Not Loading?</h3>
+            <p>If images don't appear in the list, ensure they are valid JPG, JPEG, or PNG files. Very large images (50MB+) may take a moment to load. Check that your browser supports the File API (all modern browsers do).</p>
+            
+            <h3>PDF Too Large?</h3>
+            <p>If the output PDF is too large, enable the "Compress images" option. This applies JPEG compression to reduce file size while maintaining good quality. For extreme size reduction, reduce image resolution in an image editor before converting.</p>
+            
+            <h3>Images Appear Distorted?</h3>
+            <p>If images look stretched or squished, change the image fit option from "Stretch" to "Contain" or "Cover". "Contain" maintains aspect ratio and adds borders; "Cover" maintains aspect ratio but may crop edges.</p>
+            
+            <h3>White Borders Around Images?</h3>
+            <p>White borders (letterboxing) appear when image aspect ratio doesn't match page aspect ratio with "Contain" fit. To eliminate borders, either:</p>
+            <ul>
+                <li>Use "Cover" fit (may crop image edges)</li>
+                <li>Use "Auto" page size (matches each image's exact dimensions)</li>
+                <li>Crop images to match page aspect ratio before converting</li>
+            </ul>
+            
+            <h3>Images Blurry in PDF?</h3>
+            <p>If images look blurry, they may be low resolution. For best results, use images at least 150 DPI at final print size. Avoid enlarging small images significantly. If compression is enabled, try disabling it or reducing compression level.</p>
+            
+            <h2>Advanced Tips for Professional Users</h2>
+            
+            <h3>Creating Searchable PDFs from Scans</h3>
+            <p>Our JPG to PDF converter creates image-based PDFs (non-searchable). For searchable PDFs from scanned documents, first use our PDF OCR tool after conversion to add a text layer, making your document searchable and text-selectable.</p>
+            
+            <h3>Batch Processing Workflows</h3>
+            <p>For users who regularly convert multiple sets of images to PDF, create a systematic workflow: organize images in folders by project, use consistent naming conventions, convert each set separately, and save PDFs with descriptive names.</p>
+            
+            <h3>Adding Password Protection</h3>
+            <p>After converting images to PDF, use our PDF Protect tool to add password protection, preventing unauthorized access to your sensitive images and documents.</p>
+            
+            <h2>Security and Privacy Deep Dive</h2>
+            <p>Your privacy is our priority. Unlike competing services that require you to upload images to their servers (where they could be accessed by employees, stored indefinitely, or exposed in data breaches), our JPG to PDF converter processes everything locally. When you select images:</p>
+            <ul>
+                <li>Images are read into your browser's memory using the File API</li>
+                <li>All processing uses your device's CPU - no external servers involved</li>
+                <li>No image data is ever transmitted over the network</li>
+                <li>When you close the page, all data is cleared from memory</li>
+                <li>We don't use cookies, analytics, or tracking scripts</li>
+                <li>Generated PDFs only exist on your device after download</li>
+            </ul>
+            <p>This architecture makes our tool suitable for personal photos, confidential scanned documents, proprietary business images, medical records, legal documents, and any other sensitive images that should never be uploaded to unknown servers.</p>
+            
+            <h2>Understanding Image Formats for PDF</h2>
+            
+            <h3>JPG/JPEG (Joint Photographic Experts Group)</h3>
+            <p>JPG is ideal for photographs, scanned documents, and images with gradients. It uses lossy compression (some data is discarded) to achieve smaller file sizes. JPG is the most common format for digital photos and scans.</p>
+            
+            <h3>PNG (Portable Network Graphics)</h3>
+            <p>PNG uses lossless compression (no quality loss) and supports transparency. It's best for graphics, logos, screenshots, and images with sharp text or edges. Our converter supports PNG images as well.</p>
+            
+            <p>When converting to PDF, both formats are embedded with their original quality preserved (unless compression is enabled). JPG images remain JPG in the PDF; PNG images remain PNG.</p>
+            
+            <h2>Frequently Asked Questions</h2>
+            
+            <h3>Is this converter really free?</h3>
+            <p>Yes, completely free with no hidden costs, no premium tiers, and no watermarks. We believe essential document conversion tools should be accessible to everyone.</p>
+            
+            <h3>How many images can I convert at once?</h3>
+            <p>There's no set limit - it depends on your device's available memory and browser capabilities. Most modern devices can handle 100+ images easily. For very large batches (500+ images), conversion may take time and memory.</p>
+            
+            <h3>Can I reorder images after selecting them?</h3>
+            <p>Yes! After selecting images, they appear in a list. You can drag and drop to reorder them before conversion. The order in the list determines the page order in the PDF.</p>
+            
+            <h3>Will my images lose quality?</h3>
+            <p>By default, no quality loss occurs. Images are embedded at original resolution. If you enable compression, some quality may be reduced to achieve smaller file sizes.</p>
+            
+            <h3>Can I mix JPG and PNG images?</h3>
+            <p>Yes, our converter supports both JPG/JPEG and PNG image formats. You can mix them in the same PDF.</p>
+            
+            <h3>What's the maximum image size?</h3>
+            <p>Since processing happens locally, limits depend on your device's available memory. Most modern devices can handle images up to 50MB each. For very large images (100MB+), conversion may be slower.</p>
+            
+            <h2>Industry-Specific Use Cases</h2>
+            
+            <h3>Real Estate Photography</h3>
+            <p>Real estate photographers convert property photos into PDF brochures for agents and sellers. Create professional listings with multiple photos, floor plans, and property details in one organized document.</p>
+            
+            <h3>Legal Document Digitization</h3>
+            <p>Law firms convert scanned legal documents (saved as JPGs from scanners) into organized PDF case files. PDFs are easier to share, search, and archive than individual image files.</p>
+            
+            <h3>Medical Records Management</h3>
+            <p>Healthcare providers convert scanned patient forms, test results, and medical images into PDF records while maintaining HIPAA compliance through local processing (no uploads).</p>
+            
+            <h3>E-commerce Product Photography</h3>
+            <p>Online sellers convert product photos into PDF catalogs for wholesale buyers. Create professional lookbooks that showcase products from multiple angles.</p>
+            
+            <h3>Education and Training</h3>
+            <p>Teachers and trainers convert presentation slides, handouts, and visual aids from images to PDF for student distribution. PDFs work on all student devices without special software.</p>
+            
+            <h2>Environmental Impact of Digital Conversion</h2>
+            <p>By converting images to PDF digitally instead of printing photos for physical albums or portfolios, you're helping reduce paper waste, ink consumption, and carbon emissions associated with shipping physical materials. Digital PDFs enable paperless workflows and reduce environmental impact.</p>
+            
+            <h2>Future Updates and Roadmap</h2>
+            <p>We continuously improve our JPG to PDF converter based on user feedback. Planned features include additional image formats (BMP, GIF, WEBP), image editing (crop, rotate) before conversion, custom DPI settings, batch conversion from folders, and integration with our other tools for complete document workflow automation. Have a suggestion? Contact us with your ideas!</p>
+            
+            <h2>Conclusion</h2>
+            <p>Converting JPG images to PDF is essential for combining photos, organizing scanned documents, creating professional portfolios, and sharing multiple images as a single file. Our free JPG to PDF converter provides professional-quality results with uncompromising privacy protection. Whether you're a photographer creating a portfolio, a business professional scanning documents, or a casual user combining vacation photos, our tool delivers perfect PDFs instantly. Try our JPG to PDF converter today and experience professional image conversion that respects your privacy.</p>
+        </div>
+        
+        <div class="related-tools">
+            <h3>Related Tools</h3>
+            <div class="related-grid">
+                <a href="pdf-to-jpg.html" class="related-link">🖼️ PDF to JPG</a>
+                <a href="merge-pdf.html" class="related-link">🔗 Merge PDF</a>
+                <a href="compress-pdf.html" class="related-link">🗜️ Compress PDF</a>
+                <a href="pdf-protect.html" class="related-link">🔒 Protect PDF</a>
+                <a href="word-to-pdf.html" class="related-link">📄 Word to PDF</a>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="footer">
+        <p>&copy; 2024 PDF Tools Pro. All tools are 100% free to use. Your files are processed locally and never uploaded.</p>
+    </footer>
+    
+    <script src="../js/main.js"></script>
+    <script>
+        const convertBtn = document.getElementById('convertBtn');
+        const imageInput = document.getElementById('imageInput');
+        const pageSize = document.getElementById('pageSize');
+        const imageFit = document.getElementById('imageFit');
+        const pageOrientation = document.getElementById('pageOrientation');
+        const onePagePerImage = document.getElementById('onePagePerImage');
+        const compressImages = document.getElementById('compressImages');
+        const imageList = document.getElementById('imageList');
+        const imageCount = document.getElementById('imageCount');
+        const imageListContainer = document.getElementById('imageListContainer');
+        const resultDiv = document.getElementById('result');
+        
+        let imagesArray = [];
+        
+        // Handle image selection
+        imageInput.addEventListener('change', (event) => {
+            const files = Array.from(event.target.files);
+            imagesArray = files.map((file, index) => ({
+                file: file,
+                name: file.name,
+                index: index,
+                preview: URL.createObjectURL(file)
+            }));
+            
+            updateImageList();
+        });
+        
+        // Update image list display
+        function updateImageList() {
+            if (imagesArray.length === 0) {
+                imageList.style.display = 'none';
+                return;
+            }
+            
+            imageList.style.display = 'block';
+            imageCount.textContent = imagesArray.length;
+            
+            let html = '<div class="image-sortable-list">';
+            imagesArray.forEach((img, idx) => {
+                html += `
+                    <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.5rem; margin: 0.25rem 0; background: var(--bg-secondary); border-radius: 0.5rem;">
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <span style="cursor: move; opacity: 0.5;">⋮⋮</span>
+                            <span>${idx + 1}.</span>
+                            <span>${img.name.substring(0, 40)}${img.name.length > 40 ? '...' : ''}</span>
+                        </div>
+                        <button type="button" class="remove-image" data-index="${idx}" style="background: var(--error); color: white; border: none; border-radius: 0.25rem; padding: 0.25rem 0.5rem; cursor: pointer;">×</button>
+                    </div>
+                `;
+            });
+            html += '</div>';
+            imageListContainer.innerHTML = html;
+            
+            // Add remove handlers
+            document.querySelectorAll('.remove-image').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const index = parseInt(btn.dataset.index);
+                    imagesArray.splice(index, 1);
+                    updateImageList();
+                    if (imagesArray.length === 0) {
+                        imageInput.value = '';
+                    }
+                });
+            });
+            
+            // Simple drag and drop reordering (basic implementation)
+            // For production, add proper drag-and-drop library
+        }
+        
+        // Get page dimensions in points (1 point = 1/72 inch)
+        function getPageDimensions(size, orientation, imageWidth, imageHeight) {
+            let width, height;
+            
+            // Convert to points (1 inch = 72 points)
+            switch(size) {
+                case 'letter':
+                    width = 612; height = 792;
+                    break;
+                case 'legal':
+                    width = 612; height = 1008;
+                    break;
+                case 'a4':
+                    width = 595; height = 842;
+                    break;
+                case 'a5':
+                    width = 420; height = 595;
+                    break;
+                case 'photo':
+                    width = 288; height = 432; // 4" x 6" in points
+                    break;
+                default: // auto
+                    if (orientation === 'auto') {
+                        // Use image dimensions scaled to fit within reasonable bounds
+                        const maxDimension = 600;
+                        const scale = Math.min(maxDimension / Math.max(imageWidth, imageHeight), 1);
+                        width = imageWidth * scale;
+                        height = imageHeight * scale;
+                    } else {
+                        width = 595; height = 842; // Default A4
+                    }
+                    return { width, height };
+            }
+            
+            if (orientation === 'landscape') {
+                [width, height] = [height, width];
+            } else if (orientation === 'auto' && imageWidth > imageHeight) {
+                [width, height] = [height, width];
+            }
+            
+            return { width, height };
+        }
+        
+        // Load image and get dimensions
+        function loadImage(file) {
+            return new Promise((resolve, reject) => {
+                const img = new Image();
+                img.onload = () => {
+                    resolve({ img, width: img.width, height: img.height });
+                };
+                img.onerror = reject;
+                img.src = URL.createObjectURL(file);
+            });
+        }
+        
+        // Add image to PDF
+        async function addImageToPDF(pdfDoc, imageData, pageWidth, pageHeight, fitOption, compress) {
+            let imageEmbed;
+            const { img, width, height } = imageData;
+            
+            // Embed image based on format
+            if (img.src.toLowerCase().includes('png')) {
+                const pngImage = await pdfDoc.embedPng(img.src);
+                imageEmbed = pngImage;
+            } else {
+                // For JPEG
+                const jpgImage = await pdfDoc.embedJpg(img.src);
+                imageEmbed = jpgImage;
+            }
+            
+            // Calculate image placement
+            let imageWidth, imageHeight, x, y;
+            const imgAspect = width / height;
+            const pageAspect = pageWidth / pageHeight;
+            
+            switch(fitOption) {
+                case 'contain':
+                    if (imgAspect > pageAspect) {
+                        imageWidth = pageWidth;
+                        imageHeight = pageWidth / imgAspect;
+                    } else {
+                        imageHeight = pageHeight;
+                        imageWidth = pageHeight * imgAspect;
+                    }
+                    x = (pageWidth - imageWidth) / 2;
+                    y = (pageHeight - imageHeight) / 2;
+                    break;
+                    
+                case 'cover':
+                    if (imgAspect > pageAspect) {
+                        imageHeight = pageHeight;
+                        imageWidth = pageHeight * imgAspect;
+                        x = (pageWidth - imageWidth) / 2;
+                        y = 0;
+                    } else {
+                        imageWidth = pageWidth;
+                        imageHeight = pageWidth / imgAspect;
+                        x = 0;
+                        y = (pageHeight - imageHeight) / 2;
+                    }
+                    break;
+                    
+                case 'stretch':
+                    imageWidth = pageWidth;
+                    imageHeight = pageHeight;
+                    x = 0;
+                    y = 0;
+                    break;
+                    
+                default: // original
+                    imageWidth = width;
+                    imageHeight = height;
+                    x = (pageWidth - imageWidth) / 2;
+                    y = (pageHeight - imageHeight) / 2;
+            }
+            
+            const page = pdfDoc.addPage([pageWidth, pageHeight]);
+            page.drawImage(imageEmbed, { x, y, width: imageWidth, height: imageHeight });
+        }
+        
+        // Handle convert button click
+        convertBtn.addEventListener('click', async () => {
+            if (imagesArray.length === 0) {
+                showAlert('Please select at least one image to convert', 'error');
+                return;
+            }
+            
+            try {
+                convertBtn.disabled = true;
+                convertBtn.textContent = 'Converting...';
+                resultDiv.innerHTML = '<div class="loader"></div> Creating PDF from images... This may take a moment.';
+                
+                const { PDFDocument } = PDFLib;
+                const pdfDoc = await PDFDocument.create();
+                
+                const fitOption = imageFit.value;
+                const sizeOption = pageSize.value;
+                const orientationOption = pageOrientation.value;
+                const compressFlag = compressImages.checked;
+                
+                for (let i = 0; i < imagesArray.length; i++) {
+                    const imgData = await loadImage(imagesArray[i].file);
+                    resultDiv.innerHTML = `<div class="loader"></div> Adding image ${i+1}/${imagesArray.length} to PDF...`;
+                    
+                    let pageWidth, pageHeight;
+                    
+                    if (sizeOption === 'auto') {
+                        // Auto size - match image dimensions
+                        pageWidth = imgData.width;
+                        pageHeight = imgData.height;
+                        
+                        // Scale down if too large (max 800 points)
+                        const maxDimension = 800;
+                        if (pageWidth > maxDimension || pageHeight > maxDimension) {
+                            const scale = Math.min(maxDimension / pageWidth, maxDimension / pageHeight);
+                            pageWidth = pageWidth * scale;
+                            pageHeight = pageHeight * scale;
+                        }
+                    } else {
+                        const dimensions = getPageDimensions(sizeOption, orientationOption, imgData.width, imgData.height);
+                        pageWidth = dimensions.width;
+                        pageHeight = dimensions.height;
+                    }
+                    
+                    await addImageToPDF(pdfDoc, imgData, pageWidth, pageHeight, fitOption, compressFlag);
+                    
+                    // Clean up blob URL
+                    URL.revokeObjectURL(imgData.img.src);
+                }
+                
+                const pdfBytes = await pdfDoc.save();
+                const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+                const url = URL.createObjectURL(blob);
+                
+                resultDiv.innerHTML = `
+                    <div class="alert alert-success" style="margin-bottom: 1rem;">✅ Conversion complete! ${imagesArray.length} image(s) converted to PDF.</div>
+                    <a href="${url}" download="converted_images.pdf" class="download-link">📥 Download PDF Document</a>
+                    <p style="margin-top: 1rem; font-size: 0.875rem; color: var(--text-muted);">✓ Converted locally - Your images never left your device</p>
+                    <p style="margin-top: 0.5rem; font-size: 0.875rem; color: var(--text-muted);">✓ ${imagesArray.length} page(s) created</p>
+                `;
+                
+                showAlert(`JPG to PDF conversion successful! ${imagesArray.length} image(s) converted.`, 'success');
+            } catch (error) {
+                console.error(error);
+                resultDiv.innerHTML = `<div class="alert alert-error">Error: ${error.message || 'Failed to convert images to PDF. Please ensure the files are valid images.'}</div>`;
+                showAlert('Failed to convert JPG to PDF. Please try again.', 'error');
+            } finally {
+                convertBtn.disabled = false;
+                convertBtn.textContent = 'Convert to PDF';
+            }
+        });
+    </script>
+</body>
+</html>

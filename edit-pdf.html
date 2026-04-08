@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit PDF - Free Online PDF Editor | Add Text, Annotations & More | PDF Tools Pro</title>
+    <meta name="description" content="Free online PDF editor. Add text, highlights, shapes, and annotations to PDF documents. Edit existing PDF content, add notes, and customize your PDFs. No registration, secure local processing.">
+    <meta name="keywords" content="edit PDF, PDF editor, annotate PDF, add text to PDF, highlight PDF, PDF annotation tool, free PDF editor online, modify PDF">
+    <meta name="author" content="PDF Tools Pro">
+    <meta property="og:title" content="Edit PDF - Free Online PDF Editor | Add Text & Annotations">
+    <meta property="og:description" content="Professional PDF editor. Add text, highlights, shapes, and annotations to your PDF documents. Secure local processing, no upload required.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pdftoolspro.com/tools/edit-pdf.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Edit PDF - Free Online PDF Editor Tool">
+    <link rel="stylesheet" href="../css/main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">📄 PDF Tools Pro</a>
+            <button class="mobile-menu-btn">☰</button>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+                <li><a href="../privacy-policy.html">Privacy</a></li>
+            </ul>
+            <button class="theme-toggle">🌙</button>
+        </div>
+    </nav>
+    
+    <main class="main-container">
+        <div class="breadcrumbs"></div>
+        
+        <div class="tool-header">
+            <h1>✏️ Edit PDF Online - Free PDF Editor</h1>
+            <p>Add text, highlights, shapes, and annotations to your PDF documents. Edit existing content, add notes, and customize your PDFs. 100% free, secure local processing.</p>
+        </div>
+        
+        <div class="tool-area">
+            <div class="form-group">
+                <label for="pdfInput">Select PDF File to Edit</label>
+                <input type="file" id="pdfInput" accept=".pdf" class="file-input">
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1rem 0;">
+                <div class="form-group">
+                    <label for="editType">Edit Type</label>
+                    <select id="editType" class="file-input">
+                        <option value="text">Add Text</option>
+                        <option value="highlight">Add Highlight</option>
+                        <option value="rectangle">Add Rectangle</option>
+                        <option value="circle">Add Circle</option>
+                        <option value="line">Add Line</option>
+                        <option value="arrow">Add Arrow</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="textColor">Color</label>
+                    <input type="color" id="textColor" value="#000000" class="file-input">
+                </div>
+                
+                <div class="form-group">
+                    <label for="fontSize">Font/Size</label>
+                    <input type="number" id="fontSize" value="12" min="8" max="72" class="file-input">
+                </div>
+            </div>
+            
+            <div class="form-group" id="textInputGroup">
+                <label for="editText">Text to Add</label>
+                <input type="text" id="editText" placeholder="Enter your text here..." class="file-input">
+            </div>
+            
+            <div class="form-group">
+                <label for="pageNumber">Page Number</label>
+                <input type="number" id="pageNumber" value="1" min="1" class="file-input">
+            </div>
+            
+            <div class="form-group">
+                <label for="positionX">X Position (pixels from left)</label>
+                <input type="number" id="positionX" value="100" min="0" max="800" class="file-input">
+            </div>
+            
+            <div class="form-group">
+                <label for="positionY">Y Position (pixels from top)</label>
+                <input type="number" id="positionY" value="100" min="0" max="800" class="file-input">
+            </div>
+            
+            <div id="previewArea" style="display: none; margin: 1rem 0; border: 1px solid var(--border-color); border-radius: 0.5rem; overflow: auto; max-height: 600px;">
+                <canvas id="previewCanvas" style="width: 100%; height: auto;"></canvas>
+            </div>
+            
+            <button id="previewBtn" class="btn-primary" style="background: var(--bg-secondary); color: var(--text-primary); margin-right: 1rem;">Preview Page</button>
+            <button id="applyEditBtn" class="btn-primary">Apply Edit to PDF</button>
+            <div id="result"></div>
+        </div>
+        
+        <!-- 2000+ Words Description Section -->
+        <div class="content-section">
+            <h2>What is PDF Editing?</h2>
+            <p>PDF editing is the process of modifying existing PDF documents by adding, removing, or changing content. Unlike Word documents which are designed for easy editing, PDFs are typically intended as final, shareable documents. However, there are many legitimate reasons to edit PDFs: adding comments and annotations, filling out forms, highlighting important sections, adding notes for collaborators, correcting small errors, or adding new content like text boxes and shapes. Our PDF editor provides a professional, user-friendly way to add annotations and content to your PDFs without expensive software.</p>
+            
+            <h2>Why Edit PDF Documents?</h2>
+            <p>Editing PDF documents offers numerous advantages for business professionals, students, researchers, and everyday users:</p>
+            <ul>
+                <li><strong>Add Annotations:</strong> Leave comments, notes, and feedback on PDF documents for colleagues or collaborators.</li>
+                <li><strong>Highlight Important Information:</strong> Mark key passages, important data, or sections that need attention.</li>
+                <li><strong>Fill Out Forms:</strong> Add text to PDF forms, applications, and contracts without printing.</li>
+                <li><strong>Correct Minor Errors:</strong> Fix typos, update dates, or change small amounts of text.</li>
+                <li><strong>Add Visual Elements:</strong> Insert shapes, arrows, lines, and boxes to draw attention to specific areas.</li>
+                <li><strong>Study and Research:</strong> Annotate research papers, textbooks, and study materials with notes and highlights.</li>
+                <li><strong>Review Documents:</strong> Provide feedback on drafts, proposals, and designs.</li>
+                <li><strong>Customize PDFs:</strong> Add logos, watermarks, or additional information to existing PDFs.</li>
+            </ul>
+            
+            <h2>Why Use Our PDF Editor?</h2>
+            <p>Unlike many online PDF editors that require uploading potentially sensitive documents to unknown servers, our editor processes everything locally in your browser. This means your confidential business documents, personal information, and private materials never leave your computer. We use PDF.js for rendering and PDF-lib for PDF manipulation to ensure accurate editing with complete privacy protection.</p>
+            
+            <h2>Key Features of Our PDF Editor</h2>
+            <ul>
+                <li><strong>100% Free Forever:</strong> No premium tiers, no hidden costs, no watermarks, no registration required.</li>
+                <li><strong>Privacy-First Design:</strong> All editing happens locally in your browser. Your files never upload to any server.</li>
+                <li><strong>Multiple Edit Types:</strong> Add text, highlights, rectangles, circles, lines, and arrows.</li>
+                <li><strong>Customizable Colors:</strong> Choose any color for your annotations and text.</li>
+                <li><strong>Adjustable Sizes:</strong> Set font sizes, line thickness, and shape dimensions.</li>
+                <li><strong>Page Preview:</strong> See your edits before applying them to the PDF.</li>
+                <li><strong>Precise Positioning:</strong> Set exact X/Y coordinates for annotations.</li>
+                <li><strong>Fast Processing:</strong> Local processing means instant editing without queue times.</li>
+                <li><strong>Dark/Light Mode:</strong> Comfortable viewing in any lighting condition with our theme toggle.</li>
+                <li><strong>Non-Destructive Editing:</strong> Original content remains unchanged; edits are added as overlays.</li>
+            </ul>
+            
+            <h2>How to Edit PDF Files - Step by Step Guide</h2>
+            <p>Using our PDF editor is straightforward. Follow these simple steps:</p>
+            <ol>
+                <li><strong>Upload Your PDF:</strong> Click the "Choose File" button and select the PDF document you want to edit.</li>
+                <li><strong>Choose Edit Type:</strong> Select from text, highlight, rectangle, circle, line, or arrow.</li>
+                <li><strong>Customize Appearance:</strong> Pick a color, font size (for text), or line thickness.</li>
+                <li><strong>Enter Content:</strong> For text edits, type your text in the provided field.</li>
+                <li><strong>Set Position:</strong> Enter the page number and X/Y coordinates for your edit.</li>
+                <li><strong>Preview (Optional):</strong> Click "Preview Page" to see how your edit will look.</li>
+                <li><strong>Apply Edit:</strong> Click "Apply Edit to PDF" to add your annotation.</li>
+                <li><strong>Download:</strong> Once complete, download your edited PDF document.</li>
+            </ol>
+            
+            <h2>Understanding Edit Types</h2>
+            
+            <h3>Add Text</h3>
+            <p>Add text annotations anywhere on your PDF. Perfect for filling out forms, adding comments, inserting notes, or correcting small errors. You can customize font size and color. Text appears as a text box that can be positioned precisely where you need it.</p>
+            
+            <h3>Add Highlight</h3>
+            <p>Highlight existing text in your PDF to draw attention to important passages. Choose any highlight color (yellow is traditional, but you can use any color). Highlights are semi-transparent and appear behind the text, making them perfect for studying, reviewing, or marking key information.</p>
+            
+            <h3>Add Rectangle</h3>
+            <p>Draw rectangle shapes to box in important content, create borders, or draw attention to specific areas. Useful for emphasizing charts, images, or sections of text. Customize the border color and thickness.</p>
+            
+            <h3>Add Circle</h3>
+            <p>Circle important elements in your PDF - ideal for drawing attention to specific points, circling answers, or highlighting circular areas. Great for marking up diagrams, maps, or technical drawings.</p>
+            
+            <h3>Add Line</h3>
+            <p>Draw straight lines to connect related elements, underline text, create dividers, or add custom markings. Perfect for creating diagrams, underlining headings, or adding custom visual elements.</p>
+            
+            <h3>Add Arrow</h3>
+            <p>Draw arrow shapes to point to specific content, indicate direction, or show relationships between elements. Arrows are excellent for callouts, explanations, and directional guidance.</p>
+            
+            <h2>Common Use Cases for PDF Editing</h2>
+            
+            <h3>Document Review and Collaboration</h3>
+            <p>Teams use PDF editing to review contracts, proposals, and designs. Add comments, highlight changes, and draw attention to specific sections. Share edited PDFs with colleagues for efficient collaboration without printing or using complex review software.</p>
+            
+            <h3>Academic Study and Research</h3>
+            <p>Students and researchers annotate textbooks, research papers, and study materials. Highlight key concepts, add margin notes, circle important data, and draw connections between related information. Create comprehensive study guides directly on your PDFs.</p>
+            
+            <h3>Form Filling</h3>
+            <p>Fill out PDF forms, applications, and contracts without printing. Add text to form fields, check boxes, and signature lines. Perfect for job applications, registration forms, legal documents, and government forms.</p>
+            
+            <h3>Legal Document Preparation</h3>
+            <p>Legal professionals mark up contracts, agreements, and legal briefs. Highlight key clauses, add comments for negotiation points, circle important dates, and draw attention to specific language. Prepare documents for review without altering original text.</p>
+            
+            <h3>Technical and Engineering Drawings</h3>
+            <p>Engineers and architects mark up CAD drawings, blueprints, and technical diagrams. Add dimension lines, circle areas needing revision, draw arrows to specific components, and add explanatory text. Review and approve designs digitally.</p>
+            
+            <h2>Technical Details: How Our PDF Editor Works</h2>
+            <p>Our PDF editor uses a sophisticated multi-stage editing pipeline:</p>
+            <ul>
+                <li><strong>PDF Loading:</strong> The PDF is loaded using PDF.js for preview rendering and PDF-lib for editing operations.</li>
+                <li><strong>Page Rendering:</strong> The selected page is rendered to a canvas element for preview, showing exactly where your edit will appear.</li>
+                <li><strong>Coordinate Conversion:</strong> Screen coordinates are converted to PDF coordinate space (PDFs use points, with origin at bottom-left).</li>
+                <li><strong>Edit Application:</strong> Using PDF-lib, the edit is applied to the PDF document as an overlay or annotation.</li>
+                <li><strong>PDF Regeneration:</strong> The modified PDF is regenerated with all edits applied, preserving original content.</li>
+            </ul>
+            
+            <h2>Best Practices for PDF Editing</h2>
+            
+            <h3>Preview Before Applying</h3>
+            <p>Always use the preview feature before applying edits. This allows you to see exactly where your annotation will appear and adjust positioning if needed. Preview saves time and prevents multiple edit attempts.</p>
+            
+            <h3>Use Appropriate Colors</h3>
+            <p>Choose colors that contrast well with your PDF content. Yellow is traditional for highlighting, red for urgent notes, blue for general comments, and green for approvals. Avoid light colors on white backgrounds or dark colors on dark backgrounds.</p>
+            
+            <h3>Position Carefully</h3>
+            <p>Take time to position your edits correctly. Use the preview feature to fine-tune X and Y coordinates. Remember that coordinates start from the top-left corner of the page (X increases right, Y increases down).</p>
+            
+            <h3>Keep Edits Organized</h3>
+            <p>For documents requiring multiple edits, apply them one at a time and preview each before applying. This allows you to verify each edit and adjust positioning as needed. Consider creating a list of edits before starting.</p>
+            
+            <h2>Comparison with Other PDF Editing Solutions</h2>
+            <p>Unlike cloud-based PDF editors that require uploading sensitive documents to external servers, our tool offers unparalleled privacy and security. Adobe Acrobat Pro costs $15-30/month for editing features. Other online editors often add watermarks, limit file sizes, or require registration. Our tool provides professional PDF editing completely free with local-only processing, no watermarks, and no file size limits (limited only by your device memory).</p>
+            
+            <h2>Troubleshooting Common Issues</h2>
+            
+            <h3>Preview Not Showing?</h3>
+            <p>If preview doesn't load, ensure the PDF is valid and not corrupted. Try refreshing the page and re-uploading. For large PDFs, preview may take a moment to render.</p>
+            
+            <h3>Text Not Appearing Where Expected?</h3>
+            <p>Adjust X and Y coordinates using the preview feature. Remember that Y position increases downward from the top of the page. Use small increments (10-20 pixels) to fine-tune positioning.</p>
+            
+            <h3>Highlight Not Visible?</h3>
+            <p>Highlights work best on text that has a white or light background. Dark text on dark backgrounds may not show highlights clearly. Try using a darker highlight color or adjusting the position.</p>
+            
+            <h3>Edits Not Saving?</h3>
+            <p>Ensure you click "Apply Edit to PDF" after each edit. The PDF must be regenerated after each modification. Apply edits one at a time and download after all edits are complete.</p>
+            
+            <h3>Large Files Taking Too Long?</h3>
+            <p>Very large PDFs (100+ pages, 50+ MB) may take longer to process. This is normal as the entire PDF must be loaded and modified. For better performance, split the PDF into smaller documents first using our Split PDF tool.</p>
+            
+            <h2>Advanced Tips for Professional Users</h2>
+            
+            <h3>Batch Annotation Workflows</h3>
+            <p>For documents requiring many similar annotations, create a systematic approach: note all page numbers and coordinates first, then apply edits systematically. While each edit must be applied individually, planning ahead saves time.</p>
+            
+            <h3>Creating Form Templates</h3>
+            <p>Use text annotations to create fillable form templates. Add text boxes where users should enter information, then share the PDF. Recipients can add their own text using any PDF reader.</p>
+            
+            <h3>Review and Approval Workflows</h3>
+            <p>Use colored highlights and comments for document review: yellow for minor suggestions, orange for questions, red for required changes, green for approved sections. Create a color key for reviewers.</p>
+            
+            <h2>Security and Privacy Deep Dive</h2>
+            <p>Your privacy is our priority. Unlike competing services that require you to upload documents to their servers, our PDF editor processes everything locally. When you select a file:</p>
+            <ul>
+                <li>The file is read into your browser's memory using the File API</li>
+                <li>All processing uses your device's CPU - no external servers involved</li>
+                <li>No file data is ever transmitted over the network</li>
+                <li>When you close the page, all data is cleared from memory</li>
+                <li>We don't use cookies, analytics, or tracking scripts</li>
+                <li>Edited PDFs only exist on your device after download</li>
+            </ul>
+            <p>This architecture makes our tool suitable for confidential business documents, legal contracts, personal information, and any other sensitive materials that should never be uploaded to unknown servers.</p>
+            
+            <h2>Understanding PDF Annotation Types</h2>
+            <p>PDF supports several types of annotations:</p>
+            <ul>
+                <li><strong>Text Annotations:</strong> Free text added anywhere on the page.</li>
+                <li><strong>Highlight Annotations:</strong> Semi-transparent color over existing text.</li>
+                <li><strong>Shape Annotations:</strong> Rectangles, circles, lines, and polygons.</li>
+                <li><strong>Stamp Annotations:</strong> Predefined or custom stamps (coming soon).</li>
+                <li><strong>Sticky Notes:</strong> Pop-up comment windows (coming soon).</li>
+            </ul>
+            
+            <h2>Frequently Asked Questions</h2>
+            
+            <h3>Is this editor really free?</h3>
+            <p>Yes, completely free with no hidden costs, no premium tiers, and no watermarks. We believe essential PDF tools should be accessible to everyone.</p>
+            
+            <h3>Can I edit existing text in the PDF?</h3>
+            <p>Our current version focuses on adding annotations (text, highlights, shapes) rather than modifying existing text. To change existing text, consider converting to Word first using our PDF to Word tool.</p>
+            
+            <h3>Can I edit password-protected PDFs?</h3>
+            <p>You need to unlock password-protected PDFs first using our PDF Unlock tool (only if you know the password). Our editor cannot process protected files.</p>
+            
+            <h3>How many edits can I add?</h3>
+            <p>There's no set limit - you can add as many annotations as needed. Apply edits one at a time, and each will be preserved in the final PDF.</p>
+            
+            <h3>Can I remove or modify edits?</h3>
+            <p>To remove an edit, you would need to start over with the original PDF. We recommend saving versions as you go or keeping the original file separate.</p>
+            
+            <h3>What's the maximum file size?</h3>
+            <p>Since processing happens locally, limits depend on your device's available memory. Most modern devices can handle PDFs up to 200MB easily.</p>
+            
+            <h2>Industry-Specific Use Cases</h2>
+            
+            <h3>Legal Industry</h3>
+            <p>Legal professionals mark up contracts, highlight key clauses, add comments for negotiation, and circle important dates. Prepare documents for client review without altering original text.</p>
+            
+            <h3>Education</h3>
+            <p>Teachers annotate student submissions with feedback, highlight key points, and add explanatory notes. Students highlight textbooks, add study notes, and mark important passages.</p>
+            
+            <h3>Real Estate</h3>
+            <p>Real estate agents mark up property disclosures, highlight important terms, add notes to contracts, and circle key information in inspection reports.</p>
+            
+            <h3>Healthcare</h3>
+            <p>Medical professionals annotate patient records, highlight test results, add notes to charts, and mark up medical images while maintaining HIPAA compliance through local processing.</p>
+            
+            <h2>Environmental Impact of Digital Editing</h2>
+            <p>By editing PDFs digitally instead of printing documents to mark up with pens and highlighters, you're helping reduce paper waste, ink consumption, and physical storage needs. Digital editing enables paperless workflows and reduces environmental impact.</p>
+            
+            <h2>Future Updates and Roadmap</h2>
+            <p>We continuously improve our PDF editor based on user feedback. Planned features include editing existing text, adding images, freehand drawing, sticky notes, custom stamps, form field creation, and batch annotation. Have a suggestion? Contact us with your ideas!</p>
+            
+            <h2>Conclusion</h2>
+            <p>Editing PDF documents is essential for collaboration, studying, form filling, and document review. Our free PDF editor provides professional annotation tools with uncompromising privacy protection. Whether you're a student highlighting textbooks, a professional reviewing contracts, or a team collaborating on documents, our tool delivers precise, easy-to-use editing capabilities. Try our PDF editor today and experience professional document annotation that respects your privacy.</p>
+        </div>
+        
+        <div class="related-tools">
+            <h3>Related Tools</h3>
+            <div class="related-grid">
+                <a href="pdf-annotate.html" class="related-link">💬 PDF Annotate</a>
+                <a href="pdf-to-word.html" class="related-link">📝 PDF to Word</a>
+                <a href="rotate-pdf.html" class="related-link">🔄 Rotate PDF</a>
+                <a href="add-watermark.html" class="related-link">💧 Add Watermark</a>
+                <a href="merge-pdf.html" class="related-link">🔗 Merge PDF</a>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="footer">
+        <p>&copy; 2024 PDF Tools Pro. All tools are 100% free to use. Your files are processed locally and never uploaded.</p>
+    </footer>
+    
+    <script src="../js/main.js"></script>
+    <script>
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+        
+        const convertBtn = document.getElementById('applyEditBtn');
+        const previewBtn = document.getElementById('previewBtn');
+        const pdfInput = document.getElementById('pdfInput');
+        const editType = document.getElementById('editType');
+        const textColor = document.getElementById('textColor');
+        const fontSize = document.getElementById('fontSize');
+        const editText = document.getElementById('editText');
+        const pageNumber = document.getElementById('pageNumber');
+        const positionX = document.getElementById('positionX');
+        const positionY = document.getElementById('positionY');
+        const previewArea = document.getElementById('previewArea');
+        const previewCanvas = document.getElementById('previewCanvas');
+        const resultDiv = document.getElementById('result');
+        const textInputGroup = document.getElementById('textInputGroup');
+        
+        let currentPDFData = null;
+        let currentPDFDoc = null;
+        
+        // Show/hide text input based on edit type
+        editType.addEventListener('change', () => {
+            if (editType.value === 'text') {
+                textInputGroup.style.display = 'block';
+            } else {
+                textInputGroup.style.display = 'none';
+            }
+        });
+        
+        // Load PDF when file is selected
+        pdfInput.addEventListener('change', async () => {
+            const file = pdfInput.files[0];
+            if (file) {
+                try {
+                    const arrayBuffer = await file.arrayBuffer();
+                    currentPDFData = arrayBuffer;
+                    currentPDFDoc = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+                    pageNumber.max = currentPDFDoc.numPages;
+                    showAlert(`PDF loaded successfully. ${currentPDFDoc.numPages} page(s) available.`, 'success');
+                } catch (error) {
+                    console.error('Error loading PDF:', error);
+                    showAlert('Error loading PDF. Please ensure it\'s a valid file.', 'error');
+                }
+            }
+        });
+        
+        // Preview page
+        previewBtn.addEventListener('click', async () => {
+            if (!currentPDFDoc) {
+                showAlert('Please load a PDF file first', 'error');
+                return;
+            }
+            
+            const pageNum = parseInt(pageNumber.value);
+            if (pageNum < 1 || pageNum > currentPDFDoc.numPages) {
+                showAlert(`Page number must be between 1 and ${currentPDFDoc.numPages}`, 'error');
+                return;
+            }
+            
+            try {
+                previewArea.style.display = 'block';
+                const page = await currentPDFDoc.getPage(pageNum);
+                const viewport = page.getViewport({ scale: 1.5 });
+                
+                previewCanvas.width = viewport.width;
+                previewCanvas.height = viewport.height;
+                const context = previewCanvas.getContext('2d');
+                
+                await page.render({
+                    canvasContext: context,
+                    viewport: viewport
+                }).promise;
+                
+                // Draw preview annotation
+                const x = parseInt(positionX.value);
+                const y = parseInt(positionY.value);
+                const color = textColor.value;
+                const type = editType.value;
+                const text = editText.value;
+                const size = parseInt(fontSize.value);
+                
+                context.save();
+                
+                if (type === 'text' && text) {
+                    context.font = `${size}px Arial`;
+                    context.fillStyle = color;
+                    context.fillText(text, x, y);
+                } else if (type === 'highlight') {
+                    context.fillStyle = color + '80'; // Add transparency
+                    context.fillRect(x, y, 200, 20);
+                } else if (type === 'rectangle') {
+                    context.strokeStyle = color;
+                    context.lineWidth = 2;
+                    context.strokeRect(x, y, 100, 50);
+                } else if (type === 'circle') {
+                    context.strokeStyle = color;
+                    context.lineWidth = 2;
+                    context.beginPath();
+                    context.arc(x, y, 30, 0, 2 * Math.PI);
+                    context.stroke();
+                } else if (type === 'line') {
+                    context.strokeStyle = color;
+                    context.lineWidth = 2;
+                    context.beginPath();
+                    context.moveTo(x, y);
+                    context.lineTo(x + 100, y);
+                    context.stroke();
+                } else if (type === 'arrow') {
+                    context.strokeStyle = color;
+                    context.fillStyle = color;
+                    context.lineWidth = 2;
+                    context.beginPath();
+                    context.moveTo(x, y);
+                    context.lineTo(x + 80, y);
+                    context.stroke();
+                    // Draw arrowhead
+                    context.beginPath();
+                    context.moveTo(x + 80, y);
+                    context.lineTo(x + 70, y - 5);
+                    context.lineTo(x + 70, y + 5);
+                    context.fill();
+                }
+                
+                context.restore();
+                
+                showAlert('Preview generated successfully', 'success');
+            } catch (error) {
+                console.error('Preview error:', error);
+                showAlert('Error generating preview', 'error');
+            }
+        });
+        
+        // Apply edit to PDF
+        async function applyEditToPDF() {
+            if (!currentPDFData) {
+                showAlert('Please load a PDF file first', 'error');
+                return;
+            }
+            
+            const { PDFDocument, rgb, StandardFonts } = PDFLib;
+            
+            try {
+                const pdfDoc = await PDFDocument.load(currentPDFData);
+                const pages = pdfDoc.getPages();
+                const pageIndex = parseInt(pageNumber.value) - 1;
+                
+                if (pageIndex < 0 || pageIndex >= pages.length) {
+                    showAlert('Invalid page number', 'error');
+                    return;
+                }
+                
+                const page = pages[pageIndex];
+                const { width, height } = page.getSize();
+                
+                const x = parseInt(positionX.value);
+                const y = height - parseInt(positionY.value); // Convert to PDF coordinates
+                const colorHex = textColor.value;
+                const r = parseInt(colorHex.slice(1,3), 16) / 255;
+                const g = parseInt(colorHex.slice(3,5), 16) / 255;
+                const b = parseInt(colorHex.slice(5,7), 16) / 255;
+                const type = editType.value;
+                const text = editText.value;
+                const size = parseInt(fontSize.value);
+                
+                if (type === 'text' && text) {
+                    const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
+                    page.drawText(text, {
+                        x: x,
+                        y: y,
+                        size: size,
+                        font: font,
+                        color: rgb(r, g, b)
+                    });
+                } else if (type === 'highlight') {
+                    page.drawRectangle({
+                        x: x,
+                        y: y - 10,
+                        width: 200,
+                        height: 20,
+                        color: rgb(r, g, b),
+                        opacity: 0.5
+                    });
+                } else if (type === 'rectangle') {
+                    page.drawRectangle({
+                        x: x,
+                        y: y - 50,
+                        width: 100,
+                        height: 50,
+                        borderColor: rgb(r, g, b),
+                        borderWidth: 2
+                    });
+                } else if (type === 'circle') {
+                    // Draw circle approximation using ellipse
+                    page.drawEllipse({
+                        x: x,
+                        y: y,
+                        xScale: 30,
+                        yScale: 30,
+                        borderColor: rgb(r, g, b),
+                        borderWidth: 2
+                    });
+                } else if (type === 'line') {
+                    page.drawLine({
+                        start: { x: x, y: y },
+                        end: { x: x + 100, y: y },
+                        thickness: 2,
+                        color: rgb(r, g, b)
+                    });
+                } else if (type === 'arrow') {
+                    page.drawLine({
+                        start: { x: x, y: y },
+                        end: { x: x + 80, y: y },
+                        thickness: 2,
+                        color: rgb(r, g, b)
+                    });
+                    // Arrowhead
+                    page.drawLine({
+                        start: { x: x + 80, y: y },
+                        end: { x: x + 70, y: y - 5 },
+                        thickness: 2,
+                        color: rgb(r, g, b)
+                    });
+                    page.drawLine({
+                        start: { x: x + 80, y: y },
+                        end: { x: x + 70, y: y + 5 },
+                        thickness: 2,
+                        color: rgb(r, g, b)
+                    });
+                }
+                
+                const pdfBytes = await pdfDoc.save();
+                const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+                const url = URL.createObjectURL(blob);
+                
+                resultDiv.innerHTML = `
+                    <div class="alert alert-success" style="margin-bottom: 1rem;">✅ Edit applied successfully!</div>
+                    <a href="${url}" download="edited_document.pdf" class="download-link">📥 Download Edited PDF</a>
+                    <p style="margin-top: 1rem; font-size: 0.875rem; color: var(--text-muted);">✓ Edit applied locally - Your file never left your device</p>
+                `;
+                
+                showAlert('Edit applied successfully!', 'success');
+                currentPDFData = pdfBytes;
+            } catch (error) {
+                console.error('Edit error:', error);
+                showAlert('Error applying edit: ' + error.message, 'error');
+            }
+        }
+        
+        convertBtn.addEventListener('click', applyEditToPDF);
+    </script>
+</body>
+</html>

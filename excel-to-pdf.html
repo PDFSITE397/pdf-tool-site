@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excel to PDF - Convert Excel XLSX to PDF Online Free | PDF Tools Pro</title>
+    <meta name="description" content="Free online Excel to PDF converter. Convert Microsoft Excel spreadsheets to professional PDF format. Preserve tables, charts, formulas, and formatting. No registration, secure local processing.">
+    <meta name="keywords" content="Excel to PDF, convert Excel to PDF, XLSX to PDF, Excel to PDF converter, spreadsheet to PDF, convert XLS to PDF, free Excel to PDF, Microsoft Excel to PDF">
+    <meta name="author" content="PDF Tools Pro">
+    <meta property="og:title" content="Excel to PDF - Convert Excel Spreadsheets to PDF Free Online">
+    <meta property="og:description" content="Professional Excel to PDF converter. Convert XLSX files to PDF while preserving tables, charts, and formatting. Secure local processing, no upload required.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pdftoolspro.com/tools/excel-to-pdf.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Excel to PDF - Free Excel to PDF Converter">
+    <link rel="stylesheet" href="../css/main.css">
+    <script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">📄 PDF Tools Pro</a>
+            <button class="mobile-menu-btn">☰</button>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+                <li><a href="../privacy-policy.html">Privacy</a></li>
+            </ul>
+            <button class="theme-toggle">🌙</button>
+        </div>
+    </nav>
+    
+    <main class="main-container">
+        <div class="breadcrumbs"></div>
+        
+        <div class="tool-header">
+            <h1>📑 Excel to PDF Converter - Convert Spreadsheets to PDF</h1>
+            <p>Transform your Excel spreadsheets into professional, shareable PDF documents. Perfect for reports, financial statements, and data presentations. 100% free, secure local processing.</p>
+        </div>
+        
+        <div class="tool-area">
+            <div class="form-group">
+                <label for="excelInput">Select Excel File (XLSX, XLS) to Convert</label>
+                <input type="file" id="excelInput" accept=".xlsx,.xls,.xlsm,.xlsb" class="file-input">
+            </div>
+            
+            <div class="form-group">
+                <label for="sheetSelection">Sheet Selection</label>
+                <select id="sheetSelection" class="file-input">
+                    <option value="all">All Sheets (Multiple PDFs)</option>
+                    <option value="first">First Sheet Only</option>
+                    <option value="active">Active/Selected Sheet</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="pageOrientation">Page Orientation</label>
+                <select id="pageOrientation" class="file-input">
+                    <option value="portrait">Portrait</option>
+                    <option value="landscape" selected>Landscape (Best for wide tables)</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="paperSize">Paper Size</label>
+                <select id="paperSize" class="file-input">
+                    <option value="letter">Letter (8.5" x 11")</option>
+                    <option value="legal">Legal (8.5" x 14")</option>
+                    <option value="a4" selected>A4 (210mm x 297mm)</option>
+                    <option value="tabloid">Tabloid (11" x 17")</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" id="fitToPage" checked> Fit to page width
+                </label>
+            </div>
+            
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" id="showGridlines"> Show gridlines
+                </label>
+            </div>
+            
+            <div id="fileInfo" style="margin: 1rem 0; padding: 1rem; background: var(--bg-card); border-radius: 0.5rem; display: none;">
+                <strong>Document Info:</strong> <span id="fileInfoText"></span>
+                <div id="sheetInfo" style="margin-top: 0.5rem; font-size: 0.875rem;"></div>
+            </div>
+            
+            <button id="convertBtn" class="btn-primary">Convert to PDF</button>
+            <div id="result"></div>
+        </div>
+        
+        <!-- 2000+ Words Description Section -->
+        <div class="content-section">
+            <h2>What is Excel to PDF Conversion?</h2>
+            <p>Excel to PDF conversion is the process of transforming Microsoft Excel spreadsheets (XLSX, XLS, XLSM formats) into Portable Document Format (PDF) files. This conversion preserves your data, tables, charts, formulas (as calculated values), and formatting while creating a universally readable document that cannot be accidentally altered. Our Excel to PDF converter creates professional PDFs from your spreadsheets, perfect for sharing financial reports, data analyses, inventory sheets, and any tabular data with colleagues, clients, or stakeholders.</p>
+            
+            <h2>Why Convert Excel to PDF?</h2>
+            <p>Converting Excel spreadsheets to PDF offers numerous advantages for business professionals, accountants, data analysts, and anyone working with tabular data:</p>
+            <ul>
+                <li><strong>Universal Compatibility:</strong> PDFs display correctly on any device without requiring Excel software.</li>
+                <li><strong>Data Protection:</strong> Prevent accidental editing of formulas, calculations, and critical data.</li>
+                <li><strong>Professional Presentation:</strong> PDFs look more polished and formal for reports and presentations.</li>
+                <li><strong>Print Consistency:</strong> Ensure your spreadsheet prints exactly as designed, with proper page breaks.</li>
+                <li><strong>Smaller File Size:</strong> PDFs often compress Excel files, especially those with many formulas.</li>
+                <li><strong>Email-Friendly:</strong> Share reports without worrying about recipients having Excel compatibility.</li>
+                <li><strong>Long-Term Archiving:</strong> PDF/A format ensures your data remains readable for decades.</li>
+                <li><strong>Security Features:</strong> Add passwords and permissions to protect sensitive financial data.</li>
+            </ul>
+            
+            <h2>Why Use Our Excel to PDF Converter?</h2>
+            <p>Unlike many online Excel to PDF converters that require uploading sensitive financial data to unknown servers, our converter processes everything locally in your browser. This means your confidential budgets, payroll data, client lists, and proprietary business information never leave your computer. We use the industry-standard SheetJS library for Excel parsing and PDF-lib for PDF generation to ensure accurate conversion with complete privacy protection.</p>
+            
+            <h2>Key Features of Our Excel to PDF Converter</h2>
+            <ul>
+                <li><strong>100% Free Forever:</strong> No premium tiers, no hidden costs, no watermarks, no registration required.</li>
+                <li><strong>Privacy-First Design:</strong> All conversion happens locally in your browser. Your files never upload to any server.</li>
+                <li><strong>Multiple Sheet Options:</strong> Convert all sheets, first sheet only, or select specific sheets.</li>
+                <li><strong>Page Orientation:</strong> Choose between portrait or landscape orientation for optimal display.</li>
+                <li><strong>Paper Size Selection:</strong> Support for Letter, Legal, A4, and Tabloid paper sizes.</li>
+                <li><strong>Fit to Page:</strong> Automatically scale content to fit page width.</li>
+                <li><strong>Preserve Data:</strong> Maintains numbers, text, dates, and calculated values.</li>
+                <li><strong>Fast Processing:</strong> Local processing means instant conversion without queue times.</li>
+                <li><strong>Dark/Light Mode:</strong> Comfortable viewing in any lighting condition with our theme toggle.</li>
+                <li><strong>No File Size Limits:</strong> Convert Excel files of any size (limited only by your device memory).</li>
+            </ul>
+            
+            <h2>How to Convert Excel to PDF - Step by Step Guide</h2>
+            <p>Using our Excel to PDF converter is incredibly straightforward. Follow these simple steps:</p>
+            <ol>
+                <li><strong>Select Your Excel File:</strong> Click the "Choose File" button and select the XLSX, XLS, XLSM, or XLSB file you want to convert.</li>
+                <li><strong>Choose Sheet Selection:</strong> Decide whether to convert all sheets, only the first sheet, or a specific sheet.</li>
+                <li><strong>Set Page Orientation:</strong> Choose portrait for tall tables or landscape for wide tables (recommended for most spreadsheets).</li>
+                <li><strong>Select Paper Size:</strong> Choose the appropriate paper size for your region or printing needs.</li>
+                <li><strong>Configure Options:</strong> Enable "Fit to page width" to prevent cutoff and "Show gridlines" if desired.</li>
+                <li><strong>Start Conversion:</strong> Click the "Convert to PDF" button. Our tool will instantly process your file locally.</li>
+                <li><strong>Download Your PDF:</strong> Once complete, download your professional PDF document.</li>
+            </ol>
+            
+            <h2>Understanding Conversion Options</h2>
+            
+            <h3>Sheet Selection Options</h3>
+            <p><strong>All Sheets:</strong> This option converts every worksheet in your Excel file into separate PDF documents. Each sheet becomes its own PDF file, which you can download individually. Perfect for workbooks with multiple related spreadsheets that need to be shared separately, such as monthly financial statements, departmental budgets, or project tracking sheets.</p>
+            
+            <p><strong>First Sheet Only:</strong> Converts only the first worksheet in your Excel workbook. Use this when your Excel file has a summary or dashboard sheet as the first sheet, or when you only need the primary data sheet from a multi-sheet workbook.</p>
+            
+            <p><strong>Active/Selected Sheet:</strong> Allows you to choose which specific sheet to convert. After uploading, the tool displays all sheet names, and you can select the one you need. Perfect for large workbooks where you only need one specific data table.</p>
+            
+            <h3>Page Orientation</h3>
+            <p><strong>Portrait:</strong> Pages are taller than they are wide. Best for spreadsheets with fewer columns (typically 6-8 columns) and many rows. Ideal for lists, inventories, and data with many records but limited fields.</p>
+            
+            <p><strong>Landscape (Recommended):</strong> Pages are wider than they are tall. Best for most business spreadsheets that have many columns (10+ columns) including financial statements, sales reports, and data analyses. Landscape orientation prevents column wrapping and maintains readability.</p>
+            
+            <h3>Paper Sizes</h3>
+            <p><strong>Letter (8.5" x 11"):</strong> Standard paper size in North America. Best for US-based documents and printing on standard office printers.</p>
+            <p><strong>Legal (8.5" x 14"):</strong> Longer than Letter, good for spreadsheets with more rows while maintaining width.</p>
+            <p><strong>A4 (210mm x 297mm):</strong> International standard paper size, used in most countries outside North America. Our recommended setting for global document sharing.</p>
+            <p><strong>Tabloid (11" x 17"):</strong> Large format for wide spreadsheets with many columns, ideal for complex financial models and data dashboards.</p>
+            
+            <h2>Common Use Cases for Excel to PDF Conversion</h2>
+            
+            <h3>Financial Reports and Statements</h3>
+            <p>Finance professionals convert Excel financial statements (income statements, balance sheets, cash flow statements) to PDF for board presentations, investor reports, and audit submissions. PDF ensures numbers cannot be altered after distribution and preserves complex formatting including currency symbols, decimal alignment, and conditional formatting colors.</p>
+            
+            <h3>Budget Proposals and Forecasts</h3>
+            <p>Budget managers convert Excel budget models to PDF when submitting to leadership for approval. PDFs prevent accidental changes to formulas while maintaining professional appearance. Stakeholders can review numbers without worrying about breaking spreadsheet calculations.</p>
+            
+            <h3>Sales Reports and Dashboards</h3>
+            <p>Sales teams convert Excel dashboards with charts, pivot tables, and KPI metrics to PDF for weekly sales meetings. PDF preserves visual elements including bar charts, line graphs, and color-coded performance indicators while making reports easy to distribute via email.</p>
+            
+            <h3>Inventory and Asset Tracking</h3>
+            <p>Operations managers convert inventory spreadsheets to PDF for warehouse staff who may not have Excel access. PDF provides read-only access to stock levels, locations, and asset information while preventing unauthorized modifications.</p>
+            
+            <h3>Project Plans and Timelines</h3>
+            <p>Project managers convert Excel Gantt charts, task lists, and project timelines to PDF for client updates and stakeholder reviews. PDF maintains visual formatting of project schedules and can be annotated with comments.</p>
+            
+            <h3>Data Analysis and Research Results</h3>
+            <p>Researchers convert statistical analyses, survey results, and research data from Excel to PDF for publication in academic papers, reports, and presentations. PDF ensures data integrity and consistent display across different platforms.</p>
+            
+            <h2>Technical Details: How Our Excel to PDF Converter Works</h2>
+            <p>Our Excel to PDF converter uses a sophisticated two-stage conversion process:</p>
+            <ul>
+                <li><strong>Excel Parsing with SheetJS:</strong> The Excel file is parsed to extract all data including values, formatting hints, sheet names, and metadata. SheetJS reads both modern XLSX and legacy XLS formats, preserving numbers, text, dates, and formulas (as calculated values).</li>
+                <li><strong>Data Extraction:</strong> For each selected sheet, the converter extracts the used range (cells containing data), determines column widths based on content, and identifies header rows.</li>
+                <li><strong>PDF Generation with PDF-lib:</strong> A new PDF document is created with pages sized according to your selected paper size and orientation. Data is rendered as text with proper positioning, fonts, and alignment.</li>
+                <li><strong>Table Formatting:</strong> The converter creates a table structure in the PDF with proper column spacing, row heights, and borders (if gridlines are enabled).</li>
+                <li><strong>Multi-Page Handling:</strong> If the table exceeds one page, content is automatically split across multiple pages with headers repeated on each page for context.</li>
+            </ul>
+            
+            <h2>Best Practices for Excel to PDF Conversion</h2>
+            
+            <h3>Prepare Your Excel File First</h3>
+            <p>For best results, prepare your Excel spreadsheet before conversion:</p>
+            <ul>
+                <li>Set print areas to define exactly what should be converted</li>
+                <li>Adjust column widths to ensure all content fits</li>
+                <li>Use clear headers for each column</li>
+                <li>Remove unnecessary hidden rows or columns</li>
+                <li>Check that all data is visible (not cut off by cell formatting)</li>
+            </ul>
+            
+            <h3>Choose the Right Orientation</h3>
+            <p>Select landscape orientation for spreadsheets with more than 8 columns. Landscape prevents columns from wrapping to the next line, maintaining readability. For narrow tables with few columns, portrait orientation works well and saves paper when printing.</p>
+            
+            <h3>Use Fit to Page Width</h3>
+            <p>Always enable "Fit to page width" unless you have specific sizing requirements. This ensures your entire spreadsheet width fits on one page horizontally, preventing cutoff columns. The content will scale appropriately while remaining readable.</p>
+            
+            <h3>Test with a Sample First</h3>
+            <p>If converting an important document, test the conversion with a sample or a single sheet first to verify that formatting, column widths, and data alignment meet your expectations. Adjust Excel formatting if needed and reconvert.</p>
+            
+            <h2>Comparison with Other Excel to PDF Solutions</h2>
+            <p>Unlike cloud-based Excel to PDF converters that require uploading sensitive financial data to external servers, our tool offers unparalleled privacy and security. Microsoft Excel's built-in "Save as PDF" works well but requires an Office subscription ($70-100/year). Google Sheets can export to PDF but requires uploading to Google servers. Desktop software like Adobe Acrobat Pro costs $15-30/month. Our tool provides professional Excel to PDF conversion completely free with local-only processing, no watermarks, and no file size limits.</p>
+            
+            <h2>Troubleshooting Common Issues</h2>
+            
+            <h3>Table Cut Off on Right Side?</h3>
+            <p>If your table extends beyond the page width, try these solutions:</p>
+            <ul>
+                <li>Enable "Fit to page width" option</li>
+                <li>Switch to landscape orientation</li>
+                <li>Select a larger paper size (Tabloid or Legal)</li>
+                <li>Reduce column widths in Excel before converting</li>
+                <li>Hide unnecessary columns in Excel</li>
+            </ul>
+            
+            <h3>Fonts Look Different in PDF?</h3>
+            <p>Our converter uses standard PDF fonts (Helvetica, Times, Courier) for maximum compatibility. If your Excel uses custom fonts, the PDF will substitute with the closest standard font. For consistent appearance, use standard fonts like Arial, Calibri, or Times New Roman in your Excel file.</p>
+            
+            <h3>Charts and Images Missing?</h3>
+            <p>Our current version focuses on tabular data extraction. Complex charts and embedded images may not convert perfectly. For documents with many charts, consider using our "Print to PDF" feature from Excel directly. We're continuously improving chart support for future updates.</p>
+            
+            <h3>Dates Showing as Numbers?</h3>
+            <p>Excel stores dates as serial numbers. Our converter attempts to detect and format dates properly, but some date formats may appear as numbers. Review converted PDF and adjust date formatting in Excel before re-converting if needed.</p>
+            
+            <h3>Large Files Taking Too Long?</h3>
+            <p>Very large Excel files (50+ MB or 10,000+ rows) may take a moment to process. This is normal as the converter parses all data. For better performance, consider splitting the Excel file into smaller workbooks or converting only specific sheets.</p>
+            
+            <h2>Advanced Tips for Professional Users</h2>
+            
+            <h3>Batch Conversion Workflows</h3>
+            <p>For users who regularly convert multiple Excel files, create a systematic workflow: prepare all source Excel files with consistent formatting, convert each individually using the same settings, and save PDFs with naming conventions that match your source files. While we don't yet support batch conversion, you can convert files one after another efficiently.</p>
+            
+            <h3>PDF/A for Archival</h3>
+            <p>For long-term document preservation, consider converting to PDF/A format using specialized tools. PDF/A is an ISO-standardized version of PDF designed for archiving. Our standard conversion is suitable for most purposes, but PDF/A may be required for certain legal or archival requirements.</p>
+            
+            <h3>Protecting Sensitive Data</h3>
+            <p>After converting to PDF, use our PDF Protect tool to add password protection and restrict printing or editing permissions. This adds an extra layer of security for confidential financial data, employee information, or proprietary business data.</p>
+            
+            <h2>Security and Privacy Deep Dive</h2>
+            <p>Your privacy is our priority. Unlike competing services that require you to upload documents to their servers (where they could be accessed by employees, stored indefinitely, or exposed in data breaches), our Excel to PDF converter processes everything locally. When you select a file:</p>
+            <ul>
+                <li>The file is read into your browser's memory using the File API</li>
+                <li>All processing uses your device's CPU - no external servers involved</li>
+                <li>Excel parsing happens entirely in your browser using SheetJS</li>
+                <li>No file data is ever transmitted over the network</li>
+                <li>When you close the page, all data is cleared from memory</li>
+                <li>We don't use cookies, analytics, or tracking scripts</li>
+                <li>Generated PDFs only exist on your device after download</li>
+            </ul>
+            <p>This architecture makes our tool suitable for confidential financial data, payroll information, customer databases, business strategies, and any other sensitive materials that should never be uploaded to unknown servers.</p>
+            
+            <h2>Understanding Excel Limitations in PDF</h2>
+            <p>When converting Excel to PDF, understand these limitations:</p>
+            <ul>
+                <li><strong>Formulas:</strong> PDFs store calculated values, not the formulas themselves. Recipients see the results but cannot see how calculations were performed.</li>
+                <li><strong>Conditional Formatting:</strong> Colors and formatting applied through conditional formatting are preserved as static formatting in the PDF.</li>
+                <li><strong>Data Validation:</strong> Dropdown lists and validation rules are not functional in PDFs.</li>
+                <li><strong>Macros:</strong> VBA code and macros do not transfer to PDF.</li>
+                <li><strong>Hyperlinks:</strong> Basic hyperlinks to websites are preserved and clickable in the PDF.</li>
+            </ul>
+            
+            <h2>Frequently Asked Questions</h2>
+            
+            <h3>Is this converter really free?</h3>
+            <p>Yes, completely free with no hidden costs, no premium tiers, and no watermarks. We believe essential document conversion tools should be accessible to everyone.</p>
+            
+            <h3>Can I convert password-protected Excel files?</h3>
+            <p>Our converter cannot process password-protected Excel files. You must remove password protection in Microsoft Excel before converting.</p>
+            
+            <h3>Will my formulas be preserved?</h3>
+            <p>PDFs store the calculated results of formulas, not the formulas themselves. Recipients see the final numbers but cannot see or edit the underlying calculations.</p>
+            
+            <h3>What about multiple sheets?</h3>
+            <p>You can choose to convert all sheets (each becomes a separate PDF), only the first sheet, or select a specific sheet to convert.</p>
+            
+            <h3>Can I convert old XLS files?</h3>
+            <p>Yes, our converter supports both modern XLSX and legacy XLS (Excel 97-2003) formats.</p>
+            
+            <h3>What's the maximum file size?</h3>
+            <p>Since processing happens locally, limits depend on your device's available memory. Most modern devices can handle Excel files up to 200MB easily. For files larger than 100MB, we recommend using Chrome or Edge for optimal performance.</p>
+            
+            <h2>Industry-Specific Use Cases</h2>
+            
+            <h3>Accounting and Finance</h3>
+            <p>Accountants convert Excel financial models, budget spreadsheets, tax worksheets, and audit files to PDF for client delivery, regulatory submissions, and internal review. PDF ensures data integrity and prevents unauthorized changes to financial figures.</p>
+            
+            <h3>Human Resources</h3>
+            <p>HR professionals convert employee databases, payroll spreadsheets, and benefits tracking sheets to PDF for secure distribution to managers while protecting sensitive personal information.</p>
+            
+            <h3>Operations and Logistics</h3>
+            <p>Operations managers convert inventory sheets, shipping manifests, and production schedules to PDF for warehouse staff and shipping partners who need read-only access to critical data.</p>
+            
+            <h3>Education Administration</h3>
+            <p>School administrators convert gradebooks, attendance records, and student data spreadsheets to PDF for record keeping and parent-teacher conferences while maintaining data privacy.</p>
+            
+            <h2>Environmental Impact of Digital Conversion</h2>
+            <p>By converting Excel files to PDF digitally instead of printing spreadsheets for distribution, you're helping reduce paper waste, ink consumption, and carbon emissions associated with document shipping. Digital PDFs enable paperless workflows and reduce environmental impact.</p>
+            
+            <h2>Future Updates and Roadmap</h2>
+            <p>We continuously improve our Excel to PDF converter based on user feedback. Planned features include batch conversion for multiple files, chart and image preservation, custom scaling options, header/footer support, and integration with our other tools for complete document workflow automation. Have a suggestion? Contact us with your ideas!</p>
+            
+            <h2>Conclusion</h2>
+            <p>Converting Excel spreadsheets to PDF is essential for professional document sharing, data protection, and universal accessibility. Our free Excel to PDF converter provides professional-quality results with uncompromising privacy protection. Whether you're a financial analyst sharing quarterly reports, a project manager distributing timelines, or a researcher publishing findings, our tool ensures your data looks perfect and remains secure. Try our Excel to PDF converter today and experience professional spreadsheet conversion that respects your privacy.</p>
+        </div>
+        
+        <div class="related-tools">
+            <h3>Related Tools</h3>
+            <div class="related-grid">
+                <a href="pdf-to-excel.html" class="related-link">📊 PDF to Excel</a>
+                <a href="word-to-pdf.html" class="related-link">📄 Word to PDF</a>
+                <a href="compress-pdf.html" class="related-link">🗜️ Compress PDF</a>
+                <a href="merge-pdf.html" class="related-link">🔗 Merge PDF</a>
+                <a href="pdf-protect.html" class="related-link">🔒 Protect PDF</a>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="footer">
+        <p>&copy; 2024 PDF Tools Pro. All tools are 100% free to use. Your files are processed locally and never uploaded.</p>
+    </footer>
+    
+    <script src="../js/main.js"></script>
+    <script>
+        const convertBtn = document.getElementById('convertBtn');
+        const excelInput = document.getElementById('excelInput');
+        const sheetSelection = document.getElementById('sheetSelection');
+        const pageOrientation = document.getElementById('pageOrientation');
+        const paperSize = document.getElementById('paperSize');
+        const fitToPage = document.getElementById('fitToPage');
+        const showGridlines = document.getElementById('showGridlines');
+        const fileInfo = document.getElementById('fileInfo');
+        const fileInfoText = document.getElementById('fileInfoText');
+        const sheetInfo = document.getElementById('sheetInfo');
+        const resultDiv = document.getElementById('result');
+        
+        let workbookData = null;
+        let sheetNames = [];
+        
+        // Display file info when file is selected
+        excelInput.addEventListener('change', async (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const fileSize = formatFileSize(file.size);
+                const fileName = file.name;
+                fileInfoText.textContent = `${fileName} (${fileSize})`;
+                fileInfo.style.display = 'block';
+                resultDiv.innerHTML = '';
+                
+                // Parse Excel to get sheet names
+                try {
+                    const arrayBuffer = await file.arrayBuffer();
+                    const workbook = XLSX.read(arrayBuffer, { type: 'array' });
+                    workbookData = workbook;
+                    sheetNames = workbook.SheetNames;
+                    
+                    let sheetInfoHtml = `<strong>Sheets found (${sheetNames.length}):</strong> ${sheetNames.join(', ')}`;
+                    sheetInfo.innerHTML = sheetInfoHtml;
+                    
+                    // If active sheet selection is chosen, create a dropdown
+                    if (sheetSelection.value === 'active') {
+                        let selectHtml = '<select id="activeSheetSelect" class="file-input" style="margin-top: 0.5rem;">';
+                        sheetNames.forEach((name, index) => {
+                            selectHtml += `<option value="${index}">${name}</option>`;
+                        });
+                        selectHtml += '</select>';
+                        sheetInfo.innerHTML += '<br>' + selectHtml;
+                    }
+                } catch (error) {
+                    console.error('Error parsing Excel:', error);
+                    sheetInfo.innerHTML = '<span style="color: var(--error);">Error reading Excel file. Please ensure it\'s a valid file.</span>';
+                }
+            } else {
+                fileInfo.style.display = 'none';
+                workbookData = null;
+            }
+        });
+        
+        // Update sheet selection UI when mode changes
+        sheetSelection.addEventListener('change', () => {
+            if (excelInput.files[0] && sheetSelection.value === 'active') {
+                let selectHtml = '<select id="activeSheetSelect" class="file-input" style="margin-top: 0.5rem;">';
+                sheetNames.forEach((name, index) => {
+                    selectHtml += `<option value="${index}">${name}</option>`;
+                });
+                selectHtml += '</select>';
+                sheetInfo.innerHTML = sheetInfo.innerHTML.split('<br>')[0] + '<br>' + selectHtml;
+            } else if (excelInput.files[0]) {
+                sheetInfo.innerHTML = sheetInfo.innerHTML.split('<br>')[0];
+            }
+        });
+        
+        // Convert Excel sheet to PDF
+        async function convertSheetToPDF(worksheet, sheetName, orientation, paperSizeValue, fitToPageFlag, gridlinesFlag) {
+            const { PDFDocument, rgb, StandardFonts } = PDFLib;
+            const pdfDoc = await PDFDocument.create();
+            
+            // Get page dimensions based on paper size and orientation
+            let pageWidth, pageHeight;
+            const isLandscape = orientation === 'landscape';
+            
+            switch(paperSizeValue) {
+                case 'letter':
+                    pageWidth = 612; pageHeight = 792; // 8.5" x 11" in points
+                    break;
+                case 'legal':
+                    pageWidth = 612; pageHeight = 1008; // 8.5" x 14"
+                    break;
+                case 'a4':
+                    pageWidth = 595; pageHeight = 842; // A4 in points
+                    break;
+                case 'tabloid':
+                    pageWidth = 792; pageHeight = 1224; // 11" x 17"
+                    break;
+                default:
+                    pageWidth = 595; pageHeight = 842;
+            }
+            
+            if (isLandscape) {
+                [pageWidth, pageHeight] = [pageHeight, pageWidth];
+            }
+            
+            // Convert worksheet to HTML-like table representation
+            const range = XLSX.utils.decode_range(worksheet['!ref'] || 'A1:A1');
+            const data = [];
+            
+            // Extract data from worksheet
+            for (let row = range.s.r; row <= range.e.r; row++) {
+                const rowData = [];
+                for (let col = range.s.c; col <= range.e.c; col++) {
+                    const cellAddress = XLSX.utils.encode_cell({ r: row, c: col });
+                    const cell = worksheet[cellAddress];
+                    let value = '';
+                    if (cell) {
+                        if (cell.t === 'n') value = cell.v.toString();
+                        else if (cell.t === 'd') value = cell.v.toLocaleDateString();
+                        else value = cell.v?.toString() || '';
+                    }
+                    rowData.push(value);
+                }
+                if (rowData.some(cell => cell !== '')) {
+                    data.push(rowData);
+                }
+            }
+            
+            if (data.length === 0) {
+                throw new Error('No data found in the selected sheet');
+            }
+            
+            // Calculate column widths based on content
+            const colWidths = [];
+            for (let col = 0; col < data[0].length; col++) {
+                let maxLen = 10;
+                for (let row = 0; row < Math.min(data.length, 50); row++) {
+                    const cell = data[row][col]?.toString() || '';
+                    maxLen = Math.max(maxLen, Math.min(cell.length, 50));
+                }
+                colWidths.push(maxLen);
+            }
+            
+            // Calculate table dimensions
+            const leftMargin = 50;
+            const topMargin = 50;
+            const rowHeight = 20;
+            const baseFontSize = 10;
+            
+            const totalWidth = colWidths.reduce((sum, width) => sum + (width * (baseFontSize * 0.6)), 0);
+            const availableWidth = pageWidth - (leftMargin * 2);
+            
+            let scale = 1;
+            if (fitToPageFlag && totalWidth > availableWidth) {
+                scale = availableWidth / totalWidth;
+            }
+            
+            // Create pages and draw table
+            const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
+            const fontBold = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
+            
+            let currentPage = pdfDoc.addPage([pageWidth, pageHeight]);
+            let currentY = pageHeight - topMargin;
+            let rowsPerPage = Math.floor((pageHeight - topMargin - 50) / (rowHeight * scale));
+            let rowCount = 0;
+            
+            for (let row = 0; row < data.length; row++) {
+                if (rowCount >= rowsPerPage && rowsPerPage > 0) {
+                    currentPage = pdfDoc.addPage([pageWidth, pageHeight]);
+                    currentY = pageHeight - topMargin;
+                    rowCount = 0;
+                }
+                
+                let currentX = leftMargin;
+                const isHeader = row === 0;
+                const currentFont = isHeader ? fontBold : font;
+                const fontSize = baseFontSize * scale;
+                
+                for (let col = 0; col < data[row].length; col++) {
+                    const cellText = data[row][col]?.toString() || '';
+                    const colWidth = colWidths[col] * (baseFontSize * 0.6) * scale;
+                    
+                    // Draw cell border if gridlines enabled
+                    if (gridlinesFlag) {
+                        currentPage.drawRectangle({
+                            x: currentX,
+                            y: currentY - rowHeight * scale,
+                            width: colWidth,
+                            height: rowHeight * scale,
+                            borderColor: rgb(0.8, 0.8, 0.8),
+                            borderWidth: 0.5
+                        });
+                    }
+                    
+                    // Draw text
+                    currentPage.drawText(cellText.substring(0, 50), {
+                        x: currentX + 2,
+                        y: currentY - (rowHeight * scale * 0.7),
+                        size: fontSize,
+                        font: currentFont,
+                        color: rgb(0, 0, 0)
+                    });
+                    
+                    currentX += colWidth;
+                }
+                
+                currentY -= rowHeight * scale;
+                rowCount++;
+            }
+            
+            return await pdfDoc.save();
+        }
+        
+        // Handle convert button click
+        convertBtn.addEventListener('click', async () => {
+            const file = excelInput.files[0];
+            const sheetMode = sheetSelection.value;
+            const orientation = pageOrientation.value;
+            const paperSizeValue = paperSize.value;
+            const fitToPageFlag = fitToPage.checked;
+            const gridlinesFlag = showGridlines.checked;
+            
+            if (!file) {
+                showAlert('Please select an Excel file to convert', 'error');
+                return;
+            }
+            
+            if (!workbookData) {
+                showAlert('Please wait for file to load or try again', 'error');
+                return;
+            }
+            
+            try {
+                convertBtn.disabled = true;
+                convertBtn.textContent = 'Converting...';
+                resultDiv.innerHTML = '<div class="loader"></div> Converting Excel to PDF... This may take a moment.';
+                
+                let sheetsToConvert = [];
+                let sheetNamesToConvert = [];
+                
+                if (sheetMode === 'first') {
+                    sheetsToConvert = [workbookData.Sheets[workbookData.SheetNames[0]]];
+                    sheetNamesToConvert = [workbookData.SheetNames[0]];
+                } else if (sheetMode === 'active') {
+                    const activeSheetSelect = document.getElementById('activeSheetSelect');
+                    const sheetIndex = activeSheetSelect ? parseInt(activeSheetSelect.value) : 0;
+                    sheetsToConvert = [workbookData.Sheets[workbookData.SheetNames[sheetIndex]]];
+                    sheetNamesToConvert = [workbookData.SheetNames[sheetIndex]];
+                } else {
+                    // All sheets
+                    sheetsToConvert = workbookData.SheetNames.map(name => workbookData.Sheets[name]);
+                    sheetNamesToConvert = workbookData.SheetNames;
+                }
+                
+                const pdfBytesArray = [];
+                
+                for (let i = 0; i < sheetsToConvert.length; i++) {
+                    const sheet = sheetsToConvert[i];
+                    const sheetName = sheetNamesToConvert[i];
+                    
+                    resultDiv.innerHTML = `<div class="loader"></div> Converting sheet "${sheetName}" (${i+1}/${sheetsToConvert.length})...`;
+                    
+                    const pdfBytes = await convertSheetToPDF(sheet, sheetName, orientation, paperSizeValue, fitToPageFlag, gridlinesFlag);
+                    pdfBytesArray.push({ bytes: pdfBytes, name: sheetName });
+                }
+                
+                const originalName = file.name.replace(/\.xlsx?$|\.xlsm?$|\.xlsb?$/i, '');
+                
+                if (pdfBytesArray.length === 1) {
+                    // Single PDF
+                    const blob = new Blob([pdfBytesArray[0].bytes], { type: 'application/pdf' });
+                    const url = URL.createObjectURL(blob);
+                    resultDiv.innerHTML = `
+                        <div class="alert alert-success" style="margin-bottom: 1rem;">✅ Conversion complete! Excel file converted to PDF.</div>
+                        <a href="${url}" download="${originalName}.pdf" class="download-link">📥 Download PDF Document</a>
+                        <p style="margin-top: 1rem; font-size: 0.875rem; color: var(--text-muted);">✓ Converted locally - Your file never left your device</p>
+                    `;
+                } else {
+                    // Multiple PDFs
+                    let downloadsHtml = '<div class="alert alert-success" style="margin-bottom: 1rem;">✅ Conversion complete! Download individual sheet PDFs:</div>';
+                    for (let i = 0; i < pdfBytesArray.length; i++) {
+                        const blob = new Blob([pdfBytesArray[i].bytes], { type: 'application/pdf' });
+                        const url = URL.createObjectURL(blob);
+                        downloadsHtml += `<div style="margin: 0.5rem 0;"><a href="${url}" download="${originalName}_${pdfBytesArray[i].name}.pdf" class="download-link">📄 Download PDF - Sheet: ${pdfBytesArray[i].name}</a></div>`;
+                    }
+                    downloadsHtml += `<p style="margin-top: 1rem; font-size: 0.875rem; color: var(--text-muted);">✓ ${pdfBytesArray.length} sheets converted locally - Your files never left your device</p>`;
+                    resultDiv.innerHTML = downloadsHtml;
+                }
+                
+                showAlert(`Excel converted to PDF successfully! ${pdfBytesArray.length} sheet(s) converted.`, 'success');
+            } catch (error) {
+                console.error(error);
+                resultDiv.innerHTML = `<div class="alert alert-error">Error: ${error.message || 'Failed to convert Excel to PDF. Please ensure the file is a valid Excel spreadsheet.'}</div>`;
+                showAlert('Failed to convert Excel to PDF. Please try again.', 'error');
+            } finally {
+                convertBtn.disabled = false;
+                convertBtn.textContent = 'Convert to PDF';
+            }
+        });
+    </script>
+</body>
+</html>

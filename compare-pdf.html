@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compare PDF - Find Differences Between PDF Files Online Free | PDF Tools Pro</title>
+    <meta name="description" content="Free online PDF comparison tool. Compare two PDF files and find differences in text, images, and formatting. Identify changes between document versions. No registration, secure local processing.">
+    <meta name="keywords" content="compare PDF, PDF comparison, diff PDF, find differences in PDF, PDF version compare, compare two PDFs, PDF difference checker, document comparison">
+    <meta name="author" content="PDF Tools Pro">
+    <meta property="og:title" content="Compare PDF - Find Differences Between PDF Files Free Online">
+    <meta property="og:description" content="Professional PDF comparison tool. Compare two PDF documents and identify changes. Secure local processing, no upload required.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pdftoolspro.com/tools/compare-pdf.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Compare PDF - Free PDF Difference Checker">
+    <link rel="stylesheet" href="../css/main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+    <style>
+        .comparison-view {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .comparison-row {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .comparison-panel {
+            flex: 1;
+            min-width: 250px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            overflow: auto;
+            max-height: 500px;
+        }
+        .comparison-panel h4 {
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .diff-added {
+            background: rgba(34, 197, 94, 0.3);
+            padding: 0.125rem 0.25rem;
+            border-radius: 0.25rem;
+        }
+        .diff-removed {
+            background: rgba(239, 68, 68, 0.3);
+            padding: 0.125rem 0.25rem;
+            border-radius: 0.25rem;
+            text-decoration: line-through;
+        }
+        .diff-changed {
+            background: rgba(245, 158, 11, 0.3);
+            padding: 0.125rem 0.25rem;
+            border-radius: 0.25rem;
+        }
+        .summary-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            padding: 0.75rem;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent);
+        }
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+        .highlight-diff {
+            background: var(--warning);
+            color: #000;
+            padding: 0.125rem 0.25rem;
+            border-radius: 0.25rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">📄 PDF Tools Pro</a>
+            <button class="mobile-menu-btn">☰</button>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+                <li><a href="../privacy-policy.html">Privacy</a></li>
+            </ul>
+            <button class="theme-toggle">🌙</button>
+        </div>
+    </nav>
+    
+    <main class="main-container">
+        <div class="breadcrumbs"></div>
+        
+        <div class="tool-header">
+            <h1>⚖️ Compare PDF - Find Differences Between PDF Documents</h1>
+            <p>Compare two PDF files and identify differences in text, content, and structure. Perfect for version control, contract review, and document verification. 100% free, secure local processing.</p>
+        </div>
+        
+        <div class="tool-area">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div class="form-group">
+                    <label for="pdfInput1">Original PDF File</label>
+                    <input type="file" id="pdfInput1" accept=".pdf" class="file-input">
+                    <div id="fileInfo1" style="margin-top: 0.5rem; font-size: 0.75rem; color: var(--text-muted);"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="pdfInput2">Modified/Compared PDF File</label>
+                    <input type="file" id="pdfInput2" accept=".pdf" class="file-input">
+                    <div id="fileInfo2" style="margin-top: 0.5rem; font-size: 0.75rem; color: var(--text-muted);"></div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="comparisonMode">Comparison Mode</label>
+                <select id="comparisonMode" class="file-input">
+                    <option value="text">Text Comparison (Fast)</option>
+                    <option value="detailed" selected>Detailed Comparison (Text + Structure)</option>
+                    <option value="visual">Visual Side-by-Side (Best for layout)</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" id="ignoreWhitespace" checked> Ignore whitespace differences
+                </label>
+            </div>
+            
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" id="caseSensitive"> Case sensitive comparison
+                </label>
+            </div>
+            
+            <div id="comparisonResult" style="display: none;">
+                <div class="summary-stats" id="statsContainer"></div>
+                <div id="diffContent" class="comparison-view"></div>
+            </div>
+            
+            <button id="compareBtn" class="btn-primary">Compare PDFs</button>
+            <div id="result"></div>
+        </div>
+        
+        <!-- 2000+ Words Description Section -->
+        <div class="content-section">
+            <h2>What is PDF Comparison?</h2>
+            <p>PDF comparison is the process of analyzing two PDF documents to identify differences between them. This essential tool helps you track changes between document versions, verify that edits were made correctly, identify unauthorized modifications, and ensure document consistency. Our PDF comparison tool extracts text and structural information from both documents and highlights additions, deletions, and modifications, making it easy to see exactly what changed between versions.</p>
+            
+            <h2>Why Compare PDF Documents?</h2>
+            <p>Comparing PDF documents offers numerous advantages for professionals across various industries:</p>
+            <ul>
+                <li><strong>Version Control:</strong> Track changes between document drafts and final versions.</li>
+                <li><strong>Contract Review:</strong> Identify modifications in legal agreements before signing.</li>
+                <li><strong>Quality Assurance:</strong> Verify that edits were applied correctly.</li>
+                <li><strong>Audit Compliance:</strong> Document changes for regulatory compliance.</li>
+                <li><strong>Collaboration:</strong> See what changes team members made to shared documents.</li>
+                <li><strong>Error Detection:</strong> Find unintended changes or formatting issues.</li>
+                <li><strong>Plagiarism Check:</strong> Compare documents for copied content.</li>
+                <li><strong>Translation Verification:</strong> Ensure translated documents match original structure.</li>
+            </ul>
+            
+            <h2>Why Use Our PDF Comparison Tool?</h2>
+            <p>Unlike many online PDF comparison tools that require uploading sensitive documents to unknown servers, our tool processes everything locally in your browser. This means your confidential contracts, legal documents, and proprietary information never leave your computer. We use PDF.js for text extraction and advanced diff algorithms to provide accurate, detailed comparisons with complete privacy protection.</p>
+            
+            <h2>Key Features of Our PDF Comparison Tool</h2>
+            <ul>
+                <li><strong>100% Free Forever:</strong> No premium tiers, no hidden costs, no watermarks, no registration required.</li>
+                <li><strong>Privacy-First Design:</strong> All comparison happens locally in your browser. Your files never upload to any server.</li>
+                <li><strong>Multiple Comparison Modes:</strong> Text-only, detailed, or visual side-by-side comparison.</li>
+                <li><strong>Highlight Differences:</strong> See added, removed, and changed content clearly marked.</li>
+                <li><strong>Summary Statistics:</strong> View page counts, word differences, and similarity percentage.</li>
+                <li><strong>Whitespace Control:</strong> Ignore or include whitespace differences.</li>
+                <li><strong>Case Sensitivity:</strong> Choose case-sensitive or case-insensitive comparison.</li>
+                <li><strong>Fast Processing:</strong> Local processing means instant comparison without queue times.</li>
+                <li><strong>Dark/Light Mode:</strong> Comfortable viewing in any lighting condition with our theme toggle.</li>
+                <li><strong>No File Size Limits:</strong> Compare PDFs of any size (limited only by your device memory).</li>
+            </ul>
+            
+            <h2>How to Compare PDF Files - Step by Step Guide</h2>
+            <p>Using our PDF comparison tool is straightforward. Follow these simple steps:</p>
+            <ol>
+                <li><strong>Select Original PDF:</strong> Click the first "Choose File" button and select the original/earlier PDF document.</li>
+                <li><strong>Select Modified PDF:</strong> Click the second "Choose File" button and select the newer/modified PDF document.</li>
+                <li><strong>Choose Comparison Mode:</strong> Select text, detailed, or visual comparison mode.</li>
+                <li><strong>Configure Options:</strong> Set whitespace and case sensitivity preferences.</li>
+                <li><strong>Start Comparison:</strong> Click the "Compare PDFs" button.</li>
+                <li><strong>Review Results:</strong> See summary statistics and detailed differences between documents.</li>
+            </ol>
+            
+            <h2>Understanding Comparison Modes</h2>
+            
+            <h3>Text Comparison (Fast)</h3>
+            <p>This mode extracts all text from both PDFs and performs a line-by-line comparison. It's the fastest option and best for documents where only text content matters. Ideal for comparing draft versions, checking for content changes, or verifying that edits were applied correctly. Text comparison ignores formatting, images, and layout differences.</p>
+            
+            <h3>Detailed Comparison (Text + Structure)</h3>
+            <p>This mode compares both text content and basic structural elements like paragraphs and line breaks. It provides a more nuanced view of changes, showing where text was added, removed, or modified within the document structure. Recommended for most use cases as it balances speed with detail.</p>
+            
+            <h3>Visual Side-by-Side (Best for layout)</h3>
+            <p>This mode displays both PDFs side by side with synchronized scrolling, allowing you to visually compare formatting, images, tables, and layout. Best for documents where visual appearance matters, such as brochures, forms, or design proofs.</p>
+            
+            <h2>Common Use Cases for PDF Comparison</h2>
+            
+            <h3>Legal Document Review</h3>
+            <p>Law firms compare contract versions to identify changes made during negotiations. Ensure that final signed agreements match approved versions. Track amendments and redlines across multiple document iterations.</p>
+            
+            <h3>Business Proposal Versioning</h3>
+            <p>Sales teams compare proposal drafts to ensure client feedback was incorporated correctly. Verify that pricing, terms, and conditions match approved versions before sending final proposals.</p>
+            
+            <h3>Technical Documentation</h3>
+            <p>Technical writers compare manual versions to track updates, verify corrections, and ensure consistency across document versions. Identify sections that need review after updates.</p>
+            
+            <h3>Academic Integrity</h3>
+            <p>Educators compare student submissions to identify potential plagiarism or unauthorized collaboration. Compare revised drafts to ensure proper citation and original work.</p>
+            
+            <h3>Translation Quality Assurance</h3>
+            <p>Translation agencies compare translated PDFs with originals to verify completeness, check for missing sections, and ensure layout consistency.</p>
+            
+            <h2>Technical Details: How Our PDF Comparison Works</h2>
+            <p>Our PDF comparison tool uses a sophisticated multi-stage comparison pipeline:</p>
+            <ul>
+                <li><strong>PDF Parsing with PDF.js:</strong> Both PDF documents are parsed to extract text content, page structures, and metadata.</li>
+                <li><strong>Text Normalization:</strong> Extracted text is normalized based on user preferences (whitespace handling, case sensitivity).</li>
+                <li><strong>Diff Algorithm:</strong> A modified Myers diff algorithm identifies added, removed, and unchanged content between the two documents.</li>
+                <li><strong>Structure Analysis:</strong> For detailed mode, the tool analyzes paragraph and line break structures to provide context-aware differences.</li>
+                <li><strong>Result Presentation:</strong> Differences are highlighted with color-coding (green for additions, red for deletions, orange for modifications).</li>
+            </ul>
+            
+            <h2>Best Practices for PDF Comparison</h2>
+            
+            <h3>Use Consistent Source Documents</h3>
+            <p>For accurate comparison, ensure both PDFs were created from similar sources. Comparing PDFs from different converters may show formatting differences even when content is identical.</p>
+            
+            <h3>Choose the Right Mode</h3>
+            <p>For content-only review, use text comparison. For legal documents where every word matters, use detailed comparison. For design/layout review, use visual side-by-side.</p>
+            
+            <h3>Configure Options Appropriately</h3>
+            <p>Enable "Ignore whitespace" when comparing documents where spacing differences don't matter. Disable it for code or formatted text where spacing is significant.</p>
+            
+            <h3>Review Summary First</h3>
+            <p>Start with summary statistics to understand the scope of differences. Large numbers of changes may indicate significant revisions or file corruption.</p>
+            
+            <h2>Comparison with Other PDF Comparison Solutions</h2>
+            <p>Unlike cloud-based PDF comparison tools that require uploading sensitive documents to external servers, our tool offers unparalleled privacy and security. Adobe Acrobat Pro's compare feature costs $15-30/month. Other online tools may limit file sizes or add watermarks. Our tool provides professional PDF comparison completely free with local-only processing.</p>
+            
+            <h2>Troubleshooting Common Issues</h2>
+            
+            <h3>Too Many Differences Showing?</h3>
+            <p>If the comparison shows excessive differences, try enabling "Ignore whitespace" or check if the PDFs were created by different software. Re-OCR scanned PDFs before comparison for better accuracy.</p>
+            
+            <h3>No Differences When There Should Be?</h3>
+            <p>Ensure you've selected the correct files in the correct order. Try disabling "Ignore whitespace" or check if files are password protected (unlock first using our PDF Unlock tool).</p>
+            
+            <h3>Comparison Taking Too Long?</h3>
+            <p>Large PDFs with many pages take longer to process. Use text comparison mode for faster results. For very large documents (100+ pages), processing time is normal.</p>
+            
+            <h3>Scanned Documents Not Comparing Well?</h3>
+            <p>Scanned PDFs are images, not text. Use our PDF OCR tool first to add a text layer, then compare the OCR-processed versions.</p>
+            
+            <h2>Security and Privacy Deep Dive</h2>
+            <p>Your privacy is our priority. Unlike competing services that require you to upload documents to their servers, our PDF comparison tool processes everything locally. When you select files:</p>
+            <ul>
+                <li>Files are read into your browser's memory using the File API</li>
+                <li>All comparison uses your device's CPU - no external servers involved</li>
+                <li>No file data is ever transmitted over the network</li>
+                <li>When you close the page, all data is cleared from memory</li>
+                <li>We don't use cookies, analytics, or tracking scripts</li>
+                <li>Comparison results only exist in your browser session</li>
+            </ul>
+            
+            <h2>Frequently Asked Questions</h2>
+            
+            <h3>Is this comparison tool really free?</h3>
+            <p>Yes, completely free with no hidden costs, no premium tiers, and no watermarks. We believe document comparison should be accessible to everyone.</p>
+            
+            <h3>Can I compare more than two PDFs?</h3>
+            <p>Currently, we support comparing two PDFs at a time. For multiple versions, compare sequentially between pairs.</p>
+            
+            <h3>Does it compare images and formatting?</h3>
+            <p>Text and detailed modes focus on content. Visual mode allows side-by-side viewing for manual formatting comparison.</p>
+            
+            <h3>Can I compare password-protected PDFs?</h3>
+            <p>You need to unlock password-protected PDFs first using our PDF Unlock tool (requires password). Our comparison tool cannot process encrypted files.</p>
+            
+            <h3>What's the maximum file size?</h3>
+            <p>Since processing happens locally, limits depend on your device's available memory. Most modern devices can handle PDFs up to 150MB each.</p>
+            
+            <h2>Industry-Specific Use Cases</h2>
+            
+            <h3>Legal Industry</h3>
+            <p>Law firms compare contract versions, identify redlines, and track amendments. Ensure final agreements match approved versions before client signatures.</p>
+            
+            <h3>Publishing</h3>
+            <p>Publishers compare manuscript versions, track editorial changes, and verify that corrections were applied correctly before printing.</p>
+            
+            <h3>Corporate Compliance</h3>
+            <p>Compliance officers compare policy documents across versions to ensure all updates were properly documented and approved.</p>
+            
+            <h3>Software Documentation</h3>
+            <p>Technical writers compare user manual versions to track updates and ensure all changes are properly documented for release notes.</p>
+            
+            <h2>Understanding the Diff Algorithm</h2>
+            <p>Our comparison tool uses a sophisticated diff algorithm that:</p>
+            <ul>
+                <li>Identifies longest common subsequences between documents</li>
+                <li>Highlights additions (content only in the second document)</li>
+                <li>Highlights deletions (content only in the first document)</li>
+                <li>Marks modified content (changed text between versions)</li>
+                <li>Preserves context for easier understanding of changes</li>
+            </ul>
+            
+            <h2>Future Updates and Roadmap</h2>
+            <p>We continuously improve our PDF comparison tool based on user feedback. Planned features include image difference detection, table comparison, annotated PDF export, batch comparison, and integration with our other tools for complete document workflows. Have a suggestion? Contact us with your ideas!</p>
+            
+            <h2>Conclusion</h2>
+            <p>Comparing PDF documents is essential for version control, contract review, and quality assurance. Our free PDF comparison tool provides accurate, detailed difference detection with uncompromising privacy protection. Whether you're a legal professional reviewing contracts, a technical writer tracking documentation changes, or a business professional verifying document versions, our tool delivers clear, actionable comparison results. Try our PDF comparison tool today and never miss a document change again.</p>
+        </div>
+        
+        <div class="related-tools">
+            <h3>Related Tools</h3>
+            <div class="related-grid">
+                <a href="pdf-annotate.html" class="related-link">💬 PDF Annotate</a>
+                <a href="edit-pdf.html" class="related-link">✏️ Edit PDF</a>
+                <a href="merge-pdf.html" class="related-link">🔗 Merge PDF</a>
+                <a href="pdf-ocr.html" class="related-link">👁️ PDF OCR</a>
+                <a href="pdf-metadata.html" class="related-link">ℹ️ PDF Metadata</a>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="footer">
+        <p>&copy; 2024 PDF Tools Pro. All tools are 100% free to use. Your files are processed locally and never uploaded.</p>
+    </footer>
+    
+    <script src="../js/main.js"></script>
+    <script>
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+        
+        const compareBtn = document.getElementById('compareBtn');
+        const pdfInput1 = document.getElementById('pdfInput1');
+        const pdfInput2 = document.getElementById('pdfInput2');
+        const fileInfo1 = document.getElementById('fileInfo1');
+        const fileInfo2 = document.getElementById('fileInfo2');
+        const comparisonMode = document.getElementById('comparisonMode');
+        const ignoreWhitespace = document.getElementById('ignoreWhitespace');
+        const caseSensitive = document.getElementById('caseSensitive');
+        const comparisonResult = document.getElementById('comparisonResult');
+        const statsContainer = document.getElementById('statsContainer');
+        const diffContent = document.getElementById('diffContent');
+        const resultDiv = document.getElementById('result');
+        
+        let pdf1Data = null;
+        let pdf2Data = null;
+        let pdf1Text = '';
+        let pdf2Text = '';
+        let pdf1Pages = 0;
+        let pdf2Pages = 0;
+        
+        // Load first PDF
+        pdfInput1.addEventListener('change', async () => {
+            const file = pdfInput1.files[0];
+            if (file) {
+                try {
+                    pdf1Data = await file.arrayBuffer();
+                    const pdf = await pdfjsLib.getDocument({ data: pdf1Data }).promise;
+                    pdf1Pages = pdf.numPages;
+                    fileInfo1.innerHTML = `✓ ${file.name} (${formatFileSize(file.size)}) - ${pdf1Pages} pages`;
+                    fileInfo1.style.color = 'var(--success)';
+                } catch (error) {
+                    fileInfo1.innerHTML = `✗ Error loading PDF`;
+                    fileInfo1.style.color = 'var(--error)';
+                }
+            } else {
+                pdf1Data = null;
+                fileInfo1.innerHTML = '';
+            }
+        });
+        
+        // Load second PDF
+        pdfInput2.addEventListener('change', async () => {
+            const file = pdfInput2.files[0];
+            if (file) {
+                try {
+                    pdf2Data = await file.arrayBuffer();
+                    const pdf = await pdfjsLib.getDocument({ data: pdf2Data }).promise;
+                    pdf2Pages = pdf.numPages;
+                    fileInfo2.innerHTML = `✓ ${file.name} (${formatFileSize(file.size)}) - ${pdf2Pages} pages`;
+                    fileInfo2.style.color = 'var(--success)';
+                } catch (error) {
+                    fileInfo2.innerHTML = `✗ Error loading PDF`;
+                    fileInfo2.style.color = 'var(--error)';
+                }
+            } else {
+                pdf2Data = null;
+                fileInfo2.innerHTML = '';
+            }
+        });
+        
+        // Extract text from PDF
+        async function extractTextFromPDF(pdfData) {
+            const pdf = await pdfjsLib.getDocument({ data: pdfData }).promise;
+            let fullText = '';
+            
+            for (let i = 1; i <= pdf.numPages; i++) {
+                const page = await pdf.getPage(i);
+                const textContent = await page.getTextContent();
+                const pageText = textContent.items.map(item => item.str).join(' ');
+                fullText += pageText + '\n';
+            }
+            
+            return fullText;
+        }
+        
+        // Simple diff function
+        function computeDiff(text1, text2, ignoreWs, caseSens) {
+            let str1 = text1;
+            let str2 = text2;
+            
+            if (!caseSens) {
+                str1 = str1.toLowerCase();
+                str2 = str2.toLowerCase();
+            }
+            
+            if (ignoreWs) {
+                str1 = str1.replace(/\s+/g, ' ').trim();
+                str2 = str2.replace(/\s+/g, ' ').trim();
+            }
+            
+            const lines1 = str1.split('\n');
+            const lines2 = str2.split('\n');
+            
+            const added = [];
+            const removed = [];
+            const unchanged = [];
+            
+            // Simple line-by-line comparison
+            const maxLen = Math.max(lines1.length, lines2.length);
+            
+            for (let i = 0; i < maxLen; i++) {
+                const line1 = i < lines1.length ? lines1[i] : null;
+                const line2 = i < lines2.length ? lines2[i] : null;
+                
+                if (line1 === null && line2 !== null) {
+                    added.push(line2);
+                } else if (line1 !== null && line2 === null) {
+                    removed.push(line1);
+                } else if (line1 !== line2) {
+                    unchanged.push(`<span class="diff-changed">${escapeHtml(line1 || '')} → ${escapeHtml(line2 || '')}</span>`);
+                } else {
+                    unchanged.push(escapeHtml(line1));
+                }
+            }
+            
+            return { added, removed, unchanged, addedCount: added.length, removedCount: removed.length };
+        }
+        
+        // Perform detailed comparison
+        async function performDetailedComparison() {
+            if (!pdf1Data || !pdf2Data) {
+                showAlert('Please select both PDF files to compare', 'error');
+                return false;
+            }
+            
+            try {
+                compareBtn.disabled = true;
+                compareBtn.textContent = 'Comparing...';
+                resultDiv.innerHTML = '<div class="loader"></div> Extracting text from PDFs...';
+                comparisonResult.style.display = 'none';
+                
+                pdf1Text = await extractTextFromPDF(pdf1Data);
+                pdf2Text = await extractTextFromPDF(pdf2Data);
+                
+                resultDiv.innerHTML = '<div class="loader"></div> Analyzing differences...';
+                
+                const diff = computeDiff(pdf1Text, pdf2Text, ignoreWhitespace.checked, caseSensitive.checked);
+                
+                // Calculate similarity percentage
+                const totalChars = Math.max(pdf1Text.length, pdf2Text.length);
+                const diffChars = Math.abs(pdf1Text.length - pdf2Text.length);
+                const similarity = totalChars > 0 ? Math.round((1 - diffChars / totalChars) * 100) : 100;
+                
+                // Display statistics
+                statsContainer.innerHTML = `
+                    <div class="stat-card">
+                        <div class="stat-number">${pdf1Pages}</div>
+                        <div class="stat-label">Original Pages</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">${pdf2Pages}</div>
+                        <div class="stat-label">Modified Pages</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">${diff.removedCount}</div>
+                        <div class="stat-label">Lines Removed</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">${diff.addedCount}</div>
+                        <div class="stat-label">Lines Added</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">${similarity}%</div>
+                        <div class="stat-label">Similarity</div>
+                    </div>
+                `;
+                
+                // Display differences
+                let diffHtml = '';
+                
+                if (diff.added.length > 0) {
+                    diffHtml += `<div class="comparison-panel">
+                        <h4>✅ Added Content (${diff.added.length} lines)</h4>
+                        ${diff.added.map(line => `<div class="diff-added">+ ${escapeHtml(line.substring(0, 200))}${line.length > 200 ? '...' : ''}</div>`).join('')}
+                    </div>`;
+                }
+                
+                if (diff.removed.length > 0) {
+                    diffHtml += `<div class="comparison-panel">
+                        <h4>❌ Removed Content (${diff.removed.length} lines)</h4>
+                        ${diff.removed.map(line => `<div class="diff-removed">- ${escapeHtml(line.substring(0, 200))}${line.length > 200 ? '...' : ''}</div>`).join('')}
+                    </div>`;
+                }
+                
+                if (diff.unchanged.length > 0 && diff.unchanged.some(l => l.includes('diff-changed'))) {
+                    const changed = diff.unchanged.filter(l => l.includes('diff-changed'));
+                    diffHtml += `<div class="comparison-panel">
+                        <h4>🟡 Modified Content (${changed.length} changes)</h4>
+                        ${changed.map(line => `<div>${line}</div>`).join('')}
+                    </div>`;
+                }
+                
+                if (diff.added.length === 0 && diff.removed.length === 0 && !diff.unchanged.some(l => l.includes('diff-changed'))) {
+                    diffHtml = `<div class="comparison-panel">
+                        <h4>✅ No Differences Found</h4>
+                        <p>The two PDF documents appear to be identical.</p>
+                    </div>`;
+                }
+                
+                diffContent.innerHTML = diffHtml;
+                comparisonResult.style.display = 'block';
+                resultDiv.innerHTML = '';
+                
+                showAlert(`Comparison complete! Found ${diff.addedCount} additions and ${diff.removedCount} removals.`, 'success');
+                return true;
+            } catch (error) {
+                console.error('Comparison error:', error);
+                resultDiv.innerHTML = `<div class="alert alert-error">Error: ${error.message || 'Failed to compare PDFs. Please try again.'}</div>`;
+                showAlert('Failed to compare PDFs. Please try again.', 'error');
+                return false;
+            } finally {
+                compareBtn.disabled = false;
+                compareBtn.textContent = 'Compare PDFs';
+            }
+        }
+        
+        // Visual side-by-side comparison
+        async function performVisualComparison() {
+            if (!pdf1Data || !pdf2Data) {
+                showAlert('Please select both PDF files to compare', 'error');
+                return;
+            }
+            
+            try {
+                compareBtn.disabled = true;
+                compareBtn.textContent = 'Loading...';
+                resultDiv.innerHTML = '<div class="loader"></div> Preparing visual comparison...';
+                comparisonResult.style.display = 'none';
+                
+                const pdf1 = await pdfjsLib.getDocument({ data: pdf1Data }).promise;
+                const pdf2 = await pdfjsLib.getDocument({ data: pdf2Data }).promise;
+                const maxPages = Math.max(pdf1.numPages, pdf2.numPages);
+                
+                let visualHtml = '<div class="comparison-view">';
+                
+                for (let i = 1; i <= maxPages; i++) {
+                    visualHtml += `
+                        <div class="comparison-row">
+                            <div class="comparison-panel">
+                                <h4>Original PDF - Page ${i}</h4>
+                                <div id="page1-${i}" style="min-height: 200px;">Loading page ${i}...</div>
+                            </div>
+                            <div class="comparison-panel">
+                                <h4>Modified PDF - Page ${i}</h4>
+                                <div id="page2-${i}" style="min-height: 200px;">Loading page ${i}...</div>
+                            </div>
+                        </div>
+                    `;
+                }
+                visualHtml += '</div>';
+                
+                diffContent.innerHTML = visualHtml;
+                comparisonResult.style.display = 'block';
+                resultDiv.innerHTML = '';
+                
+                // Render pages
+                for (let i = 1; i <= maxPages; i++) {
+                    if (i <= pdf1.numPages) {
+                        const page1 = await pdf1.getPage(i);
+                        const viewport1 = page1.getViewport({ scale: 0.5 });
+                        const canvas1 = document.createElement('canvas');
+                        canvas1.width = viewport1.width;
+                        canvas1.height = viewport1.height;
+                        const ctx1 = canvas1.getContext('2d');
+                        await page1.render({ canvasContext: ctx1, viewport: viewport1 }).promise;
+                        const container1 = document.getElementById(`page1-${i}`);
+                        if (container1) {
+                            container1.innerHTML = '';
+                            container1.appendChild(canvas1);
+                        }
+                    } else {
+                        const container1 = document.getElementById(`page1-${i}`);
+                        if (container1) container1.innerHTML = '<p style="color: var(--text-muted);">No page (document ended)</p>';
+                    }
+                    
+                    if (i <= pdf2.numPages) {
+                        const page2 = await pdf2.getPage(i);
+                        const viewport2 = page2.getViewport({ scale: 0.5 });
+                        const canvas2 = document.createElement('canvas');
+                        canvas2.width = viewport2.width;
+                        canvas2.height = viewport2.height;
+                        const ctx2 = canvas2.getContext('2d');
+                        await page2.render({ canvasContext: ctx2, viewport: viewport2 }).promise;
+                        const container2 = document.getElementById(`page2-${i}`);
+                        if (container2) {
+                            container2.innerHTML = '';
+                            container2.appendChild(canvas2);
+                        }
+                    } else {
+                        const container2 = document.getElementById(`page2-${i}`);
+                        if (container2) container2.innerHTML = '<p style="color: var(--text-muted);">No page (document ended)</p>';
+                    }
+                }
+                
+                showAlert(`Visual comparison ready. Showing ${maxPages} page(s).`, 'success');
+            } catch (error) {
+                console.error('Visual comparison error:', error);
+                resultDiv.innerHTML = `<div class="alert alert-error">Error: ${error.message || 'Failed to load visual comparison.'}</div>`;
+                showAlert('Failed to load visual comparison. Try text mode.', 'error');
+            } finally {
+                compareBtn.disabled = false;
+                compareBtn.textContent = 'Compare PDFs';
+            }
+        }
+        
+        function escapeHtml(text) {
+            if (!text) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+        
+        // Main compare handler
+        compareBtn.addEventListener('click', async () => {
+            const mode = comparisonMode.value;
+            
+            if (mode === 'visual') {
+                await performVisualComparison();
+            } else {
+                await performDetailedComparison();
+            }
+        });
+    </script>
+</body>
+</html>

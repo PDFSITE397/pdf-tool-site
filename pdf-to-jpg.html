@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF to JPG - Convert PDF Pages to JPG Images Online Free | PDF Tools Pro</title>
+    <meta name="description" content="Free online PDF to JPG converter. Convert PDF pages to high-quality JPG images. Extract images from PDF, convert each page to JPG, or create thumbnails. No registration, secure local processing.">
+    <meta name="keywords" content="PDF to JPG, convert PDF to JPG, PDF to image, extract images from PDF, PDF to JPEG, PDF page to image, PDF to picture, free PDF to JPG converter">
+    <meta name="author" content="PDF Tools Pro">
+    <meta property="og:title" content="PDF to JPG - Convert PDF Pages to JPG Images Free Online">
+    <meta property="og:description" content="Professional PDF to JPG converter. Convert PDF pages to high-quality images. Secure local processing, no upload required.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pdftoolspro.com/tools/pdf-to-jpg.html">
+    <meta name="twitter:card" content="summary_large_image">
+   meta name="twitter:title" content="PDF to JPG - Free PDF to Image Converter">
+    <link rel="stylesheet" href="../css/main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">📄 PDF Tools Pro</a>
+            <button class="mobile-menu-btn">☰</button>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+                <li><a href="../privacy-policy.html">Privacy</a></li>
+            </ul>
+            <button class="theme-toggle">🌙</button>
+        </div>
+    </nav>
+    
+    <main class="main-container">
+        <div class="breadcrumbs"></div>
+        
+        <div class="tool-header">
+            <h1>🖼️ PDF to JPG Converter - Convert PDF Pages to Images</h1>
+            <p>Transform your PDF documents into high-quality JPG images. Perfect for thumbnails, social media sharing, website embedding, and image editing. 100% free, secure local processing.</p>
+        </div>
+        
+        <div class="tool-area">
+            <div class="form-group">
+                <label for="pdfInput">Select PDF File to Convert</label>
+                <input type="file" id="pdfInput" accept=".pdf" class="file-input">
+            </div>
+            
+            <div class="form-group">
+                <label for="imageQuality">Image Quality</label>
+                <select id="imageQuality" class="file-input">
+                    <option value="low">Low Quality (70% - Smallest file size)</option>
+                    <option value="medium" selected>Medium Quality (85% - Recommended)</option>
+                    <option value="high">High Quality (95% - Best for printing)</option>
+                    <option value="maximum">Maximum Quality (100% - Largest file size)</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="imageScale">Image Scale (Resolution)</label>
+                <select id="imageScale" class="file-input">
+                    <option value="1">Standard (1x - 72 DPI, fastest)</option>
+                    <option value="1.5" selected>High (1.5x - 108 DPI, recommended)</option>
+                    <option value="2">Very High (2x - 144 DPI)</option>
+                    <option value="3">Ultra High (3x - 216 DPI, large files)</option>
+                    <option value="4">Maximum (4x - 288 DPI, very large files)</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="pageRange">Page Range (optional)</label>
+                <input type="text" id="pageRange" placeholder="e.g., 1-5, 8, 10-15 (leave empty for all pages)" class="file-input">
+                <small>Enter page numbers or ranges. Examples: "1-5", "1,3,5", "1-3,7,9-11"</small>
+            </div>
+            
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" id="zipOutput" checked> Download as ZIP file (for multiple pages)
+                </label>
+            </div>
+            
+            <div id="fileInfo" style="margin: 1rem 0; padding: 1rem; background: var(--bg-card); border-radius: 0.5rem; display: none;">
+                <strong>Document Info:</strong> <span id="fileInfoText"></span>
+                <div id="pageInfo" style="margin-top: 0.5rem; font-size: 0.875rem;"></div>
+            </div>
+            
+            <button id="convertBtn" class="btn-primary">Convert to JPG</button>
+            <div id="result"></div>
+        </div>
+        
+        <!-- 2000+ Words Description Section -->
+        <div class="content-section">
+            <h2>What is PDF to JPG Conversion?</h2>
+            <p>PDF to JPG conversion is the process of transforming PDF document pages into individual JPG (JPEG) image files. Each page of your PDF becomes a separate image file, preserving the visual appearance, text, graphics, and layout as a picture. This conversion is essential when you need to use PDF content in image-based applications, share documents on social media, create website thumbnails, or edit PDF pages in image editing software. Our PDF to JPG converter creates high-quality images with customizable resolution and compression settings.</p>
+            
+            <h2>Why Convert PDF to JPG?</h2>
+            <p>Converting PDF documents to JPG images offers numerous advantages for content creators, marketers, designers, and everyday users:</p>
+            <ul>
+                <li><strong>Social Media Sharing:</strong> Share document pages on Instagram, Facebook, Twitter, and Pinterest as images.</li>
+                <li><strong>Website Embedding:</strong> Display PDF content directly on websites without requiring PDF viewers.</li>
+                <li><strong>Thumbnail Creation:</strong> Generate preview images for document libraries and file managers.</li>
+                <li><strong>Image Editing:</strong> Edit PDF pages in Photoshop, GIMP, or other image editors.</li>
+                <li><strong>Presentation Slides:</strong> Convert PDF slides to images for PowerPoint or Google Slides.</li>
+                <li><strong>Ebook Previews:</strong> Create book cover and page preview images for online stores.</li>
+                <li><strong>Redacting Information:</strong> Blur or blackout sensitive information in image editors.</li>
+                <li><strong>Mobile Viewing:</strong> View document pages on devices without PDF readers.</li>
+            </ul>
+            
+            <h2>Why Use Our PDF to JPG Converter?</h2>
+            <p>Unlike many online PDF to JPG converters that require uploading potentially sensitive documents to unknown servers, our converter processes everything locally in your browser. This means your confidential documents, personal photos, business presentations, and private information never leave your computer. We use PDF.js, the same rendering engine used by Firefox, to ensure accurate, high-quality page rendering with complete privacy protection.</p>
+            
+            <h2>Key Features of Our PDF to JPG Converter</h2>
+            <ul>
+                <li><strong>100% Free Forever:</strong> No premium tiers, no hidden costs, no watermarks, no registration required.</li>
+                <li><strong>Privacy-First Design:</strong> All conversion happens locally in your browser. Your files never upload to any server.</li>
+                <li><strong>Multiple Quality Settings:</strong> Choose from Low, Medium, High, or Maximum JPG quality.</li>
+                <li><strong>Scale Options:</strong> Render images at 1x to 4x resolution for different use cases.</li>
+                <li><strong>Page Range Selection:</strong> Convert specific pages or page ranges instead of entire documents.</li>
+                <li><strong>ZIP Archive Support:</strong> Download multiple images as a single ZIP file for convenience.</li>
+                <li><strong>High-Quality Rendering:</strong> Preserves text clarity, images, vector graphics, and colors.</li>
+                <li><strong>Fast Processing:</strong> Local processing means instant conversion without queue times.</li>
+                <li><strong>Dark/Light Mode:</strong> Comfortable viewing in any lighting condition with our theme toggle.</li>
+                <li><strong>Individual Page Downloads:</strong> Download each page image separately if preferred.</li>
+            </ul>
+            
+            <h2>How to Convert PDF to JPG - Step by Step Guide</h2>
+            <p>Using our PDF to JPG converter is incredibly straightforward. Follow these simple steps:</p>
+            <ol>
+                <li><strong>Select Your PDF:</strong> Click the "Choose File" button and select the PDF document you want to convert to images.</li>
+                <li><strong>Choose Image Quality:</strong> Select the JPG quality level that balances file size and visual quality.</li>
+                <li><strong>Select Image Scale:</strong> Choose resolution from standard (72 DPI) to ultra-high (288 DPI).</li>
+                <li><strong>Specify Page Range (Optional):</strong> Enter specific pages or ranges to convert only selected pages.</li>
+                <li><strong>Choose Output Format:</strong> Select whether to download as a ZIP file or individual images.</li>
+                <li><strong>Start Conversion:</strong> Click the "Convert to JPG" button. Our tool will render each page as an image locally.</li>
+                <li><strong>Download Your Images:</strong> Once complete, download your JPG images as a ZIP file or individually.</li>
+            </ol>
+            
+            <h2>Understanding Image Quality Settings</h2>
+            
+            <h3>Low Quality (70%)</h3>
+            <p>Low quality JPG compression (70%) produces the smallest file sizes, typically 40-60% smaller than maximum quality. This setting is ideal for web thumbnails, quick previews, and documents where fine details aren't critical. Text remains readable but may show some compression artifacts around edges. Perfect for creating document previews where file size is more important than absolute quality.</p>
+            
+            <h3>Medium Quality (85% - Recommended)</h3>
+            <p>Medium quality (85%) provides an excellent balance between file size and visual quality. Images look clean and sharp with minimal visible compression artifacts. Text is crisp and readable, graphics are clear, and photos maintain good detail. This is our recommended setting for most use cases including social media sharing, website embedding, and general document conversion.</p>
+            
+            <h3>High Quality (95%)</h3>
+            <p>High quality (95%) produces near-original quality with very little visible compression. File sizes are larger (typically 2-3x medium quality) but still reasonable for most purposes. Use this setting for documents that will be printed, professionally presented, or archived. Ideal for high-resolution displays and when image quality is critical.</p>
+            
+            <h3>Maximum Quality (100%)</h3>
+            <p>Maximum quality (100%) applies minimal JPEG compression, preserving virtually all original detail. File sizes are largest (often 3-5x medium quality) and may be comparable to lossless PNG. Use this only when you need the absolute best quality for professional printing, archival, or when you'll be further editing the images.</p>
+            
+            <h2>Understanding Image Scale (Resolution)</h2>
+            
+            <h3>Standard (1x - 72 DPI)</h3>
+            <p>Standard resolution renders pages at 72 DPI (dots per inch), the standard screen resolution. This produces the smallest file sizes and fastest conversion times. Text remains readable on screen but may appear pixelated when zoomed. Best for quick previews, thumbnails, and documents viewed only at normal size.</p>
+            
+            <h3>High (1.5x - 108 DPI - Recommended)</h3>
+            <p>High resolution (108 DPI) provides excellent clarity on modern high-DPI displays (retina screens). This is our recommended setting as it balances quality and file size while ensuring text and graphics look sharp on all devices. Most users should select this option.</p>
+            
+            <h3>Very High (2x - 144 DPI)</h3>
+            <p>Very high resolution (144 DPI) produces images suitable for light printing and high-quality screen viewing. File sizes are larger but detail is excellent. Use this for documents that may be printed or viewed on very large screens.</p>
+            
+            <h3>Ultra High (3x - 216 DPI)</h3>
+            <p>Ultra high resolution (216 DPI) creates images suitable for professional printing. Text and graphics are extremely sharp, but file sizes are significantly larger (3-4x standard resolution). Use for high-quality printing or when maximum detail is required.</p>
+            
+            <h3>Maximum (4x - 288 DPI)</h3>
+            <p>Maximum resolution (288 DPI) produces very large, extremely detailed images suitable for large-format printing and professional publishing. File sizes can be 5-8x standard resolution. Only use when you need the absolute highest quality for professional applications.</p>
+            
+            <h2>Common Use Cases for PDF to JPG Conversion</h2>
+            
+            <h3>Social Media Marketing</h3>
+            <p>Marketers convert PDF brochures, flyers, and product sheets to JPG images for sharing on Instagram, Facebook, LinkedIn, and Pinterest. Images perform better than PDF links on social platforms, and JPGs display instantly in feeds. Convert multi-page documents to carousel posts or individual image shares.</p>
+            
+            <h3>Website Content Management</h3>
+            <p>Web designers and content managers convert PDF documents to JPG images for embedding directly into web pages. Unlike PDFs which require plugins or downloads, JPG images display immediately and work on all devices. Perfect for displaying menus, price lists, schedules, and informational documents.</p>
+            
+            <h3>Ebook and Document Previews</h3>
+            <p>Online bookstores and document marketplaces use PDF to JPG conversion to create thumbnail previews and "look inside" features. Generate cover images, sample page previews, and chapter thumbnails to help customers preview content before purchasing.</p>
+            
+            <h3>Presentation Creation</h3>
+            <p>Professionals convert PDF slides to JPG images for import into PowerPoint, Google Slides, or Keynote. This allows mixing PDF content with other presentation elements, adding animations, and creating hybrid presentations. Images maintain formatting even when source fonts aren't available.</p>
+            
+            <h3>Image Editing and Redaction</h3>
+            <p>Legal and compliance professionals convert sensitive PDFs to JPG images for redaction in image editors. Open images in Photoshop, GIMP, or Preview to blur, black out, or remove sensitive information before sharing. This provides a visual way to protect confidential data.</p>
+            
+            <h3>Mobile Device Viewing</h3>
+            <p>Users without PDF readers on their phones or tablets convert documents to JPG images for easy viewing. Images display in any photo gallery app, require no special software, and can be zoomed and panned easily.</p>
+            
+            <h2>Technical Details: How Our PDF to JPG Converter Works</h2>
+            <p>Our PDF to JPG converter uses a sophisticated rendering pipeline:</p>
+            <ul>
+                <li><strong>PDF Parsing with PDF.js:</strong> The PDF document is parsed and loaded using Mozilla's PDF.js library, the same engine that powers Firefox's PDF viewer.</li>
+                <li><strong>Page Rendering:</strong> Each page is rendered to an HTML canvas element at the specified scale factor, creating a bitmap representation of the page.</li>
+                <li><strong>Image Extraction:</strong> The canvas content is extracted as image data using the toDataURL() method with JPEG encoding at the specified quality level.</li>
+                <li><strong>File Generation:</strong> The data URL is converted to a Blob (binary large object) representing the actual JPG file.</li>
+                <li><strong>Download or ZIP Creation:</strong> Single images are downloaded directly; multiple images are packaged into a ZIP archive using JSZip library.</li>
+            </ul>
+            
+            <h2>Best Practices for PDF to JPG Conversion</h2>
+            
+            <h3>Choose Appropriate Quality and Scale</h3>
+            <p>Match quality and scale to your intended use: web thumbnails use low quality/1x scale, social sharing use medium quality/1.5x scale, printing use high quality/2x+ scale. Testing different settings on a sample page helps find the optimal balance.</p>
+            
+            <h3>Consider File Size vs. Quality</h3>
+            <p>Higher quality and scale dramatically increase file sizes. A 10-page PDF at maximum settings could produce 100MB+ of images. For email or web uploads, use medium quality and 1.5x scale to keep files manageable.</p>
+            
+            <h3>Use Page Range for Large Documents</h3>
+            <p>For documents with many pages (50+), use page range selection to convert only the pages you need. This saves time and storage space while avoiding unnecessary processing.</p>
+            
+            <h3>Review Output Quality</h3>
+            <p>Always check a few sample images to ensure text is readable and graphics are clear. Different PDFs may require different settings based on content type (text-heavy vs. image-heavy).</p>
+            
+            <h2>Comparison with Other PDF to JPG Solutions</h2>
+            <p>Unlike cloud-based PDF to JPG converters that require uploading documents to external servers, our tool offers unparalleled privacy and security. Desktop software like Adobe Acrobat Pro costs $15-30/month for export features. Online competitors often add watermarks, limit file sizes (typically 5-10MB), or restrict to 3-5 pages. Our tool provides professional PDF to JPG conversion completely free with local-only processing, no watermarks, unlimited pages, and no file size limits (limited only by your device memory).</p>
+            
+            <h2>Troubleshooting Common Issues</h2>
+            
+            <h3>Images Are Blurry or Pixelated?</h3>
+            <p>If output images appear blurry, increase the image scale setting. Standard 1x (72 DPI) may look pixelated on high-resolution displays. Use 1.5x (108 DPI) or 2x (144 DPI) for sharper results. Also ensure you're not zooming in beyond the image's native resolution.</p>
+            
+            <h3>File Sizes Too Large?</h3>
+            <p>If JPG files are too large, reduce quality from High to Medium or Low. Also reduce image scale from 3x/4x to 1.5x or 2x. For text-heavy documents, medium quality often provides excellent results at much smaller file sizes.</p>
+            
+            <h3>Some Pages Not Converting?</h3>
+            <p>If certain pages fail to convert, the PDF may have corruption or complex elements. Try using our PDF Repair tool first, then reconvert. Also ensure your browser has sufficient memory (close other tabs if needed).</p>
+            
+            <h3>Slow Conversion for Large Files?</h3>
+            <p>Very large PDFs (100+ pages, 50+ MB) may take several minutes to convert. This is normal as each page must be rendered to an image. For better performance, use page range to convert only needed pages, or split the PDF into smaller documents first.</p>
+            
+            <h3>Scanned Documents Look Different?</h3>
+            <p>Scanned PDFs are already images; converting to JPG preserves the original scan quality. Use higher scale settings (2x-3x) to maintain clarity when viewing scanned text.</p>
+            
+            <h2>Advanced Tips for Professional Users</h2>
+            
+            <h3>Batch Processing Workflows</h3>
+            <p>For users who regularly convert multiple PDFs to JPG, create a systematic workflow: prepare source PDFs in a folder, convert each using consistent settings, organize output images in named folders. While we don't yet support batch PDF conversion, you can convert files one after another efficiently.</p>
+            
+            <h3>Creating Web Galleries</h3>
+            <p>Convert PDF pages to JPG, then use HTML/CSS to create responsive image galleries. Add lightbox functionality, captions, and navigation. This is perfect for online portfolios, product catalogs, and digital brochures.</p>
+            
+            <h3>Extracting Specific Page Sizes</h3>
+            <p>Different PDFs have different page dimensions. Our converter preserves original aspect ratios. For consistent output dimensions, consider post-processing images with batch image editing tools.</p>
+            
+            <h2>Security and Privacy Deep Dive</h2>
+            <p>Your privacy is our priority. Unlike competing services that require you to upload documents to their servers (where they could be accessed by employees, stored indefinitely, or exposed in data breaches), our PDF to JPG converter processes everything locally. When you select a file:</p>
+            <ul>
+                <li>The file is read into your browser's memory using the File API</li>
+                <li>All processing uses your device's CPU and GPU - no external servers involved</li>
+                <li>PDF rendering happens entirely in your browser using PDF.js</li>
+                <li>No file data is ever transmitted over the network</li>
+                <li>When you close the page, all data is cleared from memory</li>
+                <li>We don't use cookies, analytics, or tracking scripts</li>
+                <li>Generated JPG images only exist on your device after download</li>
+            </ul>
+            <p>This architecture makes our tool suitable for confidential documents, personal photos, proprietary business presentations, legal documents, and any other sensitive materials that should never be uploaded to unknown servers.</p>
+            
+            <h2>Understanding JPG vs. Other Image Formats</h2>
+            <p>JPG (JPEG) is ideal for photographs, scanned documents, and images with gradients. It uses lossy compression (some data is discarded) to achieve smaller file sizes. For documents with sharp text, vector graphics, or transparency needs, consider PNG format (available in our separate PDF to PNG tool). JPG is best when file size matters more than absolute perfection, which is true for most web and social media use cases.</p>
+            
+            <h2>Frequently Asked Questions</h2>
+            
+            <h3>Is this converter really free?</h3>
+            <p>Yes, completely free with no hidden costs, no premium tiers, and no watermarks. We believe essential document conversion tools should be accessible to everyone.</p>
+            
+            <h3>Can I convert password-protected PDFs?</h3>
+            <p>You need to unlock password-protected PDFs first using our PDF Unlock tool (only if you know the password). Our converter cannot process protected files.</p>
+            
+            <h3>What's the maximum number of pages?</h3>
+            <p>There's no set limit - it depends on your device's available memory. Most modern devices can handle 500+ page PDFs easily. For extremely large documents (1000+ pages), conversion may take time and memory.</p>
+            
+            <h3>Will the text be selectable in JPG?</h3>
+            <p>No, JPG images are flat pictures. Text in the image cannot be selected, copied, or searched. For selectable text, use our PDF to Word or PDF to Text tools instead.</p>
+            
+            <h3>Can I convert specific pages only?</h3>
+            <p>Yes, use the Page Range field to specify which pages to convert. Enter ranges like "1-5" for pages 1 through 5, "1,3,5" for individual pages, or "1-5,10,15-20" for combinations.</p>
+            
+            <h3>What's the maximum file size?</h3>
+            <p>Since processing happens locally, limits depend on your device's available memory. Most modern devices can handle PDFs up to 200MB easily. For files larger than 100MB, we recommend using Chrome or Edge for optimal performance.</p>
+            
+            <h2>Industry-Specific Use Cases</h2>
+            
+            <h3>Real Estate</h3>
+            <p>Real estate agents convert property brochures, floor plans, and disclosure documents to JPG for listing websites, social media posts, and email marketing. Images display instantly and work on all devices.</p>
+            
+            <h3>E-commerce</h3>
+            <p>Online retailers convert product catalogs, specification sheets, and user manuals to JPG for product galleries, zoom features, and quick viewing without downloads.</p>
+            
+            <h3>Education</h3>
+            <p>Teachers convert worksheets, handouts, and visual aids to JPG for learning management systems, class websites, and digital whiteboards. Images work on all student devices without special software.</p>
+            
+            <h3>Graphic Design</h3>
+            <p>Designers convert client PDF proofs to JPG for quick review, portfolio presentation, and social media sharing. Images are easier to share and view than PDF files.</p>
+            
+            <h2>Environmental Impact of Digital Conversion</h2>
+            <p>By converting PDFs to JPG images digitally instead of printing documents for scanning or physical distribution, you're helping reduce paper waste, ink consumption, and carbon emissions associated with document shipping. Digital images also enable paperless workflows and reduce environmental impact.</p>
+            
+            <h2>Future Updates and Roadmap</h2>
+            <p>We continuously improve our PDF to JPG converter based on user feedback. Planned features include batch conversion for multiple PDFs, additional image formats (PNG, WEBP, BMP), custom DPI settings, automatic image optimization, and integration with our other tools for complete document workflow automation. Have a suggestion? Contact us with your ideas!</p>
+            
+            <h2>Conclusion</h2>
+            <p>Converting PDF pages to JPG images is essential for social media sharing, website embedding, presentations, and image editing. Our free PDF to JPG converter provides professional-quality image extraction with uncompromising privacy protection. Whether you're a marketer creating social content, a web designer embedding documents, or a business professional preparing presentations, our tool delivers high-quality images instantly. Try our PDF to JPG converter today and unlock the visual potential of your PDF documents.</p>
+        </div>
+        
+        <div class="related-tools">
+            <h3>Related Tools</h3>
+            <div class="related-grid">
+                <a href="jpg-to-pdf.html" class="related-link">📸 JPG to PDF</a>
+                <a href="pdf-to-word.html" class="related-link">📝 PDF to Word</a>
+                <a href="compress-pdf.html" class="related-link">🗜️ Compress PDF</a>
+                <a href="split-pdf.html" class="related-link">✂️ Split PDF</a>
+                <a href="pdf-ocr.html" class="related-link">👁️ PDF OCR</a>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="footer">
+        <p>&copy; 2024 PDF Tools Pro. All tools are 100% free to use. Your files are processed locally and never uploaded.</p>
+    </footer>
+    
+    <script src="../js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script>
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+        
+        const convertBtn = document.getElementById('convertBtn');
+        const pdfInput = document.getElementById('pdfInput');
+        const imageQuality = document.getElementById('imageQuality');
+        const imageScale = document.getElementById('imageScale');
+        const pageRange = document.getElementById('pageRange');
+        const zipOutput = document.getElementById('zipOutput');
+        const fileInfo = document.getElementById('fileInfo');
+        const fileInfoText = document.getElementById('fileInfoText');
+        const pageInfo = document.getElementById('pageInfo');
+        const resultDiv = document.getElementById('result');
+        
+        let totalPages = 0;
+        
+        // Display file info when file is selected
+        pdfInput.addEventListener('change', async () => {
+            const file = pdfInput.files[0];
+            if (file) {
+                const fileSize = formatFileSize(file.size);
+                const fileName = file.name;
+                fileInfoText.textContent = `${fileName} (${fileSize})`;
+                fileInfo.style.display = 'block';
+                resultDiv.innerHTML = '';
+                
+                // Get total pages
+                try {
+                    const arrayBuffer = await file.arrayBuffer();
+                    const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+                    totalPages = pdf.numPages;
+                    pageInfo.innerHTML = `Total pages: ${totalPages}`;
+                } catch (error) {
+                    console.error('Error getting page count:', error);
+                    pageInfo.innerHTML = '<span style="color: var(--error);">Error reading PDF</span>';
+                }
+            } else {
+                fileInfo.style.display = 'none';
+                totalPages = 0;
+            }
+        });
+        
+        // Parse page range string into array of page numbers
+        function parsePageRange(rangeStr, totalPages) {
+            if (!rangeStr.trim()) {
+                // Return all pages
+                const allPages = [];
+                for (let i = 1; i <= totalPages; i++) {
+                    allPages.push(i);
+                }
+                return allPages;
+            }
+            
+            const pages = new Set();
+            const parts = rangeStr.split(',');
+            
+            for (const part of parts) {
+                part = part.trim();
+                if (part.includes('-')) {
+                    const [start, end] = part.split('-').map(n => parseInt(n.trim()));
+                    if (isNaN(start) || isNaN(end)) continue;
+                    for (let i = start; i <= end; i++) {
+                        if (i >= 1 && i <= totalPages) pages.add(i);
+                    }
+                } else {
+                    const page = parseInt(part);
+                    if (!isNaN(page) && page >= 1 && page <= totalPages) pages.add(page);
+                }
+            }
+            
+            return Array.from(pages).sort((a, b) => a - b);
+        }
+        
+        // Get quality value from selection
+        function getQualityValue(quality) {
+            switch(quality) {
+                case 'low': return 0.7;
+                case 'medium': return 0.85;
+                case 'high': return 0.95;
+                case 'maximum': return 1.0;
+                default: return 0.85;
+            }
+        }
+        
+        // Convert page to JPG
+        async function convertPageToJPG(pdf, pageNum, scale, qualityValue) {
+            const page = await pdf.getPage(pageNum);
+            const viewport = page.getViewport({ scale: parseFloat(scale) });
+            
+            // Create canvas
+            const canvas = document.createElement('canvas');
+            canvas.width = viewport.width;
+            canvas.height = viewport.height;
+            const context = canvas.getContext('2d');
+            
+            // Render page to canvas
+            const renderContext = {
+                canvasContext: context,
+                viewport: viewport,
+                background: 'white'
+            };
+            
+            await page.render(renderContext).promise;
+            
+            // Convert to JPG
+            const imageData = canvas.toDataURL('image/jpeg', qualityValue);
+            const base64Data = imageData.split(',')[1];
+            const binaryData = atob(base64Data);
+            const array = new Uint8Array(binaryData.length);
+            
+            for (let i = 0; i < binaryData.length; i++) {
+                array[i] = binaryData.charCodeAt(i);
+            }
+            
+            return new Blob([array], { type: 'image/jpeg' });
+        }
+        
+        // Handle convert button click
+        convertBtn.addEventListener('click', async () => {
+            const file = pdfInput.files[0];
+            const quality = imageQuality.value;
+            const scale = imageScale.value;
+            const rangeStr = pageRange.value;
+            const useZip = zipOutput.checked;
+            
+            if (!file) {
+                showAlert('Please select a PDF file to convert', 'error');
+                return;
+            }
+            
+            try {
+                convertBtn.disabled = true;
+                convertBtn.textContent = 'Converting...';
+                resultDiv.innerHTML = '<div class="loader"></div> Loading PDF and rendering pages... This may take a moment.';
+                
+                // Load PDF
+                const arrayBuffer = await file.arrayBuffer();
+                const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+                const totalPagesCount = pdf.numPages;
+                
+                // Parse page range
+                const pagesToConvert = parsePageRange(rangeStr, totalPagesCount);
+                
+                if (pagesToConvert.length === 0) {
+                    throw new Error('No valid pages to convert');
+                }
+                
+                const qualityValue = getQualityValue(quality);
+                const originalName = file.name.replace('.pdf', '');
+                
+                resultDiv.innerHTML = `<div class="loader"></div> Converting ${pagesToConvert.length} page(s) to JPG... (0/${pagesToConvert.length})`;
+                
+                const imageBlobs = [];
+                
+                for (let i = 0; i < pagesToConvert.length; i++) {
+                    const pageNum = pagesToConvert[i];
+                    resultDiv.innerHTML = `<div class="loader"></div> Converting page ${pageNum}/${totalPagesCount}... (${i+1}/${pagesToConvert.length})`;
+                    
+                    const blob = await convertPageToJPG(pdf, pageNum, scale, qualityValue);
+                    imageBlobs.push({ blob, pageNum });
+                }
+                
+                if (imageBlobs.length === 0) {
+                    throw new Error('No images were generated');
+                }
+                
+                if (imageBlobs.length === 1 || !useZip) {
+                    // Single image or download individually
+                    let downloadsHtml = '<div class="alert alert-success" style="margin-bottom: 1rem;">✅ Conversion complete!</div>';
+                    
+                    for (const img of imageBlobs) {
+                        const url = URL.createObjectURL(img.blob);
+                        downloadsHtml += `<div style="margin: 0.5rem 0;"><a href="${url}" download="${originalName}_page_${img.pageNum}.jpg" class="download-link">📥 Download Page ${img.pageNum} (JPG)</a></div>`;
+                    }
+                    
+                    downloadsHtml += `<p style="margin-top: 1rem; font-size: 0.875rem; color: var(--text-muted);">✓ Converted locally - Your file never left your device</p>`;
+                    resultDiv.innerHTML = downloadsHtml;
+                } else {
+                    // Create ZIP file
+                    resultDiv.innerHTML = '<div class="loader"></div> Creating ZIP archive...';
+                    
+                    const zip = new JSZip();
+                    for (const img of imageBlobs) {
+                        const fileName = `${originalName}_page_${img.pageNum}.jpg`;
+                        zip.file(fileName, img.blob);
+                    }
+                    
+                    const zipBlob = await zip.generateAsync({ type: 'blob' });
+                    const url = URL.createObjectURL(zipBlob);
+                    
+                    resultDiv.innerHTML = `
+                        <div class="alert alert-success" style="margin-bottom: 1rem;">✅ Conversion complete! ${imageBlobs.length} page(s) converted to JPG.</div>
+                        <a href="${url}" download="${originalName}_images.zip" class="download-link">📦 Download All Images (ZIP)</a>
+                        <p style="margin-top: 1rem; font-size: 0.875rem; color: var(--text-muted);">✓ Converted locally - Your file never left your device</p>
+                        <p style="margin-top: 0.5rem; font-size: 0.875rem; color: var(--text-muted);">✓ ZIP contains ${imageBlobs.length} JPG image(s)</p>
+                    `;
+                }
+                
+                showAlert(`PDF converted to JPG successfully! ${imageBlobs.length} page(s) converted.`, 'success');
+            } catch (error) {
+                console.error(error);
+                resultDiv.innerHTML = `<div class="alert alert-error">Error: ${error.message || 'Failed to convert PDF to JPG. Please ensure the file is a valid PDF.'}</div>`;
+                showAlert('Failed to convert PDF to JPG. Please try again.', 'error');
+            } finally {
+                convertBtn.disabled = false;
+                convertBtn.textContent = 'Convert to JPG';
+            }
+        });
+    </script>
+</body>
+</html>

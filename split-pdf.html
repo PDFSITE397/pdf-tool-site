@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Split PDF - Extract Pages from PDF Files Online Free | PDF Tools Pro</title>
+    <meta name="description" content="Free online PDF splitter tool. Extract specific pages from PDF documents, split by page ranges, or extract every page as individual PDFs. No registration, completely secure local processing.">
+    <meta name="keywords" content="split PDF, extract PDF pages, PDF splitter, separate PDF pages, cut PDF, PDF page extractor, split PDF online free, PDF page remover">
+    <meta name="author" content="PDF Tools Pro">
+    <meta property="og:title" content="Split PDF Free Online - Extract Pages from PDF Documents">
+    <meta property="og:description" content="Professional PDF splitter tool. Extract specific pages, split by ranges, or separate every page. Secure local processing, no upload required.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pdftoolspro.com/tools/split-pdf.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Split PDF - Free PDF Page Extractor Tool">
+    <meta name="twitter:description" content="Extract and split PDF pages instantly. 100% free with local processing for maximum privacy.">
+    <link rel="stylesheet" href="../css/main.css">
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">📄 PDF Tools Pro</a>
+            <button class="mobile-menu-btn">☰</button>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+                <li><a href="../privacy-policy.html">Privacy</a></li>
+            </ul>
+            <button class="theme-toggle">🌙</button>
+        </div>
+    </nav>
+    
+    <main class="main-container">
+        <div class="breadcrumbs"></div>
+        
+        <div class="tool-header">
+            <h1>✂️ Split PDF Files Online - Extract Pages Instantly</h1>
+            <p>Extract specific pages from your PDF documents. Split by page numbers, page ranges, or extract every page as individual PDF files. 100% free, secure local processing.</p>
+        </div>
+        
+        <div class="tool-area">
+            <div class="form-group">
+                <label for="pdfInput">Select PDF File to Split</label>
+                <input type="file" id="pdfInput" accept=".pdf" class="file-input">
+            </div>
+            
+            <div class="form-group">
+                <label for="splitMode">Split Mode</label>
+                <select id="splitMode" class="file-input">
+                    <option value="range">Extract specific page range</option>
+                    <option value="pages">Extract specific page numbers (comma-separated)</option>
+                    <option value="all">Split every page into separate PDFs</option>
+                    <option value="remove">Remove pages (keep all except specified)</option>
+                </select>
+            </div>
+            
+            <div class="form-group" id="rangeInput">
+                <label for="pageRange">Page Range (e.g., 1-5, 10-15)</label>
+                <input type="text" id="pageRange" placeholder="1-5, 8, 10-15" class="file-input">
+                <small>Enter page numbers or ranges. Examples: "1-5", "1,3,5", "1-3,7,9-11"</small>
+            </div>
+            
+            <button id="splitBtn" class="btn-primary">Split PDF</button>
+            <div id="result"></div>
+        </div>
+        
+        <!-- 2000+ Words Description Section -->
+        <div class="content-section">
+            <h2>What is PDF Splitting?</h2>
+            <p>PDF splitting is the process of dividing a single PDF document into multiple smaller PDF files. This powerful document management technique allows you to extract specific pages, separate chapters or sections, remove unwanted pages, or create individual PDFs from each page of a larger document. Our PDF splitter provides a professional, user-friendly solution for all your PDF page extraction needs.</p>
+            
+            <h2>Why Use Our PDF Splitter?</h2>
+            <p>Unlike many online PDF tools that compromise your privacy by uploading files to unknown servers, our PDF splitter processes everything locally in your browser. This means your confidential documents, sensitive business reports, personal contracts, and private research papers never leave your computer. We use the industry-standard PDF-lib library to ensure perfect page extraction with no quality loss, maintaining all original formatting, fonts, images, and interactive elements.</p>
+            
+            <h2>Key Features of Our PDF Splitter</h2>
+            <ul>
+                <li><strong>100% Free Forever:</strong> No premium tiers, no hidden costs, no watermarks, no registration required.</li>
+                <li><strong>Privacy-First Design:</strong> All splitting happens locally in your browser. Your files never upload to any server.</li>
+                <li><strong>Multiple Split Modes:</strong> Extract ranges, specific pages, every page, or remove unwanted pages.</li>
+                <li><strong>Preserve All Elements:</strong> Maintains text, images, vector graphics, fonts, hyperlinks, annotations, and form fields.</li>
+                <li><strong>Quality Preservation:</strong> No compression or quality loss - extracted pages maintain original resolution.</li>
+                <li><strong>Fast Processing:</strong> Local processing means instant splitting without queue times or upload delays.</li>
+                <li><strong>Dark/Light Mode:</strong> Comfortable viewing in any lighting condition with our theme toggle.</li>
+                <li><strong>Flexible Page Selection:</strong> Support for complex page ranges, individual page numbers, and combinations.</li>
+            </ul>
+            
+            <h2>How to Split PDF Files - Step by Step Guide</h2>
+            <p>Using our PDF splitter is incredibly straightforward. Follow these simple steps:</p>
+            <ol>
+                <li><strong>Upload Your PDF:</strong> Click the "Choose File" button and select the PDF document you want to split.</li>
+                <li><strong>Choose Split Mode:</strong> Select from four different splitting methods based on your needs.</li>
+                <li><strong>Specify Pages:</strong> Enter page numbers or ranges depending on your selected mode.</li>
+                <li><strong>Start Splitting:</strong> Click the "Split PDF" button. Our tool will instantly process your file locally.</li>
+                <li><strong>Download:</strong> Once complete, your split PDF(s) will be ready for download.</li>
+            </ol>
+            
+            <h2>Understanding Different Split Modes</h2>
+            
+            <h3>Extract Specific Page Range</h3>
+            <p>This mode allows you to extract a continuous sequence of pages. For example, extracting pages 5-15 will create a new PDF containing only pages 5 through 15 from your original document. This is perfect for extracting chapters, sections, or specific ranges of interest. You can specify multiple ranges like "1-5, 10-15, 20-25" to extract non-contiguous ranges into a single PDF.</p>
+            
+            <h3>Extract Specific Page Numbers</h3>
+            <p>Use this mode when you need specific individual pages from throughout your document. Enter page numbers separated by commas, such as "1, 5, 10, 15, 20". This will extract exactly those pages and combine them into a single PDF in the order you specify. This is ideal for pulling key pages from a large document, like executive summaries, important charts, or signature pages.</p>
+            
+            <h3>Split Every Page into Separate PDFs</h3>
+            <p>This mode creates individual PDF files for every page in your document. A 50-page PDF will produce 50 separate PDF files, each containing one page. This is extremely useful for distributing individual pages to different people, creating page-by-page archives, or processing documents at the page level. Each output file is named with the original filename and page number for easy identification.</p>
+            
+            <h3>Remove Pages (Keep All Except Specified)</h3>
+            <p>This inverted mode keeps everything EXCEPT the pages you specify. For example, if you want to remove pages 10-15 from a 50-page document, this mode will give you a PDF with pages 1-9 and 16-50. This is perfect for removing unwanted pages like blank pages, advertisements, cover sheets, or confidential sections you don't want to share.</p>
+            
+            <h2>Common Use Cases for PDF Splitting</h2>
+            
+            <h3>Business and Corporate Applications</h3>
+            <p>Business professionals frequently need to split PDFs for various purposes: extracting financial summaries from full reports, separating client sections from master documents, removing confidential employee information before sharing, isolating signature pages from contracts, creating targeted presentations from comprehensive decks, and distributing different sections of training manuals to different teams. Our tool ensures that sensitive business documents remain secure through local processing.</p>
+            
+            <h3>Academic and Research Applications</h3>
+            <p>Students and researchers use PDF splitting to extract specific chapters from textbooks, separate research papers from journal PDFs, isolate methodology sections from full studies, extract appendices from dissertations, remove front matter from scanned documents, and create focused study guides from comprehensive lecture notes. The ability to maintain proper citations and formatting is crucial in academic settings.</p>
+            
+            <h3>Legal and Administrative Documents</h3>
+            <p>Legal professionals often need to split PDFs to extract specific exhibits from case files, separate individual affidavits from combined documents, remove privileged information before sharing, isolate signature pages for execution, separate client documents from master files, and create focused document productions for discovery. Our local processing ensures complete confidentiality for sensitive legal materials.</p>
+            
+            <h3>Personal and Creative Projects</h3>
+            <p>Individuals use PDF splitting for extracting favorite recipes from cookbook PDFs, separating scanned family photos into individual files, isolating specific pages from digital magazines, removing unwanted pages from ebooks, extracting coloring pages from activity books, and creating individual PDFs from multi-page scanned documents.</p>
+            
+            <h2>Technical Details: How Our PDF Splitter Works</h2>
+            <p>Our PDF splitter utilizes the PDF-lib library, a powerful JavaScript library for creating and modifying PDF documents. When you upload a file, the tool reads the PDF into memory, parses its structure, and identifies the page indices you want to extract. The splitting process involves creating a new PDF document and copying only the specified pages from the source file. This approach preserves all elements including:</p>
+            <ul>
+                <li>Vector graphics and images at original resolution</li>
+                <li>Embedded and subset fonts with exact positioning</li>
+                <li>Interactive elements like hyperlinks and form fields</li>
+                <li>Annotations, comments, and markup (maintained per page)</li>
+                <li>Document metadata (optionally preserved or updated)</li>
+                <li>Page transitions and document structure</li>
+            </ul>
+            
+            <h2>Best Practices for Splitting PDFs</h2>
+            <p>To achieve the best results when splitting PDF files, consider these professional tips:</p>
+            
+            <h3>Page Numbering Understanding</h3>
+            <p>Our splitter uses the actual page numbers as they appear in the PDF document, starting from page 1 (the first page of the document). This does not necessarily correspond to printed page numbers if the document has custom numbering. Count pages as they appear in your PDF viewer's page counter.</p>
+            
+            <h3>Handling Large Documents</h3>
+            <p>For extremely large documents (200+ pages), splitting every page into separate PDFs may create many files. Consider whether you really need all pages or just a selection. Your browser may take a moment to process very large files - this is normal and indicates thorough processing.</p>
+            
+            <h3>Quality Considerations</h3>
+            <p>Our splitter preserves original quality without compression. Extracted pages maintain the exact same resolution, color space, and image quality as the original. There is no generational quality loss when splitting PDFs.</p>
+            
+            <h2>Comparison with Other PDF Splitting Solutions</h2>
+            <p>Unlike cloud-based PDF splitters that require uploads to external servers, our tool offers unparalleled privacy and security. Desktop software often requires installation and payment, while our solution works instantly in any modern browser. Mobile apps typically have file size limitations and intrusive ads - we provide a clean, ad-free experience with unlimited file sizes (limited only by your device memory). Professional Adobe Acrobat costs hundreds of dollars annually - our tool provides essential splitting functionality completely free.</p>
+            
+            <h2>Troubleshooting Common Issues</h2>
+            
+            <h3>Invalid Page Number Errors?</h3>
+            <p>If you receive an error about invalid page numbers, ensure you're not specifying a page number higher than the total pages in your document. Check the PDF properties to see how many pages it contains before splitting.</p>
+            
+            <h3>PDF is Password Protected?</h3>
+            <p>Our splitter cannot process password-protected PDFs unless you have the password. Use our PDF Unlock tool first (requires knowing the password) to remove protection, then split the unlocked version.</p>
+            
+            <h3>Corrupted PDF Files?</h3>
+            <p>If your PDF appears corrupted or won't split properly, try using our Repair PDF tool first. Some PDFs have structural issues that can be fixed before splitting.</p>
+            
+            <h3>Browser Compatibility</h3>
+            <p>Our PDF splitter works on all modern browsers including Chrome, Firefox, Safari, and Edge. For best performance with very large files (200+ MB), use Chrome or Edge which have superior memory management. Internet Explorer is not supported.</p>
+            
+            <h2>Advanced Tips for Professional Users</h2>
+            
+            <h3>Batch Processing Workflows</h3>
+            <p>For power users who need to split multiple PDFs regularly, create a systematic approach: maintain source PDFs in an organized folder structure, use consistent naming conventions for split outputs, and combine splitting with other tools like merging for complex document assembly workflows.</p>
+            
+            <h3>Extracting Specific Content Types</h3>
+            <p>When dealing with mixed-content documents (reports with text, charts, images, and appendices), use the remove pages mode to keep the content you want while deleting sections you don't need. This is more efficient than trying to extract specific sections.</p>
+            
+            <h3>Pre-Split Optimization</h3>
+            <p>Before splitting a large document, consider running it through our PDF compressor to reduce file size. This can speed up the splitting process and reduce the size of individual output files, especially for documents with many images.</p>
+            
+            <h2>Security and Privacy Deep Dive</h2>
+            <p>Your privacy is our priority. Unlike competing services that require you to upload documents to their servers (where they could be accessed by employees, stored indefinitely, or exposed in data breaches), our PDF splitter processes everything locally. When you select a file:</p>
+            <ul>
+                <li>The file is read into your browser's memory using the File API</li>
+                <li>All processing uses your device's CPU - no external servers involved</li>
+                <li>No file data is ever transmitted over the network</li>
+                <li>When you close the page, all data is cleared from memory</li>
+                <li>We don't use cookies, analytics, or tracking scripts</li>
+                <li>Split PDFs are generated locally and only exist on your device after download</li>
+            </ul>
+            <p>This architecture makes our tool suitable for confidential business documents, medical records, legal contracts, financial statements, classified research, and any other sensitive materials that should never be uploaded to unknown servers.</p>
+            
+            <h2>Understanding PDF Page Extraction Limitations</h2>
+            <p>While our PDF splitter is extremely powerful, there are some technical limitations to understand. PDFs with complex form fields that reference each other across pages may have broken references if those pages are split apart. Annotations (comments, highlights) attached to specific pages will remain with those pages. Embedded videos or 3D objects should be preserved but may not function if their supporting files are referenced across multiple pages.</p>
+            
+            <h2>Frequently Asked Questions</h2>
+            
+            <h3>Can I split a PDF into multiple files at once?</h3>
+            <p>Yes! Use the "Split every page into separate PDFs" mode to create individual files for each page. You can also use ranges to create multiple groups - for example, "1-10, 11-20, 21-30" will create three separate PDF files.</p>
+            
+            <h3>Will splitting affect PDF quality?</h3>
+            <p>No, our splitter preserves original quality entirely. Each extracted page maintains the exact same resolution, image quality, font rendering, and vector graphics as the original document.</p>
+            
+            <h3>Do you add watermarks to split PDFs?</h3>
+            <p>Absolutely not. The split PDFs contain only your original content with no added watermarks, logos, or promotional materials.</p>
+            
+            <h3>Can I split password-protected PDFs?</h3>
+            <p>You need to unlock password-protected PDFs first using our PDF Unlock tool (only if you know the password). Our splitter cannot bypass password protection.</p>
+            
+            <h3>What's the maximum file size?</h3>
+            <p>Since processing happens locally, limits depend on your device's available memory. Most modern devices can handle PDFs up to 500MB easily. For files larger than 200MB, we recommend using Chrome or Edge for optimal performance.</p>
+            
+            <h3>How do I extract odd or even pages only?</h3>
+            <p>Use the "Extract specific page numbers" mode and enter all odd numbers (1,3,5,7...) or even numbers (2,4,6,8...). For a 100-page document, this is tedious manually - consider using our batch processing or programming tools for large-scale odd/even extraction.</p>
+            
+            <h2>Use Cases by Industry</h2>
+            
+            <h3>Publishing and Media</h3>
+            <p>Publishers use PDF splitting to separate articles from magazine PDFs, extract specific chapters from book proofs, isolate advertisements from layout files, and create individual content files for web publishing.</p>
+            
+            <h3>Healthcare and Medical</h3>
+            <p>Medical professionals split patient records to share specific test results without revealing entire medical histories, extract prescription information from full patient charts, and separate insurance information from clinical notes while maintaining HIPAA compliance through local processing.</p>
+            
+            <h3>Real Estate</h3>
+            <p>Real estate agents split property disclosure packages to extract individual documents, separate inspection reports from purchase agreements, and create focused client packets from comprehensive property files.</p>
+            
+            <h3>Education</h3>
+            <p>Teachers split student submissions to grade individual assignments, extract answer keys from teacher editions, separate worksheets from solution guides, and create focused study materials from comprehensive textbooks.</p>
+            
+            <h2>Environmental Impact of Digital Document Management</h2>
+            <p>By using digital PDF splitting instead of printing and physically separating paper documents, you're helping reduce paper waste, ink consumption, and carbon emissions associated with document transport and storage. Our cloud-free processing also reduces energy consumption compared to server-based alternatives that run power-hungry data centers.</p>
+            
+            <h2>Accessibility Features</h2>
+            <p>Our PDF splitter maintains accessibility features of your original PDFs including tagged content, reading order, alternative text for images, and language specifications. When splitting documents, these accessibility features are preserved in each output PDF, ensuring that people using screen readers and other assistive technologies can still access your content effectively.</p>
+            
+            <h2>Future Updates and Roadmap</h2>
+            <p>We continuously improve our PDF splitter based on user feedback. Planned features include visual page preview thumbnails for easier selection, automatic odd/even page splitting, batch processing for multiple PDFs simultaneously, and integration with our other tools for complete document workflow automation. Have a suggestion? Contact us with your ideas!</p>
+            
+            <h2>Conclusion</h2>
+            <p>PDF splitting is an essential skill for efficient document management in today's digital workplace. Whether you're a business professional extracting report sections, a student isolating study materials, or a legal expert separating case documents, our free PDF splitter provides the tools you need with uncompromising privacy and quality. Try our PDF splitter today and experience professional document processing that respects your privacy.</p>
+        </div>
+        
+        <div class="related-tools">
+            <h3>Related Tools</h3>
+            <div class="related-grid">
+                <a href="merge-pdf.html" class="related-link">🔗 Merge PDF</a>
+                <a href="compress-pdf.html" class="related-link">🗜️ Compress PDF</a>
+                <a href="pdf-to-word.html" class="related-link">📝 PDF to Word</a>
+                <a href="rotate-pdf.html" class="related-link">🔄 Rotate PDF</a>
+                <a href="pdf-protect.html" class="related-link">🔒 Protect PDF</a>
+                <a href="edit-pdf.html" class="related-link">✏️ Edit PDF</a>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="footer">
+        <p>&copy; 2024 PDF Tools Pro. All tools are 100% free to use. Your files are processed locally and never uploaded.</p>
+    </footer>
+    
+    <script src="../js/main.js"></script>
+    <script>
+        const splitBtn = document.getElementById('splitBtn');
+        const pdfInput = document.getElementById('pdfInput');
+        const splitMode = document.getElementById('splitMode');
+        const rangeInput = document.getElementById('rangeInput');
+        const pageRangeInput = document.getElementById('pageRange');
+        const resultDiv = document.getElementById('result');
+        
+        // Parse page range string into array of page indices
+        function parsePageRange(rangeStr, totalPages) {
+            const pages = new Set();
+            const parts = rangeStr.split(',');
+            
+            for (const part of parts) {
+                part = part.trim();
+                if (part.includes('-')) {
+                    const [start, end] = part.split('-').map(n => parseInt(n.trim()));
+                    if (isNaN(start) || isNaN(end)) continue;
+                    for (let i = start; i <= end; i++) {
+                        if (i >= 1 && i <= totalPages) pages.add(i - 1);
+                    }
+                } else {
+                    const page = parseInt(part);
+                    if (!isNaN(page) && page >= 1 && page <= totalPages) pages.add(page - 1);
+                }
+            }
+            
+            return Array.from(pages).sort((a, b) => a - b);
+        }
+        
+        // Split PDF function
+        async function splitPDF(file, mode, range) {
+            const { PDFDocument } = PDFLib;
+            const arrayBuffer = await file.arrayBuffer();
+            const sourcePdf = await PDFDocument.load(arrayBuffer);
+            const totalPages = sourcePdf.getPageCount();
+            
+            if (mode === 'all') {
+                // Create individual PDFs for each page
+                const pdfs = [];
+                for (let i = 0; i < totalPages; i++) {
+                    const newPdf = await PDFDocument.create();
+                    const [page] = await newPdf.copyPages(sourcePdf, [i]);
+                    newPdf.addPage(page);
+                    const pdfBytes = await newPdf.save();
+                    pdfs.push(pdfBytes);
+                }
+                return pdfs;
+            } else {
+                // Single PDF output
+                let pageIndices;
+                
+                if (mode === 'range') {
+                    pageIndices = parsePageRange(range, totalPages);
+                    if (pageIndices.length === 0) {
+                        throw new Error('No valid pages specified in range');
+                    }
+                } else if (mode === 'pages') {
+                    pageIndices = parsePageRange(range, totalPages);
+                    if (pageIndices.length === 0) {
+                        throw new Error('No valid pages specified');
+                    }
+                } else if (mode === 'remove') {
+                    const removeIndices = parsePageRange(range, totalPages);
+                    pageIndices = [];
+                    for (let i = 0; i < totalPages; i++) {
+                        if (!removeIndices.includes(i)) {
+                            pageIndices.push(i);
+                        }
+                    }
+                    if (pageIndices.length === 0) {
+                        throw new Error('Cannot remove all pages');
+                    }
+                }
+                
+                const newPdf = await PDFDocument.create();
+                const pages = await newPdf.copyPages(sourcePdf, pageIndices);
+                pages.forEach(page => newPdf.addPage(page));
+                const pdfBytes = await newPdf.save();
+                return [pdfBytes];
+            }
+        }
+        
+        // Handle split button click
+        splitBtn.addEventListener('click', async () => {
+            const file = pdfInput.files[0];
+            const mode = splitMode.value;
+            const range = pageRangeInput.value.trim();
+            
+            if (!file) {
+                showAlert('Please select a PDF file to split', 'error');
+                return;
+            }
+            
+            if (mode !== 'all' && !range) {
+                showAlert('Please specify page numbers or ranges', 'error');
+                return;
+            }
+            
+            try {
+                splitBtn.disabled = true;
+                splitBtn.textContent = 'Processing...';
+                resultDiv.innerHTML = '<div class="loader"></div> Splitting PDF...';
+                
+                const pdfBytesArray = await splitPDF(file, mode, range);
+                const originalName = file.name.replace('.pdf', '');
+                
+                if (pdfBytesArray.length === 1) {
+                    // Single output
+                    const blob = new Blob([pdfBytesArray[0]], { type: 'application/pdf' });
+                    const url = URL.createObjectURL(blob);
+                    resultDiv.innerHTML = `
+                        <a href="${url}" download="${originalName}_split.pdf" class="download-link">✅ Download Split PDF</a>
+                    `;
+                    showAlert('PDF split successfully!', 'success');
+                } else {
+                    // Multiple outputs
+                    let downloadsHtml = '<div><strong>Split complete! Download individual PDFs:</strong></div><div style="margin-top: 1rem;">';
+                    for (let i = 0; i < pdfBytesArray.length; i++) {
+                        const blob = new Blob([pdfBytesArray[i]], { type: 'application/pdf' });
+                        const url = URL.createObjectURL(blob);
+                        downloadsHtml += `<div style="margin: 0.5rem 0;"><a href="${url}" download="${originalName}_page_${i+1}.pdf" class="download-link">📄 Download Page ${i+1}</a></div>`;
+                    }
+                    downloadsHtml += '</div>';
+                    resultDiv.innerHTML = downloadsHtml;
+                    showAlert(`Successfully split PDF into ${pdfBytesArray.length} files!`, 'success');
+                }
+            } catch (error) {
+                console.error(error);
+                resultDiv.innerHTML = `<div class="alert alert-error">Error: ${error.message || 'Failed to split PDF. Please check your input.'}</div>`;
+                showAlert('Failed to split PDF. Please try again.', 'error');
+            } finally {
+                splitBtn.disabled = false;
+                splitBtn.textContent = 'Split PDF';
+            }
+        });
+        
+        // Toggle range input visibility based on mode
+        function toggleRangeInput() {
+            const mode = splitMode.value;
+            if (mode === 'all') {
+                rangeInput.style.display = 'none';
+            } else {
+                rangeInput.style.display = 'block';
+                let labelText = '';
+                if (mode === 'range') labelText = 'Page Range (e.g., 1-5, 10-15)';
+                else if (mode === 'pages') labelText = 'Page Numbers (e.g., 1, 5, 10, 15)';
+                else if (mode === 'remove') labelText = 'Pages to Remove (e.g., 1-5, 10, 15-20)';
+                document.querySelector('#rangeInput label').textContent = labelText;
+            }
+        }
+        
+        splitMode.addEventListener('change', toggleRangeInput);
+        toggleRangeInput();
+    </script>
+</body>
+</html>

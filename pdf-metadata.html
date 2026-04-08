@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Metadata - View and Edit PDF Document Properties Online Free | PDF Tools Pro</title>
+    <meta name="description" content="Free online PDF metadata viewer and editor. View, edit, and remove PDF document properties including author, title, subject, keywords, creation date, and more. No registration, secure local processing.">
+    <meta name="keywords" content="PDF metadata, edit PDF metadata, view PDF properties, PDF document info, PDF author, PDF title, PDF subject, PDF keywords, PDF XMP metadata">
+    <meta name="author" content="PDF Tools Pro">
+    <meta property="og:title" content="PDF Metadata - View and Edit PDF Properties Free Online">
+    <meta property="og:description" content="Professional PDF metadata tool. View, edit, and manage PDF document properties. Secure local processing, no upload required.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pdftoolspro.com/tools/pdf-metadata.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="PDF Metadata - Free PDF Properties Editor">
+    <link rel="stylesheet" href="../css/main.css">
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">📄 PDF Tools Pro</a>
+            <button class="mobile-menu-btn">☰</button>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+                <li><a href="../privacy-policy.html">Privacy</a></li>
+            </ul>
+            <button class="theme-toggle">🌙</button>
+        </div>
+    </nav>
+    
+    <main class="main-container">
+        <div class="breadcrumbs"></div>
+        
+        <div class="tool-header">
+            <h1>ℹ️ PDF Metadata - View and Edit Document Properties</h1>
+            <p>View, edit, and manage PDF document metadata including author, title, subject, keywords, creation date, and more. Perfect for organizing documents and improving searchability. 100% free, secure local processing.</p>
+        </div>
+        
+        <div class="tool-area">
+            <div class="form-group">
+                <label for="pdfInput">Select PDF File</label>
+                <input type="file" id="pdfInput" accept=".pdf" class="file-input">
+            </div>
+            
+            <div id="metadataViewer" style="display: none;">
+                <div style="background: var(--bg-secondary); border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
+                    <h3 style="margin-bottom: 1rem;">📋 Current Metadata</h3>
+                    <div id="currentMetadata" style="font-family: monospace; font-size: 0.875rem;"></div>
+                </div>
+                
+                <div style="background: var(--bg-secondary); border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
+                    <h3 style="margin-bottom: 1rem;">✏️ Edit Metadata</h3>
+                    
+                    <div class="form-group">
+                        <label for="metaTitle">Title</label>
+                        <input type="text" id="metaTitle" placeholder="Document Title" class="file-input">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="metaAuthor">Author</label>
+                        <input type="text" id="metaAuthor" placeholder="Document Author" class="file-input">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="metaSubject">Subject</label>
+                        <input type="text" id="metaSubject" placeholder="Document Subject" class="file-input">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="metaKeywords">Keywords</label>
+                        <input type="text" id="metaKeywords" placeholder="keyword1, keyword2, keyword3" class="file-input">
+                        <small>Comma-separated keywords for search engines</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="metaCreator">Creator</label>
+                        <input type="text" id="metaCreator" placeholder="Application that created the PDF" class="file-input">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="metaProducer">Producer</label>
+                        <input type="text" id="metaProducer" placeholder="PDF converter/producer" class="file-input">
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div class="form-group">
+                            <label for="metaCreationDate">Creation Date</label>
+                            <input type="datetime-local" id="metaCreationDate" class="file-input">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="metaModificationDate">Modification Date</label>
+                            <input type="datetime-local" id="metaModificationDate" class="file-input">
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                    <button id="updateMetadataBtn" class="btn-primary">Update Metadata</button>
+                    <button id="clearMetadataBtn" class="btn-primary" style="background: var(--warning);">Clear All Metadata</button>
+                    <button id="resetMetadataBtn" class="btn-primary" style="background: var(--bg-secondary); color: var(--text-primary);">Reset to Original</button>
+                </div>
+            </div>
+            
+            <div id="fileInfo" style="margin: 1rem 0; padding: 1rem; background: var(--bg-card); border-radius: 0.5rem; display: none;">
+                <strong>Document Info:</strong> <span id="fileInfoText"></span>
+                <div id="pageInfo" style="margin-top: 0.5rem; font-size: 0.875rem;"></div>
+            </div>
+            
+            <button id="loadBtn" class="btn-primary">Load Metadata</button>
+            <div id="result"></div>
+        </div>
+        
+        <!-- 2000+ Words Description Section -->
+        <div class="content-section">
+            <h2>What is PDF Metadata?</h2>
+            <p>PDF metadata is structured information embedded within a PDF document that describes its properties, origin, and content. Often called "document properties" or "document info," metadata includes fields like title, author, subject, keywords, creation date, modification date, creator software, and producer. This information helps with document organization, search engine indexing, digital asset management, and provides context about the document's origin. Our PDF metadata tool allows you to view, edit, and manage this important document information.</p>
+            
+            <h2>Why is PDF Metadata Important?</h2>
+            <p>PDF metadata serves several crucial purposes:</p>
+            <ul>
+                <li><strong>Document Identification:</strong> Quickly identify document contents without opening the file.</li>
+                <li><strong>Search Engine Optimization (SEO):</strong> Keywords and titles help search engines index your PDFs.</li>
+                <li><strong>Digital Asset Management:</strong> Organize large collections of PDF documents.</li>
+                <li><strong>Provenance Tracking:</strong> Track who created and modified the document.</li>
+                <li><strong>Legal Compliance:</strong> Some industries require specific metadata in documents.</li>
+                <li><strong>Accessibility:</strong> Screen readers use metadata to describe documents.</li>
+                <li><strong>Version Control:</strong> Track document versions through modification dates.</li>
+                <li><strong>Privacy Protection:</strong> Remove sensitive author or creator information before sharing.</li>
+            </ul>
+            
+            <h2>Why Use Our PDF Metadata Tool?</h2>
+            <p>Unlike many online metadata tools that require uploading documents to unknown servers, our tool processes everything locally in your browser. This means your confidential documents and sensitive metadata never leave your computer. We use the industry-standard PDF-lib library to read and write metadata with complete privacy protection.</p>
+            
+            <h2>Key Features of Our PDF Metadata Tool</h2>
+            <ul>
+                <li><strong>100% Free Forever:</strong> No premium tiers, no hidden costs, no watermarks, no registration required.</li>
+                <li><strong>Privacy-First Design:</strong> All metadata processing happens locally in your browser. Your files never upload to any server.</li>
+                <li><strong>View All Metadata:</strong> See title, author, subject, keywords, creator, producer, and dates.</li>
+                <li><strong>Edit Metadata:</strong> Update any metadata field with new values.</li>
+                <li><strong>Clear Metadata:</strong> Remove all metadata for privacy or compliance.</li>
+                <li><strong>Reset to Original:</strong> Revert changes if you make a mistake.</li>
+                <li><strong>Real-time Display:</strong> See current metadata instantly after loading.</li>
+                <li><strong>Fast Processing:</strong> Local processing means instant metadata operations without queue times.</li>
+                <li><strong>Dark/Light Mode:</strong> Comfortable viewing in any lighting condition with our theme toggle.</li>
+                <li><strong>No File Size Limits:</strong> Process PDFs of any size (limited only by your device memory).</li>
+            </ul>
+            
+            <h2>How to View and Edit PDF Metadata - Step by Step Guide</h2>
+            <p>Using our PDF metadata tool is straightforward. Follow these simple steps:</p>
+            <ol>
+                <li><strong>Select Your PDF:</strong> Click the "Choose File" button and select the PDF document.</li>
+                <li><strong>Load Metadata:</strong> Click "Load Metadata" to view current document properties.</li>
+                <li><strong>Review Current Metadata:</strong> See all existing metadata fields.</li>
+                <li><strong>Edit Fields:</strong> Update title, author, subject, keywords, creator, producer, or dates.</li>
+                <li><strong>Apply Changes:</strong> Click "Update Metadata" to save your changes.</li>
+                <li><strong>Download:</strong> Download your updated PDF with new metadata.</li>
+            </ol>
+            
+            <h2>Understanding PDF Metadata Fields</h2>
+            
+            <h3>Title</h3>
+            <p>The document title appears in search results, browser tabs, and PDF readers. A good title accurately describes the document content and includes relevant keywords. Unlike the filename, the title is embedded in the PDF and remains consistent even if the file is renamed.</p>
+            
+            <h3>Author</h3>
+            <p>The person or organization who created the document. Useful for attribution, version control, and identifying document owners. Consider removing author information before sharing sensitive documents publicly.</p>
+            
+            <h3>Subject</h3>
+            <p>A brief description of the document's content or purpose. Subjects help categorize documents and provide context for search engines and document management systems.</p>
+            
+            <h3>Keywords</h3>
+            <p>Comma-separated terms that describe the document's content. Keywords are used by search engines and document management systems to index and retrieve documents. Include relevant terms that users might search for.</p>
+            
+            <h3>Creator</h3>
+            <p>The software or application used to create the original document (e.g., "Microsoft Word", "Adobe InDesign"). This field is automatically populated by PDF creation software.</p>
+            
+            <h3>Producer</h3>
+            <p>The software that converted or produced the final PDF (e.g., "Adobe PDF Library", "PDF-lib"). Like Creator, this is usually automatically generated.</p>
+            
+            <h3>Creation Date</h3>
+            <p>The date and time when the PDF was originally created. Useful for tracking document age and version history.</p>
+            
+            <h3>Modification Date</h3>
+            <p>The date and time when the PDF was last modified. Updates automatically when you save changes to the document.</p>
+            
+            <h2>Common Use Cases for PDF Metadata Management</h2>
+            
+            <h3>Document Organization and Search</h3>
+            <p>Add descriptive titles, authors, and keywords to PDFs to make them searchable and organizable in document management systems. Librarians, archivists, and information managers use metadata to catalog large document collections.</p>
+            
+            <h3>SEO for PDF Documents</h3>
+            <p>When PDFs are hosted on websites, metadata helps search engines understand and index the content. Proper titles and keywords improve search rankings and discoverability.</p>
+            
+            <h3>Privacy and Anonymization</h3>
+            <p>Remove author, creator, and other identifying metadata before sharing PDFs publicly. This prevents泄露 of user names, organization names, or software information that could identify the document's origin.</p>
+            
+            <h3>Legal and Compliance Requirements</h3>
+            <p>Some industries require specific metadata in documents (e.g., legal, medical, government). Add required fields to ensure compliance with regulations.</p>
+            
+            <h3>Brand Consistency</h3>
+            <p>Standardize author and creator fields across all organization documents for consistent branding and attribution.</p>
+            
+            <h3>Version Tracking</h3>
+            <p>Use modification dates and custom metadata fields to track document versions and revisions.</p>
+            
+            <h2>Technical Details: How Our Metadata Tool Works</h2>
+            <p>Our PDF metadata tool uses the PDF-lib library for metadata operations:</p>
+            <ul>
+                <li><strong>PDF Loading:</strong> The PDF document is loaded into memory using PDF-lib's load() method.</li>
+                <li><strong>Metadata Extraction:</strong> The getTitle(), getAuthor(), getSubject(), getKeywords(), getCreator(), getProducer(), getCreationDate(), and getModificationDate() methods retrieve current metadata.</li>
+                <li><strong>Metadata Modification:</strong> Setter methods (setTitle(), setAuthor(), etc.) update metadata fields.</li>
+                <li><strong>PDF Regeneration:</strong> The modified PDF is saved with updated metadata embedded.</li>
+            </ul>
+            
+            <h2>Best Practices for PDF Metadata</h2>
+            
+            <h3>Use Descriptive Titles</h3>
+            <p>Set titles that accurately describe the document content. Include relevant keywords but keep titles concise (under 60 characters for optimal search display).</p>
+            
+            <h3>Include Relevant Keywords</h3>
+            <p>Add 5-10 relevant keywords that users might search for. Think about synonyms and related terms. Separate keywords with commas.</p>
+            
+            <h3>Remove Sensitive Information</h3>
+            <p>Before sharing PDFs publicly, remove author names, creator software, and other identifying information that could compromise privacy or security.</p>
+            
+            <h3>Be Consistent</h3>
+            <p>For organizational documents, standardize author names and subject formats. This improves searchability and professional appearance.</p>
+            
+            <h3>Update Modification Dates</h3>
+            <p>When you update document content, update the modification date to reflect the current version. This helps users identify the most recent version.</p>
+            
+            <h2>Comparison with Other Metadata Solutions</h2>
+            <p>Unlike cloud-based metadata tools that require uploading documents to external servers, our tool offers unparalleled privacy and security. Adobe Acrobat Pro costs $15-30/month for metadata editing. Other online tools may add watermarks or store your documents. Our tool provides professional metadata management completely free with local-only processing.</p>
+            
+            <h2>Troubleshooting Common Issues</h2>
+            
+            <h3>Metadata Not Saving?</h3>
+            <p>Ensure you click "Update Metadata" before downloading. The download link appears after successful update. Always download the updated file from the result section.</p>
+            
+            <h3>Fields Not Showing After Load?</h3>
+            <p>Some PDFs have no metadata. Empty fields are normal. Add your own values and update to embed metadata in the document.</p>
+            
+            <h3>Dates Not Formatting Correctly?</h3>
+            <p>Use the datetime-local picker for correct date format. Avoid manual date entry unless using the standard format (YYYY-MM-DDThh:mm:ss).</p>
+            
+            <h3>Large Files Taking Too Long?</h3>
+            <p>Very large PDFs (100+ MB) may take longer to load as the entire file must be parsed. This is normal - processing time increases with file size.</p>
+            
+            <h2>Security and Privacy Deep Dive</h2>
+            <p>Your privacy is our priority. Unlike competing services that require you to upload documents to their servers, our metadata tool processes everything locally. When you select a file:</p>
+            <ul>
+                <li>The file is read into your browser's memory using the File API</li>
+                <li>All metadata processing uses your device's CPU - no external servers involved</li>
+                <li>No file data is ever transmitted over the network</li>
+                <li>When you close the page, all data is cleared from memory</li>
+                <li>We don't use cookies, analytics, or tracking scripts</li>
+                <li>Updated PDFs only exist on your device after download</li>
+            </ul>
+            <p>This architecture ensures that your sensitive document metadata remains completely private.</p>
+            
+            <h2>Frequently Asked Questions</h2>
+            
+            <h3>Is this metadata tool really free?</h3>
+            <p>Yes, completely free with no hidden costs, no premium tiers, and no watermarks. We believe document management tools should be accessible to everyone.</p>
+            
+            <h3>Can I add custom metadata fields?</h3>
+            <p>Currently, we support standard PDF metadata fields (title, author, subject, keywords, creator, producer, dates). Custom XMP fields are planned for future updates.</p>
+            
+            <h3>Will editing metadata change the document content?</h3>
+            <p>No. Metadata is separate from document content. Your text, images, and formatting remain completely unchanged.</p>
+            
+            <h3>Can I remove metadata entirely?</h3>
+            <p>Yes, click "Clear All Metadata" to remove all document properties. This is useful for privacy when sharing documents publicly.</p>
+            
+            <h3>What's the maximum file size?</h3>
+            <p>Since processing happens locally, limits depend on your device's available memory. Most modern devices can handle PDFs up to 200MB easily.</p>
+            
+            <h2>Privacy and Metadata</h2>
+            <p>PDF metadata can contain sensitive information:</p>
+            <ul>
+                <li>Author names (real names, usernames)</li>
+                <li>Organization names and department information</li>
+                <li>Creation software (reveals what tools were used)</li>
+                <li>Creation dates (reveals when document was made)</li>
+                <li>Modification history (reveals editing patterns)</li>
+            </ul>
+            <p>Always review and clean metadata before sharing PDFs publicly or with external parties.</p>
+            
+            <h2>Industry-Specific Use Cases</h2>
+            
+            <h3>Legal Industry</h3>
+            <p>Law firms add case numbers, client names, and matter identifiers as metadata for easy searching. Remove creator metadata before sharing externally for client confidentiality.</p>
+            
+            <h3>Publishing</h3>
+            <p>Publishers add ISBN numbers, publication dates, author names, and subject classifications to PDF metadata for cataloging and distribution.</p>
+            
+            <h3>Corporate Document Management</h3>
+            <p>Businesses standardize author names and department information across all PDFs for consistent document management and searching.</p>
+            
+            <h3>Academic and Research</h3>
+            <p>Researchers add paper titles, author affiliations, publication dates, and subject keywords to academic PDFs for indexing in digital libraries.</p>
+            
+            <h2>Future Updates and Roadmap</h2>
+            <p>We continuously improve our metadata tool based on user feedback. Planned features include custom XMP metadata fields, batch metadata editing for multiple PDFs, metadata templates, and integration with our other tools for complete document workflows. Have a suggestion? Contact us with your ideas!</p>
+            
+            <h2>Conclusion</h2>
+            <p>PDF metadata is essential for document organization, searchability, and professional presentation. Our free PDF metadata tool provides complete control over document properties with uncompromising privacy protection. Whether you're organizing a document library, optimizing PDFs for search engines, or protecting sensitive information, our tool delivers instant, secure metadata management. Try our PDF metadata tool today and take control of your document information.</p>
+        </div>
+        
+        <div class="related-tools">
+            <h3>Related Tools</h3>
+            <div class="related-grid">
+                <a href="repair-pdf.html" class="related-link">🔧 Repair PDF</a>
+                <a href="compress-pdf.html" class="related-link">🗜️ Compress PDF</a>
+                <a href="pdf-protect.html" class="related-link">🔒 Protect PDF</a>
+                <a href="edit-pdf.html" class="related-link">✏️ Edit PDF</a>
+                <a href="merge-pdf.html" class="related-link">🔗 Merge PDF</a>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="footer">
+        <p>&copy; 2024 PDF Tools Pro. All tools are 100% free to use. Your files are processed locally and never uploaded.</p>
+    </footer>
+    
+    <script src="../js/main.js"></script>
+    <script>
+        const loadBtn = document.getElementById('loadBtn');
+        const updateBtn = document.getElementById('updateMetadataBtn');
+        const clearBtn = document.getElementById('clearMetadataBtn');
+        const resetBtn = document.getElementById('resetMetadataBtn');
+        const pdfInput = document.getElementById('pdfInput');
+        const metadataViewer = document.getElementById('metadataViewer');
+        const currentMetadata = document.getElementById('currentMetadata');
+        const fileInfo = document.getElementById('fileInfo');
+        const fileInfoText = document.getElementById('fileInfoText');
+        const pageInfo = document.getElementById('pageInfo');
+        const resultDiv = document.getElementById('result');
+        
+        // Metadata input fields
+        const metaTitle = document.getElementById('metaTitle');
+        const metaAuthor = document.getElementById('metaAuthor');
+        const metaSubject = document.getElementById('metaSubject');
+        const metaKeywords = document.getElementById('metaKeywords');
+        const metaCreator = document.getElementById('metaCreator');
+        const metaProducer = document.getElementById('metaProducer');
+        const metaCreationDate = document.getElementById('metaCreationDate');
+        const metaModificationDate = document.getElementById('metaModificationDate');
+        
+        let currentPDFData = null;
+        let originalMetadata = {};
+        let totalPages = 0;
+        
+        // Format date for datetime-local input
+        function formatDateForInput(date) {
+            if (!date) return '';
+            const d = new Date(date);
+            const year = d.getFullYear();
+            const month = String(d.getMonth() + 1).padStart(2, '0');
+            const day = String(d.getDate()).padStart(2, '0');
+            const hours = String(d.getHours()).padStart(2, '0');
+            const minutes = String(d.getMinutes()).padStart(2, '0');
+            return `${year}-${month}-${day}T${hours}:${minutes}`;
+        }
+        
+        // Format date for display
+        function formatDateForDisplay(date) {
+            if (!date) return 'Not set';
+            const d = new Date(date);
+            return d.toLocaleString();
+        }
+        
+        // Load PDF when file is selected
+        pdfInput.addEventListener('change', async () => {
+            const file = pdfInput.files[0];
+            if (file) {
+                try {
+                    currentPDFData = await file.arrayBuffer();
+                    
+                    const fileSize = formatFileSize(file.size);
+                    const fileName = file.name;
+                    fileInfoText.textContent = `${fileName} (${fileSize})`;
+                    
+                    // Get page count
+                    const { PDFDocument } = PDFLib;
+                    const pdfDoc = await PDFDocument.load(currentPDFData);
+                    totalPages = pdfDoc.getPageCount();
+                    pageInfo.innerHTML = `Total pages: ${totalPages}`;
+                    
+                    fileInfo.style.display = 'block';
+                    metadataViewer.style.display = 'none';
+                    resultDiv.innerHTML = '';
+                    
+                    showAlert(`PDF loaded. Click "Load Metadata" to view document properties.`, 'success');
+                } catch (error) {
+                    console.error('Error loading PDF:', error);
+                    showAlert('Error loading PDF. Please ensure it\'s a valid file.', 'error');
+                }
+            } else {
+                fileInfo.style.display = 'none';
+                currentPDFData = null;
+                metadataViewer.style.display = 'none';
+            }
+        });
+        
+        // Load metadata from PDF
+        async function loadMetadata() {
+            if (!currentPDFData) {
+                showAlert('Please select a PDF file first', 'error');
+                return;
+            }
+            
+            try {
+                loadBtn.disabled = true;
+                loadBtn.textContent = 'Loading...';
+                
+                const { PDFDocument } = PDFLib;
+                const pdfDoc = await PDFDocument.load(currentPDFData);
+                
+                // Extract metadata
+                originalMetadata = {
+                    title: pdfDoc.getTitle() || '',
+                    author: pdfDoc.getAuthor() || '',
+                    subject: pdfDoc.getSubject() || '',
+                    keywords: pdfDoc.getKeywords() || '',
+                    creator: pdfDoc.getCreator() || '',
+                    producer: pdfDoc.getProducer() || '',
+                    creationDate: pdfDoc.getCreationDate() || null,
+                    modificationDate: pdfDoc.getModificationDate() || null
+                };
+                
+                // Display current metadata
+                let metadataHtml = `
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <tr><td style="padding: 0.5rem; font-weight: bold;">Title:</td><td style="padding: 0.5rem;">${escapeHtml(originalMetadata.title) || '<em>Not set</em>'}</td></tr>
+                        <tr><td style="padding: 0.5rem; font-weight: bold;">Author:</td><td style="padding: 0.5rem;">${escapeHtml(originalMetadata.author) || '<em>Not set</em>'}</td></tr>
+                        <tr><td style="padding: 0.5rem; font-weight: bold;">Subject:</td><td style="padding: 0.5rem;">${escapeHtml(originalMetadata.subject) || '<em>Not set</em>'}</td></tr>
+                        <tr><td style="padding: 0.5rem; font-weight: bold;">Keywords:</td><td style="padding: 0.5rem;">${escapeHtml(originalMetadata.keywords) || '<em>Not set</em>'}</td></tr>
+                        <tr><td style="padding: 0.5rem; font-weight: bold;">Creator:</td><td style="padding: 0.5rem;">${escapeHtml(originalMetadata.creator) || '<em>Not set</em>'}</td></tr>
+                        <tr><td style="padding: 0.5rem; font-weight: bold;">Producer:</td><td style="padding: 0.5rem;">${escapeHtml(originalMetadata.producer) || '<em>Not set</em>'}</td></tr>
+                        <tr><td style="padding: 0.5rem; font-weight: bold;">Creation Date:</td><td style="padding: 0.5rem;">${formatDateForDisplay(originalMetadata.creationDate)}</td></tr>
+                        <tr><td style="padding: 0.5rem; font-weight: bold;">Modification Date:</td><td style="padding: 0.5rem;">${formatDateForDisplay(originalMetadata.modificationDate)}</td></tr>
+                    </table>
+                `;
+                
+                currentMetadata.innerHTML = metadataHtml;
+                
+                // Populate edit fields
+                metaTitle.value = originalMetadata.title;
+                metaAuthor.value = originalMetadata.author;
+                metaSubject.value = originalMetadata.subject;
+                metaKeywords.value = originalMetadata.keywords;
+                metaCreator.value = originalMetadata.creator;
+                metaProducer.value = originalMetadata.producer;
+                metaCreationDate.value = formatDateForInput(originalMetadata.creationDate);
+                metaModificationDate.value = formatDateForInput(originalMetadata.modificationDate);
+                
+                metadataViewer.style.display = 'block';
+                resultDiv.innerHTML = '';
+                
+                showAlert(`Metadata loaded successfully.`, 'success');
+            } catch (error) {
+                console.error('Error loading metadata:', error);
+                showAlert('Error loading metadata. Please try again.', 'error');
+            } finally {
+                loadBtn.disabled = false;
+                loadBtn.textContent = 'Load Metadata';
+            }
+        }
+        
+        // Update metadata in PDF
+        async function updateMetadata() {
+            if (!currentPDFData) {
+                showAlert('Please select a PDF file first', 'error');
+                return;
+            }
+            
+            try {
+                updateBtn.disabled = true;
+                updateBtn.textContent = 'Updating...';
+                resultDiv.innerHTML = '<div class="loader"></div> Updating metadata...';
+                
+                const { PDFDocument } = PDFLib;
+                const pdfDoc = await PDFDocument.load(currentPDFData);
+                
+                // Set new metadata
+                if (metaTitle.value.trim()) pdfDoc.setTitle(metaTitle.value.trim());
+                if (metaAuthor.value.trim()) pdfDoc.setAuthor(metaAuthor.value.trim());
+                if (metaSubject.value.trim()) pdfDoc.setSubject(metaSubject.value.trim());
+                if (metaKeywords.value.trim()) pdfDoc.setKeywords(metaKeywords.value.trim());
+                if (metaCreator.value.trim()) pdfDoc.setCreator(metaCreator.value.trim());
+                if (metaProducer.value.trim()) pdfDoc.setProducer(metaProducer.value.trim());
+                
+                // Handle dates
+                if (metaCreationDate.value) {
+                    pdfDoc.setCreationDate(new Date(metaCreationDate.value));
+                }
+                if (metaModificationDate.value) {
+                    pdfDoc.setModificationDate(new Date(metaModificationDate.value));
+                }
+                
+                const pdfBytes = await pdfDoc.save();
+                const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+                const url = URL.createObjectURL(blob);
+                const originalName = pdfInput.files[0].name.replace('.pdf', '');
+                
+                resultDiv.innerHTML = `
+                    <div class="alert alert-success" style="margin-bottom: 1rem;">✅ Metadata updated successfully!</div>
+                    <a href="${url}" download="${originalName}_metadata.pdf" class="download-link">📥 Download PDF with Updated Metadata</a>
+                    <p style="margin-top: 1rem; font-size: 0.875rem; color: var(--text-muted);">✓ Updated locally - Your file never left your device</p>
+                    <p style="margin-top: 0.5rem; font-size: 0.875rem; color: var(--text-muted);">✓ Title: ${metaTitle.value || '(empty)'}</p>
+                    <p style="margin-top: 0.25rem; font-size: 0.875rem; color: var(--text-muted);">✓ Author: ${metaAuthor.value || '(empty)'}</p>
+                `;
+                
+                showAlert(`Metadata updated successfully!`, 'success');
+                currentPDFData = pdfBytes;
+            } catch (error) {
+                console.error('Error updating metadata:', error);
+                resultDiv.innerHTML = `<div class="alert alert-error">Error: ${error.message || 'Failed to update metadata. Please try again.'}</div>`;
+                showAlert('Failed to update metadata. Please try again.', 'error');
+            } finally {
+                updateBtn.disabled = false;
+                updateBtn.textContent = 'Update Metadata';
+            }
+        }
+        
+        // Clear all metadata
+        async function clearMetadata() {
+            if (!confirm('Are you sure you want to clear ALL metadata? This action cannot be undone.')) {
+                return;
+            }
+            
+            if (!currentPDFData) {
+                showAlert('Please select a PDF file first', 'error');
+                return;
+            }
+            
+            try {
+                clearBtn.disabled = true;
+                clearBtn.textContent = 'Clearing...';
+                resultDiv.innerHTML = '<div class="loader"></div> Clearing metadata...';
+                
+                const { PDFDocument } = PDFLib;
+                const pdfDoc = await PDFDocument.load(currentPDFData);
+                
+                // Clear all metadata
+                pdfDoc.setTitle('');
+                pdfDoc.setAuthor('');
+                pdfDoc.setSubject('');
+                pdfDoc.setKeywords('');
+                pdfDoc.setCreator('');
+                pdfDoc.setProducer('');
+                pdfDoc.setCreationDate(new Date());
+                pdfDoc.setModificationDate(new Date());
+                
+                const pdfBytes = await pdfDoc.save();
+                const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+                const url = URL.createObjectURL(blob);
+                const originalName = pdfInput.files[0].name.replace('.pdf', '');
+                
+                resultDiv.innerHTML = `
+                    <div class="alert alert-success" style="margin-bottom: 1rem;">✅ All metadata cleared successfully!</div>
+                    <a href="${url}" download="${originalName}_cleaned.pdf" class="download-link">📥 Download PDF with Cleared Metadata</a>
+                    <p style="margin-top: 1rem; font-size: 0.875rem; color: var(--text-muted);">✓ All document properties have been removed</p>
+                `;
+                
+                showAlert(`Metadata cleared successfully!`, 'success');
+                currentPDFData = pdfBytes;
+                
+                // Reload metadata display
+                await loadMetadata();
+            } catch (error) {
+                console.error('Error clearing metadata:', error);
+                resultDiv.innerHTML = `<div class="alert alert-error">Error: ${error.message || 'Failed to clear metadata. Please try again.'}</div>`;
+                showAlert('Failed to clear metadata. Please try again.', 'error');
+            } finally {
+                clearBtn.disabled = false;
+                clearBtn.textContent = 'Clear All Metadata';
+            }
+        }
+        
+        // Reset to original metadata
+        async function resetMetadata() {
+            if (!confirm('Reset metadata to original values? Any unsaved changes will be lost.')) {
+                return;
+            }
+            
+            metaTitle.value = originalMetadata.title || '';
+            metaAuthor.value = originalMetadata.author || '';
+            metaSubject.value = originalMetadata.subject || '';
+            metaKeywords.value = originalMetadata.keywords || '';
+            metaCreator.value = originalMetadata.creator || '';
+            metaProducer.value = originalMetadata.producer || '';
+            metaCreationDate.value = formatDateForInput(originalMetadata.creationDate);
+            metaModificationDate.value = formatDateForInput(originalMetadata.modificationDate);
+            
+            showAlert(`Reset to original metadata values.`, 'success');
+        }
+        
+        function escapeHtml(text) {
+            if (!text) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+        
+        loadBtn.addEventListener('click', loadMetadata);
+        updateBtn.addEventListener('click', updateMetadata);
+        clearBtn.addEventListener('click', clearMetadata);
+        resetBtn.addEventListener('click', resetMetadata);
+    </script>
+</body>
+</html>

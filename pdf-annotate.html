@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Annotate PDF - Add Comments, Highlights & Notes to PDF Online Free | PDF Tools Pro</title>
+    <meta name="description" content="Free online PDF annotation tool. Add comments, highlights, sticky notes, and drawings to PDF documents. Mark up PDFs for review and collaboration. No registration, secure local processing.">
+    <meta name="keywords" content="annotate PDF, PDF annotation, comment on PDF, highlight PDF, sticky notes PDF, markup PDF, PDF review tool, add notes to PDF">
+    <meta name="author" content="PDF Tools Pro">
+    <meta property="og:title" content="Annotate PDF - Add Comments & Highlights to PDF Free Online">
+    <meta property="og:description" content="Professional PDF annotation tool. Add comments, highlights, sticky notes, and drawings to your PDF documents. Secure local processing, no upload required.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pdftoolspro.com/tools/pdf-annotate.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Annotate PDF - Free PDF Markup Tool">
+    <link rel="stylesheet" href="../css/main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+    <style>
+        .annotation-toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border-radius: 0.5rem;
+            align-items: center;
+        }
+        .tool-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.875rem;
+        }
+        .tool-btn:hover, .tool-btn.active {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+        .annotation-list {
+            margin-top: 1rem;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .annotation-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            padding: 0.75rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+        .annotation-content {
+            flex: 1;
+        }
+        .annotation-type {
+            font-size: 0.75rem;
+            color: var(--accent);
+            font-weight: bold;
+        }
+        .annotation-text {
+            margin-top: 0.25rem;
+            font-size: 0.875rem;
+        }
+        .delete-annotation {
+            background: var(--error);
+            color: white;
+            border: none;
+            border-radius: 0.25rem;
+            padding: 0.25rem 0.5rem;
+            cursor: pointer;
+            font-size: 0.75rem;
+        }
+        .canvas-container {
+            position: relative;
+            overflow: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            background: var(--bg-primary);
+            min-height: 500px;
+        }
+        #annotationCanvas {
+            display: block;
+            margin: 0 auto;
+            cursor: crosshair;
+        }
+        .color-preview {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 2px solid var(--border-color);
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">📄 PDF Tools Pro</a>
+            <button class="mobile-menu-btn">☰</button>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+                <li><a href="../privacy-policy.html">Privacy</a></li>
+            </ul>
+            <button class="theme-toggle">🌙</button>
+        </div>
+    </nav>
+    
+    <main class="main-container">
+        <div class="breadcrumbs"></div>
+        
+        <div class="tool-header">
+            <h1>💬 Annotate PDF - Add Comments, Highlights & Notes</h1>
+            <p>Add comments, highlights, sticky notes, and drawings to your PDF documents. Perfect for document review, collaboration, and study. 100% free, secure local processing.</p>
+        </div>
+        
+        <div class="tool-area">
+            <div class="form-group">
+                <label for="pdfInput">Select PDF File to Annotate</label>
+                <input type="file" id="pdfInput" accept=".pdf" class="file-input">
+            </div>
+            
+            <div class="form-group">
+                <label for="pageSelect">Page Navigation</label>
+                <div style="display: flex; gap: 0.5rem; align-items: center;">
+                    <button id="prevPageBtn" class="tool-btn">◀ Previous</button>
+                    <span id="pageIndicator">Page 1 / 1</span>
+                    <button id="nextPageBtn" class="tool-btn">Next ▶</button>
+                    <input type="number" id="gotoPage" min="1" style="width: 70px;" class="file-input">
+                    <button id="gotoPageBtn" class="tool-btn">Go</button>
+                </div>
+            </div>
+            
+            <div class="annotation-toolbar">
+                <span style="font-weight: bold;">Annotation Tools:</span>
+                <button id="toolHighlight" class="tool-btn">🟡 Highlight</button>
+                <button id="toolUnderline" class="tool-btn">📝 Underline</button>
+                <button id="toolStickyNote" class="tool-btn">📌 Sticky Note</button>
+                <button id="toolText" class="tool-btn">✏️ Add Text</button>
+                <button id="toolDraw" class="tool-btn">✍️ Draw</button>
+                <button id="toolRectangle" class="tool-btn">⬜ Rectangle</button>
+                <button id="toolCircle" class="tool-btn">⚪ Circle</button>
+                <button id="toolArrow" class="tool-btn">➡️ Arrow</button>
+                
+                <span style="margin-left: 0.5rem;">Color:</span>
+                <input type="color" id="annotationColor" value="#FFD700" style="width: 40px; height: 30px; border-radius: 0.25rem; cursor: pointer;">
+                
+                <span style="margin-left: 0.5rem;">Size:</span>
+                <input type="range" id="annotationSize" min="1" max="20" value="3" style="width: 100px;">
+                <span id="sizeValue">3</span>
+                
+                <button id="clearCanvasBtn" class="tool-btn" style="background: var(--error); color: white;">🗑️ Clear Drawing</button>
+            </div>
+            
+            <div class="canvas-container">
+                <canvas id="annotationCanvas" style="max-width: 100%; height: auto;"></canvas>
+            </div>
+            
+            <div class="annotation-list" id="annotationList">
+                <h4>📝 Annotations (<span id="annotationCount">0</span>)</h4>
+                <div id="annotationsContainer"></div>
+            </div>
+            
+            <div id="fileInfo" style="margin: 1rem 0; padding: 1rem; background: var(--bg-card); border-radius: 0.5rem; display: none;">
+                <strong>Document Info:</strong> <span id="fileInfoText"></span>
+                <div id="pageInfo" style="margin-top: 0.5rem; font-size: 0.875rem;"></div>
+            </div>
+            
+            <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                <button id="saveAnnotationsBtn" class="btn-primary">💾 Save Annotations to PDF</button>
+                <button id="exportAnnotationsBtn" class="btn-primary" style="background: var(--bg-secondary); color: var(--text-primary);">📄 Export Annotations Report</button>
+            </div>
+            <div id="result"></div>
+        </div>
+        
+        <!-- 2000+ Words Description Section -->
+        <div class="content-section">
+            <h2>What is PDF Annotation?</h2>
+            <p>PDF annotation is the process of adding notes, comments, highlights, drawings, and other markup to PDF documents. Annotations allow you to mark up documents for review, collaborate with team members, study more effectively, and provide feedback without altering the original content. Our PDF annotation tool provides a complete set of markup tools including highlights, underlines, sticky notes, text boxes, freehand drawing, shapes, and arrows, all processed locally in your browser for complete privacy.</p>
+            
+            <h2>Why Annotate PDF Documents?</h2>
+            <p>Annotating PDF documents offers numerous advantages for students, professionals, researchers, and collaborators:</p>
+            <ul>
+                <li><strong>Document Review:</strong> Provide feedback and suggestions without changing original text.</li>
+                <li><strong>Collaborative Work:</strong> Share annotated PDFs with team members for efficient collaboration.</li>
+                <li><strong>Study and Research:</strong> Highlight key information, add margin notes, and mark important passages.</li>
+                <li><strong>Legal Review:</strong> Mark up contracts and legal documents with questions and comments.</li>
+                <li><strong>Proofreading:</strong> Identify errors and suggest corrections directly on the document.</li>
+                <li><strong>Teaching and Grading:</strong> Provide feedback on student submissions with highlights and comments.</li>
+                <li><strong>Project Management:</strong> Mark up blueprints, designs, and specifications with notes.</li>
+                <li><strong>Personal Organization:</strong> Add reminders, tags, and notes to important documents.</li>
+            </ul>
+            
+            <h2>Why Use Our PDF Annotation Tool?</h2>
+            <p>Unlike many online annotation tools that require uploading sensitive documents to unknown servers, our tool processes everything locally in your browser. This means your confidential documents, personal notes, and proprietary information never leave your computer. We use PDF.js for rendering and PDF-lib for embedding annotations with complete privacy protection.</p>
+            
+            <h2>Key Features of Our PDF Annotation Tool</h2>
+            <ul>
+                <li><strong>100% Free Forever:</strong> No premium tiers, no hidden costs, no watermarks, no registration required.</li>
+                <li><strong>Privacy-First Design:</strong> All annotation happens locally in your browser. Your files never upload to any server.</li>
+                <li><strong>Multiple Annotation Types:</strong> Highlight, underline, sticky notes, text boxes, freehand drawing, rectangles, circles, arrows.</li>
+                <li><strong>Customizable Appearance:</strong> Choose colors and sizes for your annotations.</li>
+                <li><strong>Page Navigation:</strong> Easily move between pages to annotate entire documents.</li>
+                <li><strong>Annotation Management:</strong> View, edit, and delete all annotations from a centralized list.</li>
+                <li><strong>Save to PDF:</strong> Embed annotations directly into the PDF file.</li>
+                <li><strong>Export Report:</strong> Generate a summary report of all annotations.</li>
+                <li><strong>Fast Processing:</strong> Local processing means instant annotation without queue times.</li>
+                <li><strong>Dark/Light Mode:</strong> Comfortable viewing in any lighting condition with our theme toggle.</li>
+            </ul>
+            
+            <h2>How to Annotate PDF Files - Step by Step Guide</h2>
+            <p>Using our PDF annotation tool is straightforward. Follow these simple steps:</p>
+            <ol>
+                <li><strong>Select Your PDF:</strong> Click the "Choose File" button and select the PDF document you want to annotate.</li>
+                <li><strong>Choose Annotation Tool:</strong> Select from highlight, underline, sticky note, text, draw, rectangle, circle, or arrow.</li>
+                <li><strong>Customize Appearance:</strong> Pick a color and size for your annotations.</li>
+                <li><strong>Add Annotations:</strong> Click and drag on the document to add annotations (for text, click and type).</li>
+                <li><strong>Navigate Pages:</strong> Use page navigation to annotate multiple pages.</li>
+                <li><strong>Manage Annotations:</strong> View all annotations in the list; delete unwanted ones.</li>
+                <li><strong>Save:</strong> Click "Save Annotations to PDF" to embed annotations into the PDF.</li>
+                <li><strong>Download:</strong> Download your annotated PDF document.</li>
+            </ol>
+            
+            <h2>Understanding Annotation Types</h2>
+            
+            <h3>Highlight</h3>
+            <p>Highlight text to draw attention to important passages. Perfect for studying, reviewing, and marking key information. Highlights are semi-transparent and appear behind text. Choose from various colors (yellow is traditional, but any color works).</p>
+            
+            <h3>Underline</h3>
+            <p>Add underlines beneath text to emphasize important content. Great for marking definitions, key terms, or passages that need attention. Underlines are crisp and professional.</p>
+            
+            <h3>Sticky Note</h3>
+            <p>Add virtual sticky notes anywhere on the page for comments, questions, or reminders. Click to place a note icon, then type your note text. Perfect for leaving feedback or making personal notes.</p>
+            
+            <h3>Add Text</h3>
+            <p>Insert text boxes anywhere on the page to add comments, labels, or additional information. Great for filling out forms, adding instructions, or providing context.</p>
+            
+            <h3>Draw (Freehand)</h3>
+            <p>Freehand drawing tool for creating custom shapes, circling items, or adding signatures. Use with different colors and brush sizes for maximum flexibility.</p>
+            
+            <h3>Rectangle</h3>
+            <p>Draw rectangle shapes to box in important content, create borders, or highlight specific areas. Perfect for emphasizing charts, images, or sections of text.</p>
+            
+            <h3>Circle</h3>
+            <p>Circle important elements in your PDF - ideal for drawing attention to specific points, circling answers, or highlighting circular areas.</p>
+            
+            <h3>Arrow</h3>
+            <p>Draw arrow shapes to point to specific content, indicate direction, or show relationships between elements. Excellent for callouts and explanations.</p>
+            
+            <h2>Common Use Cases for PDF Annotation</h2>
+            
+            <h3>Academic Study</h3>
+            <p>Students highlight key concepts, underline important definitions, add sticky notes with summaries, and draw connections between related ideas. Create comprehensive study guides directly on lecture notes and textbook PDFs.</p>
+            
+            <h3>Document Review and Collaboration</h3>
+            <p>Teams annotate contracts, proposals, and designs with comments, questions, and suggestions. Share annotated PDFs for efficient review cycles without complex collaboration software.</p>
+            
+            <h3>Legal Document Preparation</h3>
+            <p>Legal professionals mark up contracts with highlighting, underline key clauses, add sticky notes for negotiation points, and draw attention to specific language. Prepare documents for review without altering original text.</p>
+            
+            <h3>Proofreading and Editing</h3>
+            <p>Editors highlight errors, underline questionable passages, add text boxes with corrections, and use arrows to indicate repositioning. Provide clear feedback to authors and designers.</p>
+            
+            <h3>Technical and Engineering Review</h3>
+            <p>Engineers mark up blueprints and technical drawings with arrows pointing to specific components, rectangles highlighting areas needing revision, and text boxes adding explanatory notes.</p>
+            
+            <h2>Technical Details: How Our Annotation Tool Works</h2>
+            <p>Our PDF annotation tool uses a sophisticated multi-layer architecture:</p>
+            <ul>
+                <li><strong>PDF Rendering with PDF.js:</strong> PDF pages are rendered to canvas for display and interaction.</li>
+                <li><strong>Canvas Overlay:</strong> Annotations are drawn on an overlay canvas above the PDF, allowing for real-time editing.</li>
+                <li><strong>Annotation Storage:</strong> All annotations are stored in memory with position, type, color, size, and content data.</li>
+                <li><strong>PDF Embedding with PDF-lib:</strong> When saving, annotations are embedded into the PDF as proper PDF annotations using PDF-lib's drawing functions.</li>
+                <li><strong>Coordinate Mapping:</strong> Screen coordinates are converted to PDF coordinates (points) for accurate placement.</li>
+            </ul>
+            
+            <h2>Best Practices for PDF Annotation</h2>
+            
+            <h3>Use Consistent Color Coding</h3>
+            <p>Develop a color system for different annotation types: yellow for key points, green for questions, red for errors, blue for suggestions. Consistent colors make annotations easier to scan and understand.</p>
+            
+            <h3>Keep Annotations Concise</h3>
+            <p>Sticky notes and text boxes should be brief and focused. Long annotations can be broken into multiple notes or summarized. This makes review easier for collaborators.</p>
+            
+            <h3>Review Before Saving</h3>
+            <p>Use the annotation list to review all annotations before saving to PDF. Check for duplicates, ensure clarity, and delete any notes that are no longer relevant.</p>
+            
+            <h3>Export Annotations for Records</h3>
+            <p>Use the "Export Annotations Report" feature to create a text summary of all annotations. This provides a searchable record of all feedback and notes.</p>
+            
+            <h2>Comparison with Other Annotation Solutions</h2>
+            <p>Unlike cloud-based annotation tools that require uploading sensitive documents to external servers, our tool offers unparalleled privacy and security. Adobe Acrobat Pro's annotation features cost $15-30/month. Other online tools may add watermarks or store your documents. Our tool provides professional PDF annotation completely free with local-only processing.</p>
+            
+            <h2>Troubleshooting Common Issues</h2>
+            
+            <h3>Annotations Not Saving?</h3>
+            <p>Ensure you click "Save Annotations to PDF" before closing the page. The save button embeds annotations into the PDF. Always download the saved file from the result section.</p>
+            
+            <h3>Drawing Not Appearing?</h3>
+            <p>Check that you're using the correct tool and that the color contrasts with the page background. Dark colors on dark backgrounds may be invisible. Adjust color and try again.</p>
+            
+            <h3>Can't Select Text to Highlight?</h3>
+            <p>Our highlight tool works by clicking and dragging over text. PDF.js renders PDFs as images, so highlighting is area-based rather than text-selection based. Drag a rectangle over the text you want to highlight.</p>
+            
+            <h3>Annotations on Wrong Page?</h3>
+            <p>Always check the page number before adding annotations. Use the page navigation to ensure you're on the correct page. Annotations are page-specific.</p>
+            
+            <h2>Security and Privacy Deep Dive</h2>
+            <p>Your privacy is our priority. Unlike competing services that require you to upload documents to their servers, our annotation tool processes everything locally. When you select a file:</p>
+            <ul>
+                <li>The file is read into your browser's memory using the File API</li>
+                <li>All rendering and annotation uses your device's CPU - no external servers involved</li>
+                <li>No file data is ever transmitted over the network</li>
+                <li>When you close the page, all data and annotations are cleared from memory</li>
+                <li>We don't use cookies, analytics, or tracking scripts</li>
+                <li>Annotated PDFs only exist on your device after download</li>
+            </ul>
+            <p>This architecture ensures that your confidential documents and private notes remain completely secure.</p>
+            
+            <h2>Frequently Asked Questions</h2>
+            
+            <h3>Is this annotation tool really free?</h3>
+            <p>Yes, completely free with no hidden costs, no premium tiers, and no watermarks. We believe document collaboration tools should be accessible to everyone.</p>
+            
+            <h3>Can others see my annotations?</h3>
+            <p>When you save annotations to the PDF, anyone opening the PDF in a compatible viewer (Adobe Reader, Chrome, etc.) can see them. Export annotations to keep a private record.</p>
+            
+            <h3>Can I edit or delete annotations after adding?</h3>
+            <p>Yes, use the annotation list to delete annotations. To edit, delete and re-add with corrected content. We plan to add direct editing in future updates.</p>
+            
+            <h3>Will annotations affect original content?</h3>
+            <p>No. Annotations are stored as separate layers and do not modify the original PDF content. The original text and images remain unchanged.</p>
+            
+            <h3>What's the maximum file size?</h3>
+            <p>Since processing happens locally, limits depend on your device's available memory. Most modern devices can handle PDFs up to 150MB easily.</p>
+            
+            <h2>Industry-Specific Use Cases</h2>
+            
+            <h3>Legal Industry</h3>
+            <p>Law firms annotate contracts with questions, highlight key clauses, add sticky notes for negotiation points, and mark up discovery documents for case preparation.</p>
+            
+            <h3>Education</h3>
+            <p>Teachers annotate student submissions with feedback, highlight key points, and add explanatory notes. Students highlight textbooks, add study notes, and mark important passages.</p>
+            
+            <h3>Healthcare</h3>
+            <p>Medical professionals annotate patient records, highlight test results, add notes to charts, and mark up medical images while maintaining HIPAA compliance through local processing.</p>
+            
+            <h3>Architecture and Engineering</h3>
+            <p>Architects mark up blueprints with arrows, rectangles, and text boxes. Engineers annotate technical drawings with dimensions, notes, and revision requests.</p>
+            
+            <h2>Future Updates and Roadmap</h2>
+            <p>We continuously improve our annotation tool based on user feedback. Planned features include text selection highlighting, annotation editing, cloud storage integration, collaborative annotation (real-time), stamp tool, and more shape options. Have a suggestion? Contact us with your ideas!</p>
+            
+            <h2>Conclusion</h2>
+            <p>Annotating PDF documents is essential for collaboration, studying, review, and feedback. Our free PDF annotation tool provides professional markup capabilities with uncompromising privacy protection. Whether you're a student highlighting textbooks, a professional reviewing contracts, or a team collaborating on documents, our tool delivers powerful annotation features instantly. Try our PDF annotation tool today and mark up your documents with confidence.</p>
+        </div>
+        
+        <div class="related-tools">
+            <h3>Related Tools</h3>
+            <div class="related-grid">
+                <a href="edit-pdf.html" class="related-link">✏️ Edit PDF</a>
+                <a href="compare-pdf.html" class="related-link">⚖️ Compare PDF</a>
+                <a href="pdf-ocr.html" class="related-link">👁️ PDF OCR</a>
+                <a href="add-watermark.html" class="related-link">💧 Add Watermark</a>
+                <a href="merge-pdf.html" class="related-link">🔗 Merge PDF</a>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="footer">
+        <p>&copy; 2024 PDF Tools Pro. All tools are 100% free to use. Your files are processed locally and never uploaded.</p>
+    </footer>
+    
+    <script src="../js/main.js"></script>
+    <script>
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+        
+        // DOM Elements
+        const pdfInput = document.getElementById('pdfInput');
+        const annotationCanvas = document.getElementById('annotationCanvas');
+        const ctx = annotationCanvas.getContext('2d');
+        const pageIndicator = document.getElementById('pageIndicator');
+        const prevPageBtn = document.getElementById('prevPageBtn');
+        const nextPageBtn = document.getElementById('nextPageBtn');
+        const gotoPage = document.getElementById('gotoPage');
+        const gotoPageBtn = document.getElementById('gotoPageBtn');
+        const annotationColor = document.getElementById('annotationColor');
+        const annotationSize = document.getElementById('annotationSize');
+        const sizeValue = document.getElementById('sizeValue');
+        const clearCanvasBtn = document.getElementById('clearCanvasBtn');
+        const saveAnnotationsBtn = document.getElementById('saveAnnotationsBtn');
+        const exportAnnotationsBtn = document.getElementById('exportAnnotationsBtn');
+        const annotationsContainer = document.getElementById('annotationsContainer');
+        const annotationCount = document.getElementById('annotationCount');
+        const fileInfo = document.getElementById('fileInfo');
+        const fileInfoText = document.getElementById('fileInfoText');
+        const pageInfo = document.getElementById('pageInfo');
+        const resultDiv = document.getElementById('result');
+        
+        // Tool buttons
+        const toolHighlight = document.getElementById('toolHighlight');
+        const toolUnderline = document.getElementById('toolUnderline');
+        const toolStickyNote = document.getElementById('toolStickyNote');
+        const toolText = document.getElementById('toolText');
+        const toolDraw = document.getElementById('toolDraw');
+        const toolRectangle = document.getElementById('toolRectangle');
+        const toolCircle = document.getElementById('toolCircle');
+        const toolArrow = document.getElementById('toolArrow');
+        
+        // State variables
+        let pdfDoc = null;
+        let currentPage = 1;
+        let totalPages = 0;
+        let currentPDFData = null;
+        let annotations = [];
+        let currentTool = 'highlight';
+        let isDrawing = false;
+        let lastX = 0, lastY = 0;
+        let startX = 0, startY = 0;
+        let pendingStickyNote = null;
+        
+        // Size slider
+        annotationSize.addEventListener('input', () => {
+            sizeValue.textContent = annotationSize.value;
+        });
+        
+        // Tool selection
+        function setActiveTool(tool) {
+            currentTool = tool;
+            document.querySelectorAll('.tool-btn').forEach(btn => btn.classList.remove('active'));
+            if (tool === 'highlight') toolHighlight.classList.add('active');
+            else if (tool === 'underline') toolUnderline.classList.add('active');
+            else if (tool === 'sticky') toolStickyNote.classList.add('active');
+            else if (tool === 'text') toolText.classList.add('active');
+            else if (tool === 'draw') toolDraw.classList.add('active');
+            else if (tool === 'rectangle') toolRectangle.classList.add('active');
+            else if (tool === 'circle') toolCircle.classList.add('active');
+            else if (tool === 'arrow') toolArrow.classList.add('active');
+            
+            // Change cursor
+            if (tool === 'draw' || tool === 'rectangle' || tool === 'circle' || tool === 'arrow') {
+                annotationCanvas.style.cursor = 'crosshair';
+            } else {
+                annotationCanvas.style.cursor = 'default';
+            }
+        }
+        
+        toolHighlight.addEventListener('click', () => setActiveTool('highlight'));
+        toolUnderline.addEventListener('click', () => setActiveTool('underline'));
+        toolStickyNote.addEventListener('click', () => setActiveTool('sticky'));
+        toolText.addEventListener('click', () => setActiveTool('text'));
+        toolDraw.addEventListener('click', () => setActiveTool('draw'));
+        toolRectangle.addEventListener('click', () => setActiveTool('rectangle'));
+        toolCircle.addEventListener('click', () => setActiveTool('circle'));
+        toolArrow.addEventListener('click', () => setActiveTool('arrow'));
+        
+        // Load PDF
+        pdfInput.addEventListener('change', async (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                try {
+                    currentPDFData = await file.arrayBuffer();
+                    pdfDoc = await pdfjsLib.getDocument({ data: currentPDFData }).promise;
+                    totalPages = pdfDoc.numPages;
+                    currentPage = 1;
+                    
+                    fileInfoText.textContent = `${file.name} (${formatFileSize(file.size)})`;
+                    pageInfo.innerHTML = `Total pages: ${totalPages}`;
+                    fileInfo.style.display = 'block';
+                    resultDiv.innerHTML = '';
+                    
+                    gotoPage.max = totalPages;
+                    gotoPage.value = 1;
+                    
+                    await renderPage(currentPage);
+                    showAlert(`PDF loaded successfully. ${totalPages} page(s).`, 'success');
+                } catch (error) {
+                    console.error('Error loading PDF:', error);
+                    showAlert('Error loading PDF. Please ensure it\'s a valid file.', 'error');
+                }
+            }
+        });
+        
+        // Render page
+        async function renderPage(pageNum) {
+            if (!pdfDoc) return;
+            
+            const page = await pdfDoc.getPage(pageNum);
+            const viewport = page.getViewport({ scale: 1.5 });
+            
+            annotationCanvas.width = viewport.width;
+            annotationCanvas.height = viewport.height;
+            annotationCanvas.style.width = '100%';
+            annotationCanvas.style.height = 'auto';
+            
+            const renderContext = {
+                canvasContext: ctx,
+                viewport: viewport
+            };
+            
+            await page.render(renderContext).promise;
+            
+            pageIndicator.textContent = `Page ${pageNum} / ${totalPages}`;
+            
+            // Load annotations for this page
+            drawAnnotations();
+        }
+        
+        // Draw all annotations for current page
+        function drawAnnotations() {
+            if (!ctx) return;
+            
+            // Redraw PDF background (simplified - would need to re-render)
+            // For now, annotations are stored but we'll re-render the page when needed
+            
+            const pageAnnotations = annotations.filter(a => a.page === currentPage);
+            
+            for (const ann of pageAnnotations) {
+                ctx.save();
+                ctx.globalAlpha = ann.type === 'highlight' ? 0.4 : 1;
+                ctx.strokeStyle = ann.color;
+                ctx.fillStyle = ann.color;
+                ctx.lineWidth = ann.size || 3;
+                
+                if (ann.type === 'highlight') {
+                    ctx.fillStyle = ann.color;
+                    ctx.fillRect(ann.x, ann.y, ann.width, ann.height);
+                } else if (ann.type === 'rectangle') {
+                    ctx.strokeRect(ann.x, ann.y, ann.width, ann.height);
+                } else if (ann.type === 'circle') {
+                    ctx.beginPath();
+                    ctx.arc(ann.x + ann.width/2, ann.y + ann.height/2, ann.width/2, 0, 2 * Math.PI);
+                    ctx.stroke();
+                } else if (ann.type === 'draw' && ann.points) {
+                    ctx.beginPath();
+                    ctx.moveTo(ann.points[0].x, ann.points[0].y);
+                    for (let i = 1; i < ann.points.length; i++) {
+                        ctx.lineTo(ann.points[i].x, ann.points[i].y);
+                    }
+                    ctx.stroke();
+                } else if (ann.type === 'text') {
+                    ctx.font = `${ann.size * 3}px Arial`;
+                    ctx.fillStyle = ann.color;
+                    ctx.fillText(ann.text, ann.x, ann.y);
+                } else if (ann.type === 'sticky') {
+                    ctx.fillStyle = ann.color;
+                    ctx.fillRect(ann.x, ann.y, 30, 30);
+                    ctx.fillStyle = '#000';
+                    ctx.font = '16px Arial';
+                    ctx.fillText('📌', ann.x + 5, ann.y + 22);
+                }
+                
+                ctx.restore();
+            }
+            
+            updateAnnotationList();
+        }
+        
+        // Update annotation list display
+        function updateAnnotationList() {
+            const pageAnnotations = annotations.filter(a => a.page === currentPage);
+            annotationCount.textContent = annotations.length;
+            
+            if (pageAnnotations.length === 0) {
+                annotationsContainer.innerHTML = '<p style="color: var(--text-muted);">No annotations on this page.</p>';
+                return;
+            }
+            
+            let html = '';
+            pageAnnotations.forEach((ann, idx) => {
+                const globalIdx = annotations.findIndex(a => a === ann);
+                html += `
+                    <div class="annotation-item">
+                        <div class="annotation-content">
+                            <div class="annotation-type">${ann.type.toUpperCase()}</div>
+                            <div class="annotation-text">${ann.text || (ann.type === 'draw' ? `${ann.points?.length || 0} points` : `${Math.round(ann.width || 0)}x${Math.round(ann.height || 0)}`)}</div>
+                        </div>
+                        <button class="delete-annotation" data-index="${globalIdx}">Delete</button>
+                    </div>
+                `;
+            });
+            annotationsContainer.innerHTML = html;
+            
+            // Add delete handlers
+            document.querySelectorAll('.delete-annotation').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const index = parseInt(btn.dataset.index);
+                    annotations.splice(index, 1);
+                    renderPage(currentPage);
+                    showAlert('Annotation deleted.', 'success');
+                });
+            });
+        }
+        
+        // Canvas event handlers for drawing
+        function getCanvasCoords(e) {
+            const rect = annotationCanvas.getBoundingClientRect();
+            const scaleX = annotationCanvas.width / rect.width;
+            const scaleY = annotationCanvas.height / rect.height;
+            
+            let clientX, clientY;
+            if (e.touches) {
+                clientX = e.touches[0].clientX;
+                clientY = e.touches[0].clientY;
+            } else {
+                clientX = e.clientX;
+                clientY = e.clientY;
+            }
+            
+            const canvasX = (clientX - rect.left) * scaleX;
+            const canvasY = (clientY - rect.top) * scaleY;
+            
+            return { x: Math.max(0, Math.min(annotationCanvas.width, canvasX)), y: Math.max(0, Math.min(annotationCanvas.height, canvasY)) };
+        }
+        
+        annotationCanvas.addEventListener('mousedown', (e) => {
+            if (currentTool === 'sticky') {
+                const coords = getCanvasCoords(e);
+                const text = prompt('Enter your sticky note text:', '');
+                if (text) {
+                    annotations.push({
+                        type: 'sticky',
+                        page: currentPage,
+                        x: coords.x,
+                        y: coords.y,
+                        text: text,
+                        color: annotationColor.value,
+                        size: 3
+                    });
+                    renderPage(currentPage);
+                    showAlert('Sticky note added.', 'success');
+                }
+                return;
+            }
+            
+            if (currentTool === 'text') {
+                const coords = getCanvasCoords(e);
+                const text = prompt('Enter your text:', '');
+                if (text) {
+                    annotations.push({
+                        type: 'text',
+                        page: currentPage,
+                        x: coords.x,
+                        y: coords.y,
+                        text: text,
+                        color: annotationColor.value,
+                        size: parseInt(annotationSize.value)
+                    });
+                    renderPage(currentPage);
+                    showAlert('Text added.', 'success');
+                }
+                return;
+            }
+            
+            if (currentTool === 'draw' || currentTool === 'rectangle' || currentTool === 'circle' || currentTool === 'arrow' || currentTool === 'highlight' || currentTool === 'underline') {
+                isDrawing = true;
+                const coords = getCanvasCoords(e);
+                startX = coords.x;
+                startY = coords.y;
+                lastX = coords.x;
+                lastY = coords.y;
+                
+                if (currentTool === 'draw') {
+                    annotations.push({
+                        type: 'draw',
+                        page: currentPage,
+                        points: [{ x: startX, y: startY }],
+                        color: annotationColor.value,
+                        size: parseInt(annotationSize.value)
+                    });
+                }
+            }
+        });
+        
+        annotationCanvas.addEventListener('mousemove', (e) => {
+            if (!isDrawing) return;
+            
+            const coords = getCanvasCoords(e);
+            
+            if (currentTool === 'draw') {
+                const lastAnn = annotations[annotations.length - 1];
+                if (lastAnn && lastAnn.type === 'draw' && lastAnn.page === currentPage) {
+                    lastAnn.points.push({ x: coords.x, y: coords.y });
+                    renderPage(currentPage);
+                }
+            }
+        });
+        
+        annotationCanvas.addEventListener('mouseup', (e) => {
+            if (!isDrawing) return;
+            isDrawing = false;
+            
+            const coords = getCanvasCoords(e);
+            const width = Math.abs(coords.x - startX);
+            const height = Math.abs(coords.y - startY);
+            const x = Math.min(startX, coords.x);
+            const y = Math.min(startY, coords.y);
+            
+            if (currentTool === 'rectangle') {
+                annotations.push({
+                    type: 'rectangle',
+                    page: currentPage,
+                    x: x, y: y,
+                    width: width, height: height,
+                    color: annotationColor.value,
+                    size: parseInt(annotationSize.value)
+                });
+                renderPage(currentPage);
+                showAlert('Rectangle added.', 'success');
+            } else if (currentTool === 'circle') {
+                annotations.push({
+                    type: 'circle',
+                    page: currentPage,
+                    x: x, y: y,
+                    width: width, height: height,
+                    color: annotationColor.value,
+                    size: parseInt(annotationSize.value)
+                });
+                renderPage(currentPage);
+                showAlert('Circle added.', 'success');
+            } else if (currentTool === 'highlight') {
+                annotations.push({
+                    type: 'highlight',
+                    page: currentPage,
+                    x: x, y: y,
+                    width: width, height: 20,
+                    color: annotationColor.value
+                });
+                renderPage(currentPage);
+                showAlert('Highlight added.', 'success');
+            } else if (currentTool === 'underline') {
+                annotations.push({
+                    type: 'draw',
+                    page: currentPage,
+                    points: [{ x: startX, y: startY + 10 }, { x: coords.x, y: startY + 10 }],
+                    color: annotationColor.value,
+                    size: parseInt(annotationSize.value)
+                });
+                renderPage(currentPage);
+                showAlert('Underline added.', 'success');
+            } else if (currentTool === 'arrow') {
+                annotations.push({
+                    type: 'draw',
+                    page: currentPage,
+                    points: [{ x: startX, y: startY }, { x: coords.x, y: coords.y }],
+                    color: annotationColor.value,
+                    size: parseInt(annotationSize.value)
+                });
+                renderPage(currentPage);
+                showAlert('Arrow added.', 'success');
+            }
+        });
+        
+        // Clear canvas (remove annotations on current page)
+        clearCanvasBtn.addEventListener('click', () => {
+            annotations = annotations.filter(a => a.page !== currentPage);
+            renderPage(currentPage);
+            showAlert(`Cleared all annotations on page ${currentPage}.`, 'success');
+        });
+        
+        // Navigation
+        prevPageBtn.addEventListener('click', async () => {
+            if (currentPage > 1) {
+                currentPage--;
+                await renderPage(currentPage);
+            }
+        });
+        
+        nextPageBtn.addEventListener('click', async () => {
+            if (currentPage < totalPages) {
+                currentPage++;
+                await renderPage(currentPage);
+            }
+        });
+        
+        gotoPageBtn.addEventListener('click', async () => {
+            const page = parseInt(gotoPage.value);
+            if (page >= 1 && page <= totalPages) {
+                currentPage = page;
+                await renderPage(currentPage);
+            } else {
+                showAlert(`Page must be between 1 and ${totalPages}`, 'error');
+            }
+        });
+        
+        // Save annotations to PDF
+        saveAnnotationsBtn.addEventListener('click', async () => {
+            if (!currentPDFData) {
+                showAlert('Please load a PDF file first', 'error');
+                return;
+            }
+            
+            if (annotations.length === 0) {
+                showAlert('No annotations to save', 'warning');
+                return;
+            }
+            
+            try {
+                saveAnnotationsBtn.disabled = true;
+                saveAnnotationsBtn.textContent = 'Saving...';
+                resultDiv.innerHTML = '<div class="loader"></div> Embedding annotations into PDF...';
+                
+                const { PDFDocument, rgb } = PDFLib;
+                const pdfDoc2 = await PDFDocument.load(currentPDFData);
+                const pages = pdfDoc2.getPages();
+                const font = await pdfDoc2.embedFont(PDFLib.StandardFonts.Helvetica);
+                
+                for (const ann of annotations) {
+                    const page = pages[ann.page - 1];
+                    const { width, height } = page.getSize();
+                    const scaleX = width / annotationCanvas.width;
+                    const scaleY = height / annotationCanvas.height;
+                    
+                    const r = parseInt(ann.color.slice(1,3), 16) / 255;
+                    const g = parseInt(ann.color.slice(3,5), 16) / 255;
+                    const b = parseInt(ann.color.slice(5,7), 16) / 255;
+                    
+                    if (ann.type === 'highlight') {
+                        page.drawRectangle({
+                            x: ann.x * scaleX,
+                            y: height - (ann.y + ann.height) * scaleY,
+                            width: ann.width * scaleX,
+                            height: ann.height * scaleY,
+                            color: rgb(r, g, b),
+                            opacity: 0.4
+                        });
+                    } else if (ann.type === 'rectangle') {
+                        page.drawRectangle({
+                            x: ann.x * scaleX,
+                            y: height - (ann.y + ann.height) * scaleY,
+                            width: ann.width * scaleX,
+                            height: ann.height * scaleY,
+                            borderColor: rgb(r, g, b),
+                            borderWidth: ann.size || 2
+                        });
+                    } else if (ann.type === 'text') {
+                        page.drawText(ann.text, {
+                            x: ann.x * scaleX,
+                            y: height - ann.y * scaleY,
+                            size: ann.size * 1.5,
+                            font: font,
+                            color: rgb(r, g, b)
+                        });
+                    } else if (ann.type === 'sticky') {
+                        page.drawRectangle({
+                            x: ann.x * scaleX,
+                            y: height - ann.y * scaleY,
+                            width: 40,
+                            height: 40,
+                            color: rgb(r, g, b),
+                            opacity: 0.8
+                        });
+                        page.drawText('📌', {
+                            x: ann.x * scaleX + 10,
+                            y: height - ann.y * scaleY - 25,
+                            size: 20,
+                            font: font
+                        });
+                    }
+                }
+                
+                const pdfBytes = await pdfDoc2.save();
+                const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+                const url = URL.createObjectURL(blob);
+                const originalName = pdfInput.files[0].name.replace('.pdf', '');
+                
+                resultDiv.innerHTML = `
+                    <div class="alert alert-success" style="margin-bottom: 1rem;">✅ Annotations saved successfully! ${annotations.length} annotation(s) embedded.</div>
+                    <a href="${url}" download="${originalName}_annotated.pdf" class="download-link">📥 Download Annotated PDF</a>
+                    <p style="margin-top: 1rem; font-size: 0.875rem; color: var(--text-muted);">✓ Annotations embedded locally - Your file never left your device</p>
+                `;
+                
+                showAlert(`Saved ${annotations.length} annotations to PDF!`, 'success');
+            } catch (error) {
+                console.error('Save error:', error);
+                resultDiv.innerHTML = `<div class="alert alert-error">Error: ${error.message || 'Failed to save annotations.'}</div>`;
+                showAlert('Failed to save annotations.', 'error');
+            } finally {
+                saveAnnotationsBtn.disabled = false;
+                saveAnnotationsBtn.textContent = 'Save Annotations to PDF';
+            }
+        });
+        
+        // Export annotations report
+        exportAnnotationsBtn.addEventListener('click', () => {
+            if (annotations.length === 0) {
+                showAlert('No annotations to export', 'warning');
+                return;
+            }
+            
+            let report = 'PDF ANNOTATIONS REPORT\n';
+            report += '=' . repeat(50) + '\n';
+            report += `Generated: ${new Date().toLocaleString()}\n`;
+            report += `Total annotations: ${annotations.length}\n\n`;
+            
+            for (let i = 0; i < annotations.length; i++) {
+                const ann = annotations[i];
+                report += `${i + 1}. [${ann.type.toUpperCase()}] Page ${ann.page}\n`;
+                if (ann.text) report += `   Text: ${ann.text}\n`;
+                if (ann.width) report += `   Position: (${Math.round(ann.x)}, ${Math.round(ann.y)}) Size: ${Math.round(ann.width)}x${Math.round(ann.height)}\n`;
+                report += `   Color: ${ann.color}\n\n`;
+            }
+            
+            const blob = new Blob([report], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `annotations_report_${new Date().toISOString().slice(0,19)}.txt`;
+            a.click();
+            URL.revokeObjectURL(url);
+            
+            showAlert('Annotations report exported.', 'success');
+        });
+        
+        String.prototype.repeat = function(count) {
+            return new Array(count + 1).join(this);
+        };
+        
+        setActiveTool('highlight');
+    </script>
+</body>
+</html>

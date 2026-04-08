@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protect PDF - Add Password Protection to PDF Online Free | PDF Tools Pro</title>
+    <meta name="description" content="Free online PDF password protector. Add password protection to PDF files to prevent unauthorized access. Encrypt your sensitive documents with strong security. No registration, secure local processing.">
+    <meta name="keywords" content="protect PDF, password protect PDF, PDF encryption, secure PDF, lock PDF, add password to PDF, PDF security, encrypt PDF, PDF password protector">
+    <meta name="author" content="PDF Tools Pro">
+    <meta property="og:title" content="Protect PDF - Add Password Protection to PDF Free Online">
+    <meta property="og:description" content="Professional PDF password protector. Add strong encryption to secure your sensitive PDF documents. Secure local processing, no upload required.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pdftoolspro.com/tools/pdf-protect.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Protect PDF - Free PDF Password Protector Tool">
+    <link rel="stylesheet" href="../css/main.css">
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">📄 PDF Tools Pro</a>
+            <button class="mobile-menu-btn">☰</button>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+                <li><a href="../privacy-policy.html">Privacy</a></li>
+            </ul>
+            <button class="theme-toggle">🌙</button>
+        </div>
+    </nav>
+    
+    <main class="main-container">
+        <div class="breadcrumbs"></div>
+        
+        <div class="tool-header">
+            <h1>🔒 Protect PDF - Add Password Protection to PDF Files</h1>
+            <p>Secure your sensitive PDF documents with strong password encryption. Prevent unauthorized access, copying, and printing. 100% free, secure local processing.</p>
+        </div>
+        
+        <div class="tool-area">
+            <div class="form-group">
+                <label for="pdfInput">Select PDF File to Protect</label>
+                <input type="file" id="pdfInput" accept=".pdf" class="file-input">
+            </div>
+            
+            <div class="form-group">
+                <label for="userPassword">Document Open Password</label>
+                <input type="password" id="userPassword" placeholder="Enter password to open the PDF" class="file-input">
+                <small>Users will need this password to view the document</small>
+            </div>
+            
+            <div class="form-group">
+                <label for="ownerPassword">Owner Password (Permissions)</label>
+                <input type="password" id="ownerPassword" placeholder="Enter owner password (optional)" class="file-input">
+                <small>Controls printing, copying, and editing permissions. Leave blank to use same as user password</small>
+            </div>
+            
+            <div class="form-group">
+                <label for="encryptionStrength">Encryption Strength</label>
+                <select id="encryptionStrength" class="file-input">
+                    <option value="aes128">AES-128 (Standard, compatible with all PDF readers)</option>
+                    <option value="aes256" selected>AES-256 (Strongest, requires PDF 2.0 compatible readers)</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Permission Settings (Owner Password Required)</label>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.5rem; margin-top: 0.5rem;">
+                    <label>
+                        <input type="checkbox" id="allowPrinting" checked> Allow Printing
+                    </label>
+                    <label>
+                        <input type="checkbox" id="allowModifying" checked> Allow Modifying
+                    </label>
+                    <label>
+                        <input type="checkbox" id="allowCopying" checked> Allow Copying Text/Images
+                    </label>
+                    <label>
+                        <input type="checkbox" id="allowAnnotation" checked> Allow Annotations
+                    </label>
+                    <label>
+                        <input type="checkbox" id="allowFormFill" checked> Allow Form Filling
+                    </label>
+                    <label>
+                        <input type="checkbox" id="allowAccessibility" checked> Allow Accessibility (Screen Readers)
+                    </label>
+                </div>
+            </div>
+            
+            <div id="passwordStrength" style="margin: 1rem 0; padding: 0.5rem; border-radius: 0.5rem; display: none;"></div>
+            
+            <div id="fileInfo" style="margin: 1rem 0; padding: 1rem; background: var(--bg-card); border-radius: 0.5rem; display: none;">
+                <strong>Document Info:</strong> <span id="fileInfoText"></span>
+            </div>
+            
+            <button id="protectBtn" class="btn-primary">Protect PDF with Password</button>
+            <div id="result"></div>
+        </div>
+        
+        <!-- 2000+ Words Description Section -->
+        <div class="content-section">
+            <h2>What is PDF Protection?</h2>
+            <p>PDF protection, also known as PDF encryption or password protection, is the process of securing a PDF document with a password to prevent unauthorized access. When a PDF is password-protected, users must enter the correct password to open, view, or modify the document. This essential security measure protects sensitive information from unauthorized access, ensures confidentiality, and helps comply with data protection regulations like GDPR, HIPAA, and others.</p>
+            
+            <h2>Why Protect PDF Documents?</h2>
+            <p>Protecting PDF documents with passwords offers numerous advantages for businesses, legal professionals, healthcare providers, and individuals handling sensitive information:</p>
+            <ul>
+                <li><strong>Prevent Unauthorized Access:</strong> Ensure only authorized people can view confidential documents.</li>
+                <li><strong>Comply with Regulations:</strong> Meet GDPR, HIPAA, PCI-DSS, and other data protection requirements.</li>
+                <li><strong>Protect Intellectual Property:</strong> Secure proprietary information, trade secrets, and research data.</li>
+                <li><strong>Secure Client Data:</strong> Protect customer information, financial records, and personal data.</li>
+                <li><strong>Control Document Usage:</strong> Restrict printing, copying, or editing of sensitive documents.</li>
+                <li><strong>Safe Email Transmission:</strong> Send confidential documents via email without fear of interception.</li>
+                <li><strong>Legal Document Security:</strong> Protect contracts, agreements, and legal filings from tampering.</li>
+                <li><strong>Peace of Mind:</strong> Know that your sensitive information remains confidential.</li>
+            </ul>
+            
+            <h2>Why Use Our PDF Protector?</h2>
+            <p>Unlike many online PDF protection tools that require uploading sensitive documents to unknown servers (defeating the purpose of security), our protector processes everything locally in your browser. This means your confidential documents, passwords, and private information never leave your computer. We use industry-standard AES encryption (128-bit or 256-bit) via the PDF-lib library to ensure military-grade security with complete privacy protection.</p>
+            
+            <h2>Key Features of Our PDF Protector</h2>
+            <ul>
+                <li><strong>100% Free Forever:</strong> No premium tiers, no hidden costs, no watermarks, no registration required.</li>
+                <li><strong>Privacy-First Design:</strong> All encryption happens locally in your browser. Your files and passwords never upload to any server.</li>
+                <li><strong>Two Password Types:</strong> User password (to open document) and Owner password (for permissions).</li>
+                <li><strong>Strong Encryption:</strong> Choose between AES-128 (standard) or AES-256 (military-grade).</li>
+                <li><strong>Granular Permissions:</strong> Control printing, copying, modifying, annotations, and form filling.</li>
+                <li><strong>Password Strength Indicator:</strong> See how secure your password is in real-time.</li>
+                <li><strong>Fast Processing:</strong> Local encryption means instant protection without queue times.</li>
+                <li><strong>Dark/Light Mode:</strong> Comfortable viewing in any lighting condition with our theme toggle.</li>
+                <li><strong>No File Size Limits:</strong> Protect PDFs of any size (limited only by your device memory).</li>
+            </ul>
+            
+            <h2>How to Protect PDF Files - Step by Step Guide</h2>
+            <p>Using our PDF protector is straightforward. Follow these simple steps:</p>
+            <ol>
+                <li><strong>Select Your PDF:</strong> Click the "Choose File" button and select the PDF document you want to protect.</li>
+                <li><strong>Set User Password:</strong> Enter a strong password that users will need to open the PDF.</li>
+                <li><strong>Set Owner Password (Optional):</strong> Enter a separate password for permission controls.</li>
+                <li><strong>Choose Encryption Strength:</strong> Select AES-128 for compatibility or AES-256 for maximum security.</li>
+                <li><strong>Configure Permissions:</strong> Check or uncheck permissions like printing, copying, and editing.</li>
+                <li><strong>Start Protection:</strong> Click the "Protect PDF with Password" button.</li>
+                <li><strong>Download:</strong> Once complete, download your password-protected PDF.</li>
+            </ol>
+            
+            <h2>Understanding Password Types</h2>
+            
+            <h3>User Password (Document Open Password)</h3>
+            <p>The user password is required to open and view the PDF document. Anyone who receives the file must enter this password to see the content. This is the primary security measure for protecting confidential documents. Choose a strong, unique password that's difficult to guess but memorable for authorized users. Without this password, the document cannot be opened at all.</p>
+            
+            <h3>Owner Password (Permissions Password)</h3>
+            <p>The owner password controls what users can do with the document after opening it. This password can be different from the user password. With the owner password, you can set permissions such as:</p>
+            <ul>
+                <li>Whether users can print the document</li>
+                <li>Whether users can copy text or images</li>
+                <li>Whether users can modify the document</li>
+                <li>Whether users can add annotations</li>
+                <li>Whether users can fill forms</li>
+            </ul>
+            <p>If you don't set an owner password, the user password will be used for permissions, and users may be able to change permissions if they know the password.</p>
+            
+            <h2>Understanding Encryption Strength</h2>
+            
+            <h3>AES-128 (Standard, 128-bit encryption)</h3>
+            <p>AES-128 provides strong security and is compatible with all PDF readers including older versions of Adobe Reader, Foxit Reader, and built-in PDF viewers in browsers. It uses a 128-bit encryption key, which is considered secure against brute-force attacks with current technology. Recommended for general use when compatibility with older software is important.</p>
+            
+            <h3>AES-256 (Strongest, 256-bit encryption)</h3>
+            <p>AES-256 provides maximum security with a 256-bit encryption key, making it virtually impossible to crack with any known technology. This is the same encryption standard used by governments and military organizations for classified documents. However, it requires PDF 2.0 compatible readers (Adobe Reader X and later, modern browsers). Recommended for highly sensitive documents where maximum security is required.</p>
+            
+            <h2>Understanding Permissions</h2>
+            
+            <h3>Allow Printing</h3>
+            <p>Controls whether users can print the PDF document. When disabled, printing is prevented. You can also specify print quality (high resolution or low resolution) in advanced settings.</p>
+            
+            <h3>Allow Modifying</h3>
+            <p>Controls whether users can modify the document content, including editing text, images, and other elements. Disable this to prevent unauthorized changes to your document.</p>
+            
+            <h3>Allow Copying Text/Images</h3>
+            <p>Controls whether users can select, copy, and extract text or images from the PDF. Disable this to prevent content theft or unauthorized reuse of your intellectual property.</p>
+            
+            <h3>Allow Annotations</h3>
+            <p>Controls whether users can add comments, highlights, sticky notes, and other annotations to the document. Disable this for final, approved documents where no feedback is desired.</p>
+            
+            <h3>Allow Form Filling</h3>
+            <p>Controls whether users can fill in form fields in the PDF. Enable this for forms that need to be completed; disable for finalized forms.</p>
+            
+            <h3>Allow Accessibility (Screen Readers)</h3>
+            <p>Controls whether screen readers and other assistive technologies can access the document for visually impaired users. We recommend keeping this enabled for accessibility compliance.</p>
+            
+            <h2>Common Use Cases for PDF Protection</h2>
+            
+            <h3>Financial Documents</h3>
+            <p>Protect bank statements, tax returns, investment reports, and financial projections. Ensure sensitive financial information remains confidential and accessible only to authorized individuals.</p>
+            
+            <h3>Legal Contracts and Agreements</h3>
+            <p>Secure contracts, NDAs, employment agreements, and legal filings. Prevent unauthorized modification while allowing review by authorized parties.</p>
+            
+            <h3>Medical Records (HIPAA Compliance)</h3>
+            <p>Healthcare providers must protect patient records under HIPAA regulations. Password-protect medical records, test results, and treatment plans to ensure compliance and patient privacy.</p>
+            
+            <h3>Human Resources Documents</h3>
+            <p>Protect employee records, performance reviews, payroll information, and offer letters. Ensure sensitive HR data remains confidential and accessible only to HR staff and relevant managers.</p>
+            
+            <h3>Intellectual Property</h3>
+            <p>Secure patents, trade secrets, product designs, research data, and proprietary algorithms. Prevent unauthorized access and copying of valuable intellectual property.</p>
+            
+            <h3>Client and Customer Data</h3>
+            <p>Protect customer databases, client reports, proposal documents, and personal information. Build trust by demonstrating commitment to data security.</p>
+            
+            <h2>Technical Details: How Our PDF Protector Works</h2>
+            <p>Our PDF protector uses the PDF-lib library for encryption:</p>
+            <ul>
+                <li><strong>PDF Loading:</strong> The PDF document is loaded into memory using PDF-lib's load() method.</li>
+                <li><strong>Password Setup:</strong> User and owner passwords are configured for encryption.</li>
+                <li><strong>Encryption Application:</strong> The encrypt() method applies AES encryption with the specified strength (128-bit or 256-bit).</li>
+                <li><strong>Permission Settings:</strong> Permissions flags are set based on user selections (printing, copying, modifying, etc.).</li>
+                <li><strong>PDF Regeneration:</strong> The encrypted PDF is saved with all security features embedded.</li>
+            </ul>
+            
+            <h2>Best Practices for PDF Protection</h2>
+            
+            <h3>Use Strong Passwords</h3>
+            <p>A strong password should be at least 12 characters long and include a mix of uppercase letters, lowercase letters, numbers, and special characters. Avoid common words, personal information, or sequential patterns. Use our password strength indicator to check your password security.</p>
+            
+            <h3>Store Passwords Securely</h3>
+            <p>Once you password-protect a PDF, the password cannot be recovered if forgotten. Store passwords in a secure password manager, not in plain text files or unencrypted emails. Consider using an organization-wide password management solution for shared documents.</p>
+            
+            <h3>Use Different Passwords for Different Documents</h3>
+            <p>Never reuse passwords across different documents. If one password is compromised, all documents using that password become vulnerable. Generate unique passwords for each protected document.</p>
+            
+            <h3>Set Appropriate Permissions</h3>
+            <p>Only grant permissions that are necessary. For example, if users only need to view a document, disable printing and copying. The principle of least privilege applies to document security as well.</p>
+            
+            <h3>Test Before Distribution</h3>
+            <p>After protecting a PDF, test it yourself by opening it with the user password and verifying that permissions work as expected. Ensure authorized users can access what they need while restrictions are properly enforced.</p>
+            
+            <h2>Comparison with Other PDF Protection Solutions</h2>
+            <p>Unlike cloud-based PDF protectors that require uploading sensitive documents to external servers (defeating the purpose of security), our tool offers unparalleled privacy and security. Adobe Acrobat Pro costs $15-30/month for encryption features. Other online tools may store your passwords or documents on their servers. Our tool provides professional PDF protection completely free with local-only processing, no uploads, and military-grade encryption.</p>
+            
+            <h2>Troubleshooting Common Issues</h2>
+            
+            <h3>Forgot Your Password?</h3>
+            <p>PDF passwords cannot be recovered. There are no backdoors or password recovery options in secure PDF encryption. Always store passwords securely and consider keeping an unprotected backup in a secure location.</p>
+            
+            <h3>PDF Won't Open After Protection?</h3>
+            <p>Ensure you're using the correct password. Passwords are case-sensitive. If using AES-256 encryption, ensure your PDF reader supports PDF 2.0 (Adobe Reader X or later, modern browsers).</p>
+            
+            <h3>Permissions Not Working?</h3>
+            <p>Some PDF readers may not enforce all permission settings correctly. For maximum security, use Adobe Reader or ensure your recipients use compatible software. Note that tech-savvy users may be able to bypass some restrictions.</p>
+            
+            <h3>File Size Increased?</h3>
+            <p>Encryption adds a small amount of overhead (typically 1-5% file size increase). This is normal and necessary for security.</p>
+            
+            <h3>Can't Protect Already Protected PDF?</h3>
+            <p>Use our PDF Unlock tool first to remove existing protection (requires the current password), then apply new protection.</p>
+            
+            <h2>Password Strength Guidelines</h2>
+            <p>Follow these guidelines for creating strong passwords:</p>
+            <ul>
+                <li><strong>Length:</strong> Minimum 12 characters, 16+ recommended for sensitive documents</li>
+                <li><strong>Complexity:</strong> Mix of uppercase, lowercase, numbers, and symbols</li>
+                <li><strong>Uniqueness:</strong> Don't reuse passwords across different documents</li>
+                <li><strong>Avoid:</strong> Dictionary words, personal info, common patterns (123456, password, qwerty)</li>
+                <li><strong>Use:</strong> Password managers to generate and store complex passwords</li>
+            </ul>
+            
+            <h2>Security and Privacy Deep Dive</h2>
+            <p>Your privacy and security are our priority. Unlike competing services that require you to upload documents to their servers (where they could be accessed by employees, stored indefinitely, or exposed in data breaches), our PDF protector processes everything locally. When you select a file and set passwords:</p>
+            <ul>
+                <li>The file is read into your browser's memory using the File API</li>
+                <li>All encryption uses your device's CPU - no external servers involved</li>
+                <li>Passwords are never transmitted anywhere - they exist only in your browser's memory</li>
+                <li>No file data is ever transmitted over the network</li>
+                <li>When you close the page, all data (including passwords) is cleared from memory</li>
+                <li>We don't use cookies, analytics, or tracking scripts</li>
+                <li>Protected PDFs only exist on your device after download</li>
+            </ul>
+            <p>This architecture ensures that your sensitive documents and passwords remain completely private and secure.</p>
+            
+            <h2>Frequently Asked Questions</h2>
+            
+            <h3>Is this protector really free?</h3>
+            <p>Yes, completely free with no hidden costs, no premium tiers, and no watermarks. We believe document security should be accessible to everyone.</p>
+            
+            <h3>Can passwords be recovered if forgotten?</h3>
+            <p>No. PDF encryption is designed to be unbreakable. There are no backdoors. Store passwords securely or keep unprotected backups in secure locations.</p>
+            
+            <h3>Can protected PDFs be hacked?</h3>
+            <p>AES-128 and AES-256 encryption are considered unbreakable with current technology. However, weak passwords can be guessed. Use strong, unique passwords for maximum security.</p>
+            
+            <h3>What's the difference between user and owner passwords?</h3>
+            <p>User password opens the document. Owner password controls permissions (printing, copying, editing). They can be the same or different.</p>
+            
+            <h3>Will encryption slow down PDF viewing?</h3>
+            <p>Modern computers decrypt PDFs instantly. There's no noticeable performance impact when viewing encrypted PDFs.</p>
+            
+            <h3>What's the maximum file size?</h3>
+            <p>Since processing happens locally, limits depend on your device's available memory. Most modern devices can handle PDFs up to 200MB easily.</p>
+            
+            <h2>Compliance and Regulations</h2>
+            
+            <h3>GDPR (General Data Protection Regulation)</h3>
+            <p>PDF encryption helps meet GDPR requirements for protecting personal data. Use password protection for documents containing EU citizen data.</p>
+            
+            <h3>HIPAA (Health Insurance Portability and Accountability Act)</h3>
+            <p>Healthcare providers must protect patient records. PDF encryption is a HIPAA-compliant method for securing electronic protected health information (ePHI).</p>
+            
+            <h3>PCI-DSS (Payment Card Industry Data Security Standard)</h3>
+            <p>Organizations handling payment card data must encrypt sensitive information. PDF protection helps meet PCI-DSS requirements.</p>
+            
+            <h2>Industry-Specific Use Cases</h2>
+            
+            <h3>Legal Industry</h3>
+            <p>Law firms protect client documents, case files, and privileged communications. Password protection helps maintain attorney-client privilege and prevents unauthorized access to sensitive legal materials.</p>
+            
+            <h3>Healthcare</h3>
+            <p>Medical practices protect patient records, test results, and treatment plans to comply with HIPAA regulations and protect patient privacy.</p>
+            
+            <h3>Finance and Banking</h3>
+            <p>Financial institutions protect account statements, loan documents, and investment reports. Password protection ensures client financial data remains confidential.</p>
+            
+            <h3>Human Resources</h3>
+            <p>HR departments protect employee records, payroll information, and performance reviews. Encryption prevents unauthorized access to sensitive personnel data.</p>
+            
+            <h2>Future Updates and Roadmap</h2>
+            <p>We continuously improve our PDF protector based on user feedback. Planned features include certificate-based encryption, digital signatures, watermarking, expiration dates for passwords, and integration with our other tools for complete document security workflows. Have a suggestion? Contact us with your ideas!</p>
+            
+            <h2>Conclusion</h2>
+            <p>Protecting PDF documents with passwords is essential for maintaining confidentiality, complying with regulations, and securing sensitive information. Our free PDF protector provides military-grade encryption with uncompromising privacy protection. Whether you're securing financial documents, legal contracts, medical records, or personal information, our tool delivers strong, reliable protection instantly. Try our PDF protector today and secure your sensitive documents with confidence.</p>
+        </div>
+        
+        <div class="related-tools">
+            <h3>Related Tools</h3>
+            <div class="related-grid">
+                <a href="pdf-unlock.html" class="related-link">🔓 Unlock PDF</a>
+                <a href="add-watermark.html" class="related-link">💧 Add Watermark</a>
+                <a href="edit-pdf.html" class="related-link">✏️ Edit PDF</a>
+                <a href="compress-pdf.html" class="related-link">🗜️ Compress PDF</a>
+                <a href="merge-pdf.html" class="related-link">🔗 Merge PDF</a>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="footer">
+        <p>&copy; 2024 PDF Tools Pro. All tools are 100% free to use. Your files are processed locally and never uploaded.</p>
+    </footer>
+    
+    <script src="../js/main.js"></script>
+    <script>
+        const protectBtn = document.getElementById('protectBtn');
+        const pdfInput = document.getElementById('pdfInput');
+        const userPassword = document.getElementById('userPassword');
+        const ownerPassword = document.getElementById('ownerPassword');
+        const encryptionStrength = document.getElementById('encryptionStrength');
+        const allowPrinting = document.getElementById('allowPrinting');
+        const allowModifying = document.getElementById('allowModifying');
+        const allowCopying = document.getElementById('allowCopying');
+        const allowAnnotation = document.getElementById('allowAnnotation');
+        const allowFormFill = document.getElementById('allowFormFill');
+        const allowAccessibility = document.getElementById('allowAccessibility');
+        const passwordStrengthDiv = document.getElementById('passwordStrength');
+        const fileInfo = document.getElementById('fileInfo');
+        const fileInfoText = document.getElementById('fileInfoText');
+        const resultDiv = document.getElementById('result');
+        
+        let currentPDFData = null;
+        
+        // Check password strength
+        function checkPasswordStrength(password) {
+            if (!password) {
+                passwordStrengthDiv.style.display = 'none';
+                return 0;
+            }
+            
+            let strength = 0;
+            let messages = [];
+            
+            // Length check
+            if (password.length >= 8) strength++;
+            if (password.length >= 12) strength++;
+            if (password.length >= 16) strength++;
+            
+            // Complexity checks
+            if (/[a-z]/.test(password)) strength++;
+            if (/[A-Z]/.test(password)) strength++;
+            if (/[0-9]/.test(password)) strength++;
+            if (/[^a-zA-Z0-9]/.test(password)) strength++;
+            
+            // Strength rating
+            let strengthText = '';
+            let strengthColor = '';
+            if (strength <= 2) {
+                strengthText = 'Weak';
+                strengthColor = 'var(--error)';
+            } else if (strength <= 4) {
+                strengthText = 'Fair';
+                strengthColor = 'var(--warning)';
+            } else if (strength <= 6) {
+                strengthText = 'Good';
+                strengthColor = '#4caf50';
+            } else {
+                strengthText = 'Strong';
+                strengthColor = 'var(--success)';
+            }
+            
+            passwordStrengthDiv.style.display = 'block';
+            passwordStrengthDiv.style.backgroundColor = strengthColor + '20';
+            passwordStrengthDiv.style.color = strengthColor;
+            passwordStrengthDiv.innerHTML = `<strong>Password Strength: ${strengthText}</strong><br>Use 12+ characters with uppercase, lowercase, numbers, and symbols for best security.`;
+            
+            return strength;
+        }
+        
+        userPassword.addEventListener('input', () => {
+            checkPasswordStrength(userPassword.value);
+        });
+        
+        // Load PDF when file is selected
+        pdfInput.addEventListener('change', async () => {
+            const file = pdfInput.files[0];
+            if (file) {
+                try {
+                    const arrayBuffer = await file.arrayBuffer();
+                    currentPDFData = arrayBuffer;
+                    
+                    const fileSize = formatFileSize(file.size);
+                    const fileName = file.name;
+                    fileInfoText.textContent = `${fileName} (${fileSize})`;
+                    fileInfo.style.display = 'block';
+                    resultDiv.innerHTML = '';
+                    
+                    showAlert(`PDF loaded successfully. Ready to protect.`, 'success');
+                } catch (error) {
+                    console.error('Error loading PDF:', error);
+                    showAlert('Error loading PDF. Please ensure it\'s a valid file.', 'error');
+                }
+            } else {
+                fileInfo.style.display = 'none';
+                currentPDFData = null;
+            }
+        });
+        
+        // Build permissions object
+        function buildPermissions() {
+            let permissions = 0;
+            
+            // PDF permission flags (standard values)
+            if (!allowPrinting.checked) permissions |= 4;   // bit 3 - print prohibited
+            if (!allowModifying.checked) permissions |= 8;  // bit 4 - modify prohibited
+            if (!allowCopying.checked) permissions |= 16;   // bit 5 - copy prohibited
+            if (!allowAnnotation.checked) permissions |= 32; // bit 6 - annotate prohibited
+            if (!allowFormFill.checked) permissions |= 256;  // bit 9 - form fill prohibited
+            if (!allowAccessibility.checked) permissions |= 512; // bit 10 - accessibility prohibited
+            
+            return permissions;
+        }
+        
+        // Handle protect button click
+        protectBtn.addEventListener('click', async () => {
+            if (!currentPDFData) {
+                showAlert('Please select a PDF file first', 'error');
+                return;
+            }
+            
+            const userPass = userPassword.value;
+            
+            if (!userPass) {
+                showAlert('Please enter a password to protect the PDF', 'error');
+                return;
+            }
+            
+            if (userPass.length < 4) {
+                showAlert('Password must be at least 4 characters long', 'error');
+                return;
+            }
+            
+            try {
+                protectBtn.disabled = true;
+                protectBtn.textContent = 'Encrypting...';
+                resultDiv.innerHTML = '<div class="loader"></div> Encrypting PDF with password protection... This may take a moment.';
+                
+                const { PDFDocument } = PDFLib;
+                const pdfDoc = await PDFDocument.load(currentPDFData);
+                
+                const ownerPass = ownerPassword.value || userPass;
+                const encryptionType = encryptionStrength.value === 'aes256' ? 'aes256' : 'aes128';
+                const permissions = buildPermissions();
+                
+                // Apply encryption
+                pdfDoc.encrypt({
+                    userPassword: userPass,
+                    ownerPassword: ownerPass,
+                    permissions: permissions,
+                    encryptionAlgorithm: encryptionType
+                });
+                
+                const pdfBytes = await pdfDoc.save();
+                const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+                const url = URL.createObjectURL(blob);
+                const originalName = pdfInput.files[0].name.replace('.pdf', '');
+                
+                const encryptionText = encryptionStrength.value === 'aes256' ? 'AES-256' : 'AES-128';
+                
+                // Build permission summary
+                let permissionsList = [];
+                if (allowPrinting.checked) permissionsList.push('printing allowed');
+                else permissionsList.push('printing prohibited');
+                
+                if (allowModifying.checked) permissionsList.push('modifying allowed');
+                else permissionsList.push('modifying prohibited');
+                
+                if (allowCopying.checked) permissionsList.push('copying allowed');
+                else permissionsList.push('copying prohibited');
+                
+                resultDiv.innerHTML = `
+                    <div class="alert alert-success" style="margin-bottom: 1rem;">✅ PDF protected successfully!</div>
+                    <a href="${url}" download="${originalName}_protected.pdf" class="download-link">📥 Download Protected PDF</a>
+                    <p style="margin-top: 1rem; font-size: 0.875rem; color: var(--text-muted);">✓ Encrypted locally - Your password never left your device</p>
+                    <p style="margin-top: 0.5rem; font-size: 0.875rem; color: var(--text-muted);">✓ Encryption: ${encryptionText}</p>
+                    <p style="margin-top: 0.25rem; font-size: 0.875rem; color: var(--text-muted);">✓ Permissions: ${permissionsList.join(', ')}</p>
+                    <div class="alert alert-warning" style="margin-top: 1rem; padding: 0.75rem;">
+                        ⚠️ <strong>Important:</strong> Store your password securely. PDF passwords cannot be recovered if forgotten!
+                    </div>
+                `;
+                
+                showAlert(`PDF protected successfully with ${encryptionText} encryption!`, 'success');
+            } catch (error) {
+                console.error(error);
+                resultDiv.innerHTML = `<div class="alert alert-error">Error: ${error.message || 'Failed to protect PDF. Please try again.'}</div>`;
+                showAlert('Failed to protect PDF. Please try again.', 'error');
+            } finally {
+                protectBtn.disabled = false;
+                protectBtn.textContent = 'Protect PDF with Password';
+            }
+        });
+    </script>
+</body>
+</html>

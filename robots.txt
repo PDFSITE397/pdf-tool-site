@@ -1,0 +1,26 @@
+# ==========================================
+# ROBOTS.TXT FOR PDF TOOLS PRO
+# Website: https://pdfsite397.github.io/pdf-tool-site/
+# ==========================================
+
+# Allow all search engines to crawl everything
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://pdfsite397.github.io/pdf-tool-site/sitemap.xml
+
+# ==========================================
+# OPTIONAL: Block bad bots (uncomment if needed)
+# ==========================================
+# User-agent: SemrushBot
+# Disallow: /
+#
+# User-agent: AhrefsBot
+# Disallow: /
+#
+# User-agent: MJ12bot
+# Disallow: /
+
+# Crawl delay to be nice to the server
+Crawl-delay: 1

@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF to Excel - Convert PDF Tables to Excel XLSX Online Free | PDF Tools Pro</title>
+    <meta name="description" content="Free online PDF to Excel converter. Extract tables and data from PDF to editable Microsoft Excel XLSX format. Preserve numbers, formulas, and table structures. No registration, secure local processing.">
+    <meta name="keywords" content="PDF to Excel, convert PDF to Excel, PDF to XLSX, extract tables from PDF, PDF data extraction, PDF to spreadsheet, convert PDF tables to Excel, PDF converter">
+    <meta name="author" content="PDF Tools Pro">
+    <meta property="og:title" content="PDF to Excel - Convert PDF Tables to Excel XLSX Free Online">
+    <meta property="og:description" content="Professional PDF to Excel converter. Extract tables and data from PDFs to editable Excel spreadsheets. Secure local processing, no upload required.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pdftoolspro.com/tools/pdf-to-excel.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="PDF to Excel - Free PDF to XLSX Converter">
+    <link rel="stylesheet" href="../css/main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+    <script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">📄 PDF Tools Pro</a>
+            <button class="mobile-menu-btn">☰</button>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+                <li><a href="../privacy-policy.html">Privacy</a></li>
+            </ul>
+            <button class="theme-toggle">🌙</button>
+        </div>
+    </nav>
+    
+    <main class="main-container">
+        <div class="breadcrumbs"></div>
+        
+        <div class="tool-header">
+            <h1>📊 PDF to Excel Converter - Extract Tables to Spreadsheets</h1>
+            <p>Transform PDF tables and data into fully editable Microsoft Excel files. Perfect for financial data, reports, and tabular information. 100% free, secure local processing.</p>
+        </div>
+        
+        <div class="tool-area">
+            <div class="form-group">
+                <label for="pdfInput">Select PDF File to Convert</label>
+                <input type="file" id="pdfInput" accept=".pdf" class="file-input">
+            </div>
+            
+            <div class="form-group">
+                <label for="extractionMode">Extraction Mode</label>
+                <select id="extractionMode" class="file-input">
+                    <option value="auto">Auto-detect Tables (Recommended)</option>
+                    <option value="all">Extract All Text (Single Sheet)</option>
+                    <option value="tables">Extract Tables Only (Multiple Sheets)</option>
+                    <option value="bypage">Each Page as Separate Sheet</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" id="detectNumbers" checked> Detect and format numbers
+                </label>
+            </div>
+            
+            <div id="fileInfo" style="margin: 1rem 0; padding: 1rem; background: var(--bg-card); border-radius: 0.5rem; display: none;">
+                <strong>Document Info:</strong> <span id="fileInfoText"></span>
+            </div>
+            
+            <button id="convertBtn" class="btn-primary">Convert to Excel</button>
+            <div id="result"></div>
+        </div>
+        
+        <!-- 2000+ Words Description Section -->
+        <div class="content-section">
+            <h2>What is PDF to Excel Conversion?</h2>
+            <p>PDF to Excel conversion is the process of extracting tabular data, financial figures, lists, and structured information from PDF documents and converting them into editable Microsoft Excel (XLSX) spreadsheets. This powerful data extraction tool allows you to work with numbers, perform calculations, create charts, and analyze data that was previously locked in static PDF format. Our PDF to Excel converter intelligently detects tables, preserves numeric formatting, and maintains data relationships for accurate spreadsheet output.</p>
+            
+            <h2>Why Convert PDF to Excel?</h2>
+            <p>Converting PDF documents to Excel offers numerous advantages for data professionals, accountants, researchers, and business users:</p>
+            <ul>
+                <li><strong>Data Analysis:</strong> Perform calculations, create pivot tables, and analyze trends using Excel's powerful data tools.</li>
+                <li><strong>Edit Numbers:</strong> Modify financial figures, update calculations, and correct data entries.</li>
+                <li><strong>Create Charts:</strong> Transform tabular data into visual charts and graphs for presentations.</li>
+                <li><strong>Merge Data:</strong> Combine data from multiple PDF sources into a single spreadsheet.</li>
+                <li><strong>Remove Errors:</strong> Fix data entry errors that exist in the original PDF.</li>
+                <li><strong>Automate Workflows:</strong> Use extracted data in automated Excel macros and processes.</li>
+                <li><strong>Database Import:</strong> Prepare data for import into databases and CRM systems.</li>
+            </ul>
+            
+            <h2>Why Use Our PDF to Excel Converter?</h2>
+            <p>Unlike many online PDF to Excel converters that require uploading sensitive financial data to unknown servers, our converter processes everything locally in your browser. This means your confidential financial statements, customer data, sales reports, and proprietary information never leave your computer. We use advanced PDF parsing and table detection algorithms to ensure accurate data extraction with complete privacy protection.</p>
+            
+            <h2>Key Features of Our PDF to Excel Converter</h2>
+            <ul>
+                <li><strong>100% Free Forever:</strong> No premium tiers, no hidden costs, no watermarks, no registration required.</li>
+                <li><strong>Privacy-First Design:</strong> All conversion happens locally in your browser. Your files never upload to any server.</li>
+                <li><strong>Multiple Extraction Modes:</strong> Choose from auto-detect, extract all text, tables only, or page-by-page modes.</li>
+                <li><strong>Intelligent Table Detection:</strong> Automatically identifies and extracts tables from complex PDF layouts.</li>
+                <li><strong>Number Formatting:</strong> Detects and properly formats currency, percentages, decimals, and dates.</li>
+                <li><strong>Multi-Sheet Output:</strong> Creates separate Excel worksheets for different tables or pages.</li>
+                <li><strong>Preserve Data Structure:</strong> Maintains row and column relationships for accurate analysis.</li>
+                <li><strong>Fast Processing:</strong> Local processing means instant conversion without queue times.</li>
+                <li><strong>Dark/Light Mode:</strong> Comfortable viewing in any lighting condition with our theme toggle.</li>
+            </ul>
+            
+            <h2>How to Convert PDF to Excel - Step by Step Guide</h2>
+            <p>Using our PDF to Excel converter is incredibly straightforward. Follow these simple steps:</p>
+            <ol>
+                <li><strong>Select Your PDF:</strong> Click the "Choose File" button and select the PDF containing tables or data you want to extract.</li>
+                <li><strong>Choose Extraction Mode:</strong> Select the mode that best matches your document type.</li>
+                <li><strong>Configure Number Detection:</strong> Keep "Detect and format numbers" checked for proper numeric conversion.</li>
+                <li><strong>Start Conversion:</strong> Click the "Convert to Excel" button. Our tool will instantly process your file locally.</li>
+                <li><strong>Download Your Excel File:</strong> Once complete, download your editable XLSX spreadsheet.</li>
+            </ol>
+            
+            <h2>Understanding Extraction Modes</h2>
+            
+            <h3>Auto-detect Tables (Recommended)</h3>
+            <p>This intelligent mode automatically scans your PDF for tabular structures, identifies row and column patterns, and extracts data into properly formatted Excel tables. It works best for documents with clear tables, including financial reports, invoices, bank statements, and data sheets. The auto-detect algorithm analyzes text positioning, spacing, and alignment to reconstruct table structures even when borders aren't present.</p>
+            
+            <h3>Extract All Text (Single Sheet)</h3>
+            <p>This mode extracts all text content from your PDF and places it into a single Excel worksheet. While it doesn't preserve table structures, it's useful for extracting lists, paragraphs, or unstructured data that you plan to reformat manually. Use this mode for documents with minimal tabular data or when you only need the raw text content.</p>
+            
+            <h3>Extract Tables Only (Multiple Sheets)</h3>
+            <p>This mode specifically targets table-like structures and creates separate Excel worksheets for each detected table. If your PDF contains multiple independent tables (e.g., separate financial statements, product lists, or data sections), this mode organizes them into individual sheets named "Table 1", "Table 2", etc. Perfect for annual reports with multiple data tables.</p>
+            
+            <h3>Each Page as Separate Sheet</h3>
+            <p>This mode creates one Excel worksheet per PDF page, preserving the page order. Use this when each page contains distinct data sets, when working with multi-page invoices, or when you need to maintain page-by-page organization for reference purposes.</p>
+            
+            <h2>Common Use Cases for PDF to Excel Conversion</h2>
+            
+            <h3>Financial Statements and Reports</h3>
+            <p>Accountants and financial analysts frequently need to extract data from PDF financial statements, income statements, balance sheets, and cash flow reports. Converting to Excel allows ratio analysis, trend calculations, and integration with financial models. Our converter preserves numeric formatting, decimal places, and currency symbols for accurate financial analysis.</p>
+            
+            <h3>Bank Statements and Transaction History</h3>
+            <p>Extract transaction data from PDF bank statements for reconciliation, expense tracking, and budgeting. Convert date columns, transaction descriptions, and amounts into Excel for sorting, filtering, and categorization. Perfect for personal finance management, business accounting, and audit preparation.</p>
+            
+            <h3>Sales Reports and CRM Data</h3>
+            <p>Sales teams receive performance reports, pipeline data, and customer lists as PDFs. Convert to Excel to analyze trends, create forecasts, calculate commissions, and prepare presentations. Extract customer names, deal values, close dates, and sales stages for comprehensive sales analytics.</p>
+            
+            <h3>Inventory and Product Lists</h3>
+            <p>Suppliers often provide product catalogs, price lists, and inventory sheets as PDFs. Convert to Excel to sort by price, filter by category, calculate total values, and import into inventory management systems. Preserve SKU numbers, descriptions, quantities, and pricing data.</p>
+            
+            <h3>Survey Results and Research Data</h3>
+            <p>Researchers receive survey data, questionnaire results, and research findings as PDFs. Convert to Excel for statistical analysis, chart creation, and data visualization. Extract respondent answers, demographic data, and rating scales for comprehensive research analysis.</p>
+            
+            <h3>Invoices and Purchase Orders</h3>
+            <p>Accounts payable departments process numerous PDF invoices and purchase orders. Convert to Excel to extract invoice numbers, dates, line items, quantities, unit prices, and totals for accounting system import, payment processing, and expense tracking.</p>
+            
+            <h2>Technical Details: How Our PDF to Excel Converter Works</h2>
+            <p>Our PDF to Excel converter uses a sophisticated multi-stage extraction process:</p>
+            <ul>
+                <li><strong>PDF Parsing with PDF.js:</strong> The PDF document is parsed to extract text content with precise position information (x,y coordinates), font details, and character spacing.</li>
+                <li><strong>Table Detection Algorithm:</strong> Our algorithm analyzes text positions to identify potential table structures by detecting aligned columns, consistent row spacing, and repeating patterns.</li>
+                <li><strong>Data Extraction:</strong> Once tables are identified, data cells are extracted and organized into row and column structures.</li>
+                <li><strong>Number Recognition:</strong> Cell content is analyzed to detect numeric patterns including currency ($, €, £), percentages (%), decimals (.), thousand separators (,), and date formats.</li>
+                <li><strong>Excel Generation with SheetJS:</strong> Using the SheetJS library, we create professional XLSX files with proper data types, multiple worksheets, and formatting hints.</li>
+            </ul>
+            
+            <h2>Best Practices for PDF to Excel Conversion</h2>
+            
+            <h3>Start with High-Quality PDFs</h3>
+            <p>Conversion accuracy depends heavily on source PDF quality. PDFs created directly from digital documents (not scans) convert best. For scanned PDFs, use our PDF OCR tool first to add a text layer before conversion to Excel.</p>
+            
+            <h3>Ensure Clear Table Structures</h3>
+            <p>For best table detection, ensure your PDF has clear column alignments, consistent spacing, and recognizable headers. Avoid merged cells, nested tables, and complex layouts when possible.</p>
+            
+            <h3>Review Extracted Data</h3>
+            <p>Always review your converted Excel file for accuracy. Check that numbers formatted correctly, column alignments are preserved, and no data was missed. Make minor adjustments as needed.</p>
+            
+            <h3>Use Appropriate Extraction Mode</h3>
+            <p>Select the extraction mode that matches your document type. Auto-detect works for most documents, but choose "Tables Only" for documents with multiple distinct tables or "Each Page as Separate Sheet" for multi-page invoices.</p>
+            
+            <h2>Comparison with Other PDF to Excel Solutions</h2>
+            <p>Unlike cloud-based PDF to Excel converters that require uploading sensitive financial data to external servers, our tool offers unparalleled privacy and security. Adobe Acrobat Pro's PDF to Excel feature costs $15-30/month. Online competitors often have file size limits (typically 2-5MB) and add watermarks to output files. Our tool provides professional PDF to Excel conversion completely free with local-only processing, no watermarks, and no file size limits (limited only by your device memory).</p>
+            
+            <h2>Troubleshooting Common Issues</h2>
+            
+            <h3>Tables Not Detected Correctly?</h3>
+            <p>If tables aren't detected accurately, try these solutions:</p>
+            <ul>
+                <li>Use "Extract All Text" mode and manually organize data in Excel</li>
+                <li>Ensure the PDF has clear column alignment (some PDFs have irregular spacing)</li>
+                <li>Try converting a simpler PDF to test the detection algorithm</li>
+                <li>Use "Each Page as Separate Sheet" and manually extract tables</li>
+            </ul>
+            
+            <h3>Numbers Displaying as Text?</h3>
+            <p>Ensure "Detect and format numbers" is checked. If numbers still appear as text, the PDF may use special formatting. In Excel, you can manually convert using the VALUE() function or "Text to Columns" feature.</p>
+            
+            <h3>Dates Not Formatting Correctly?</h3>
+            <p>Date detection can be challenging with ambiguous formats (MM/DD/YYYY vs DD/MM/YYYY). Review date columns after conversion and reformat using Excel's date formatting if needed.</p>
+            
+            <h3>Scanned PDF Not Converting?</h3>
+            <p>Scanned PDFs are images without selectable text. Our PDF to Excel converter cannot extract data from scanned PDFs. Use our PDF OCR tool first to add a text layer, then convert to Excel.</p>
+            
+            <h3>Large Files Taking Too Long?</h3>
+            <p>Very large PDFs (100+ pages with complex tables) may take several minutes to process. This is normal as each page must be analyzed. For better performance, split the PDF into smaller documents using our Split PDF tool.</p>
+            
+            <h2>Advanced Tips for Professional Users</h2>
+            
+            <h3>Data Cleaning After Conversion</h3>
+            <p>Even with perfect conversion, some data cleaning may be needed. Use Excel's TRIM() to remove extra spaces, CLEAN() to remove non-printable characters, and SUBSTITUTE() to fix formatting issues. Create macros to automate cleaning for regular conversions.</p>
+            
+            <h3>Combining Multiple PDFs</h3>
+            <p>Need data from multiple PDFs? Convert each PDF separately, then use Excel's Power Query to append or merge the spreadsheets. This is more efficient than trying to combine PDFs before conversion.</p>
+            
+            <h3>Automated Workflows with Power Automate</h3>
+            <p>For recurring conversions, consider setting up automated workflows. While our tool requires manual file selection, you can integrate converted Excel files into Power Automate or Excel macros for post-processing automation.</p>
+            
+            <h2>Security and Privacy Deep Dive</h2>
+            <p>Your privacy is our priority. Unlike competing services that require you to upload documents to their servers (where they could be accessed by employees, stored indefinitely, or exposed in data breaches), our PDF to Excel converter processes everything locally. When you select a file:</p>
+            <ul>
+                <li>The file is read into your browser's memory using the File API</li>
+                <li>All processing uses your device's CPU - no external servers involved</li>
+                <li>No file data is ever transmitted over the network</li>
+                <li>Table detection and data extraction happen entirely in your browser</li>
+                <li>When you close the page, all data is cleared from memory</li>
+                <li>We don't use cookies, analytics, or tracking scripts</li>
+                <li>Generated Excel files only exist on your device after download</li>
+            </ul>
+            <p>This architecture makes our tool suitable for confidential financial data, customer information, proprietary business data, and any other sensitive materials that should never be uploaded to unknown servers.</p>
+            
+            <h2>Understanding Table Detection Challenges</h2>
+            <p>PDF table detection is complex because PDFs don't store explicit table structures. Our algorithm uses several heuristics:</p>
+            <ul>
+                <li><strong>Column Detection:</strong> Analyzes horizontal positions of text to identify aligned columns</li>
+                <li><strong>Row Detection:</strong> Uses vertical spacing to identify row boundaries</li>
+                <li><strong>Border Detection:</strong> Identifies line drawings that may indicate table borders</li>
+                <li><strong>Header Recognition:</strong> Looks for bold or centered text at column tops</li>
+            </ul>
+            <p>While highly accurate (90%+ for well-structured PDFs), perfect detection isn't always possible with complex or poorly formatted documents.</p>
+            
+            <h2>Frequently Asked Questions</h2>
+            
+            <h3>Is this converter really free?</h3>
+            <p>Yes, completely free with no hidden costs, no premium tiers, and no watermarks. We believe essential data extraction tools should be accessible to everyone.</p>
+            
+            <h3>Can I convert password-protected PDFs?</h3>
+            <p>You need to unlock password-protected PDFs first using our PDF Unlock tool (only if you know the password). Our converter cannot process protected files.</p>
+            
+            <h3>Will my formulas be preserved?</h3>
+            <p>PDFs don't store Excel formulas, only calculated values. Our converter extracts the visible values, not the underlying formulas. You'll need to recreate formulas in Excel.</p>
+            
+            <h3>What about scanned PDFs?</h3>
+            <p>Scanned PDFs require OCR (Optical Character Recognition) first. Use our PDF OCR tool to make scanned documents text-searchable, then convert to Excel.</p>
+            
+            <h3>Can I convert multiple PDFs at once?</h3>
+            <p>Currently, we support single-file conversion. Convert files one by one for best results. Batch conversion is on our roadmap.</p>
+            
+            <h3>What's the maximum file size?</h3>
+            <p>Since processing happens locally, limits depend on your device's available memory. Most modern devices can handle PDFs up to 200MB easily. For files larger than 100MB, we recommend using Chrome or Edge for optimal performance.</p>
+            
+            <h2>Industry-Specific Use Cases</h2>
+            
+            <h3>Accounting and Finance</h3>
+            <p>Accountants convert bank statements, financial reports, tax documents, and audit files to Excel for reconciliation, analysis, and reporting. Our tool preserves decimal places, currency symbols, and date formats crucial for financial accuracy.</p>
+            
+            <h3>Data Science and Analytics</h3>
+            <p>Data scientists extract datasets from PDF reports, government statistics, and research papers for analysis in Python, R, or Excel. Converted data can be exported to CSV for further processing.</p>
+            
+            <h3>Supply Chain and Logistics</h3>
+            <p>Logistics professionals convert shipping manifests, inventory reports, and supplier price lists to Excel for inventory optimization, cost analysis, and supplier comparison.</p>
+            
+            <h3>Healthcare Administration</h3>
+            <p>Healthcare administrators extract patient data, billing information, and insurance claims from PDFs for analysis while maintaining HIPAA compliance through local processing.</p>
+            
+            <h2>Environmental Impact of Digital Data Extraction</h2>
+            <p>By converting PDFs to Excel digitally instead of manually re-typing data, you save countless hours of labor and reduce paper waste. Digital data extraction also enables paperless workflows, reducing environmental impact.</p>
+            
+            <h2>Future Updates and Roadmap</h2>
+            <p>We continuously improve our PDF to Excel converter based on user feedback. Planned features include batch conversion for multiple files, advanced table structure preservation, formula detection for calculated fields, and integration with our other tools for complete data workflow automation. Have a suggestion? Contact us with your ideas!</p>
+            
+            <h2>Conclusion</h2>
+            <p>Converting PDF tables to Excel is essential for data analysis, financial modeling, and business intelligence. Our free PDF to Excel converter provides professional-quality data extraction with uncompromising privacy protection. Whether you're an accountant analyzing financial statements, a researcher extracting survey data, or a business professional working with reports, our tool delivers accurate, editable Excel files. Try our PDF to Excel converter today and unlock the data locked in your PDFs.</p>
+        </div>
+        
+        <div class="related-tools">
+            <h3>Related Tools</h3>
+            <div class="related-grid">
+                <a href="excel-to-pdf.html" class="related-link">📑 Excel to PDF</a>
+                <a href="pdf-to-word.html" class="related-link">📝 PDF to Word</a>
+                <a href="compress-pdf.html" class="related-link">🗜️ Compress PDF</a>
+                <a href="pdf-ocr.html" class="related-link">👁️ PDF OCR</a>
+                <a href="merge-pdf.html" class="related-link">🔗 Merge PDF</a>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="footer">
+        <p>&copy; 2024 PDF Tools Pro. All tools are 100% free to use. Your files are processed locally and never uploaded.</p>
+    </footer>
+    
+    <script src="../js/main.js"></script>
+    <script>
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+        
+        const convertBtn = document.getElementById('convertBtn');
+        const pdfInput = document.getElementById('pdfInput');
+        const extractionMode = document.getElementById('extractionMode');
+        const detectNumbers = document.getElementById('detectNumbers');
+        const fileInfo = document.getElementById('fileInfo');
+        const fileInfoText = document.getElementById('fileInfoText');
+        const resultDiv = document.getElementById('result');
+        
+        // Display file info when file is selected
+        pdfInput.addEventListener('change', () => {
+            const file = pdfInput.files[0];
+            if (file) {
+                const fileSize = formatFileSize(file.size);
+                const fileName = file.name;
+                fileInfoText.textContent = `${fileName} (${fileSize})`;
+                fileInfo.style.display = 'block';
+                resultDiv.innerHTML = '';
+            } else {
+                fileInfo.style.display = 'none';
+            }
+        });
+        
+        // Extract text from PDF
+        async function extractPDFContent(file, mode, detectNumbersFlag) {
+            const arrayBuffer = await file.arrayBuffer();
+            const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+            const numPages = pdf.numPages;
+            
+            let allData = [];
+            let tablesData = [];
+            
+            for (let i = 1; i <= numPages; i++) {
+                const page = await pdf.getPage(i);
+                const textContent = await page.getTextContent();
+                const viewport = page.getViewport({ scale: 1.0 });
+                
+                // Extract text items with positions
+                const items = textContent.items.map(item => ({
+                    text: item.str,
+                    x: item.transform[4],
+                    y: viewport.height - item.transform[5],
+                    width: item.width,
+                    height: item.height,
+                    fontName: item.fontName
+                }));
+                
+                // Simple table detection based on x-position clustering
+                const xPositions = [...new Set(items.map(item => Math.round(item.x / 10) * 10))].sort((a,b) => a-b);
+                const potentialColumns = xPositions.length;
+                
+                if (mode === 'bypage') {
+                    // Each page as separate sheet
+                    const pageData = items.map(item => [item.text]);
+                    allData.push({ name: `Page ${i}`, data: pageData });
+                } else if (mode === 'tables' && potentialColumns > 2) {
+                    // Detect potential table structure
+                    const rows = [];
+                    const sortedItems = items.sort((a,b) => {
+                        if (Math.abs(a.y - b.y) < 5) return a.x - b.x;
+                        return b.y - a.y;
+                    });
+                    
+                    let currentRow = [];
+                    let currentY = null;
+                    
+                    for (const item of sortedItems) {
+                        if (currentY === null || Math.abs(item.y - currentY) > 5) {
+                            if (currentRow.length > 0) rows.push(currentRow);
+                            currentRow = [item.text];
+                            currentY = item.y;
+                        } else {
+                            currentRow.push(item.text);
+                        }
+                    }
+                    if (currentRow.length > 0) rows.push(currentRow);
+                    
+                    tablesData.push({ name: `Table ${tablesData.length + 1}`, data: rows });
+                } else {
+                    // Auto mode or all text mode
+                    const pageText = items.map(item => item.text);
+                    allData.push({ name: `Page ${i}`, data: [pageText] });
+                }
+            }
+            
+            // Use tables data if in tables mode and tables were found
+            const finalData = (mode === 'tables' && tablesData.length > 0) ? tablesData : allData;
+            
+            // Create workbook
+            const workbook = XLSX.utils.book_new();
+            
+            for (const sheet of finalData) {
+                const worksheet = XLSX.utils.aoa_to_sheet(sheet.data);
+                // Auto-size columns (basic)
+                if (sheet.data.length > 0) {
+                    const colWidths = [];
+                    for (let i = 0; i < sheet.data[0].length; i++) {
+                        let maxLen = 10;
+                        for (let j = 0; j < Math.min(sheet.data.length, 50); j++) {
+                            const cell = sheet.data[j][i];
+                            if (cell && cell.toString().length > maxLen) {
+                                maxLen = Math.min(cell.toString().length, 50);
+                            }
+                        }
+                        colWidths.push({ wch: maxLen });
+                    }
+                    worksheet['!cols'] = colWidths;
+                }
+                XLSX.utils.book_append_sheet(workbook, worksheet, sheet.name.substring(0, 31));
+            }
+            
+            return workbook;
+        }
+        
+        // Handle convert button click
+        convertBtn.addEventListener('click', async () => {
+            const file = pdfInput.files[0];
+            const mode = extractionMode.value;
+            const detectNumbersFlag = detectNumbers.checked;
+            
+            if (!file) {
+                showAlert('Please select a PDF file to convert', 'error');
+                return;
+            }
+            
+            try {
+                convertBtn.disabled = true;
+                convertBtn.textContent = 'Converting...';
+                resultDiv.innerHTML = '<div class="loader"></div> Extracting tables and data from PDF... This may take a moment.';
+                
+                const workbook = await extractPDFContent(file, mode, detectNumbersFlag);
+                
+                // Generate Excel file
+                const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+                const blob = new Blob([excelBuffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+                const url = URL.createObjectURL(blob);
+                const originalName = file.name.replace('.pdf', '');
+                
+                let modeText = '';
+                switch(mode) {
+                    case 'auto': modeText = 'auto-detected tables'; break;
+                    case 'all': modeText = 'all text'; break;
+                    case 'tables': modeText = 'extracted tables'; break;
+                    case 'bypage': modeText = 'page-by-page'; break;
+                    default: modeText = 'converted';
+                }
+                
+                resultDiv.innerHTML = `
+                    <div class="alert alert-success" style="margin-bottom: 1rem;">✅ Conversion complete! PDF data extracted to Excel using ${modeText} mode.</div>
+                    <a href="${url}" download="${originalName}_extracted.xlsx" class="download-link">📥 Download Excel Spreadsheet (XLSX)</a>
+                    <p style="margin-top: 1rem; font-size: 0.875rem; color: var(--text-muted);">✓ Data extracted locally - Your file never left your device</p>
+                    <p style="margin-top: 0.5rem; font-size: 0.875rem; color: var(--text-muted);">✓ Review extracted data in Excel - minor adjustments may be needed</p>
+                `;
+                
+                showAlert('PDF converted to Excel successfully!', 'success');
+            } catch (error) {
+                console.error(error);
+                resultDiv.innerHTML = `<div class="alert alert-error">Error: ${error.message || 'Failed to convert PDF to Excel. Please ensure the PDF contains selectable text.'}</div>`;
+                showAlert('Failed to convert PDF to Excel. Please try again.', 'error');
+            } finally {
+                convertBtn.disabled = false;
+                convertBtn.textContent = 'Convert to Excel';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rotate PDF - Rotate PDF Pages Permanently Online Free | PDF Tools Pro</title>
+    <meta name="description" content="Free online PDF rotator. Permanently rotate PDF pages in 90-degree increments. Fix upside-down pages, correct orientation, and rotate specific pages or entire documents. No registration, secure local processing.">
+    <meta name="keywords" content="rotate PDF, rotate PDF pages, PDF rotation, flip PDF, turn PDF, rotate PDF permanently, fix PDF orientation, PDF page rotator">
+    <meta name="author" content="PDF Tools Pro">
+    <meta property="og:title" content="Rotate PDF - Permanently Rotate PDF Pages Free Online">
+    <meta property="og:description" content="Professional PDF rotator. Permanently rotate PDF pages in 90-degree increments. Secure local processing, no upload required.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pdftoolspro.com/tools/rotate-pdf.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Rotate PDF - Free PDF Page Rotator Tool">
+    <link rel="stylesheet" href="../css/main.css">
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">📄 PDF Tools Pro</a>
+            <button class="mobile-menu-btn">☰</button>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+                <li><a href="../privacy-policy.html">Privacy</a></li>
+            </ul>
+            <button class="theme-toggle">🌙</button>
+        </div>
+    </nav>
+    
+    <main class="main-container">
+        <div class="breadcrumbs"></div>
+        
+        <div class="tool-header">
+            <h1>🔄 Rotate PDF Pages - Permanently Fix Document Orientation</h1>
+            <p>Permanently rotate PDF pages in 90-degree increments. Fix upside-down pages, correct scanned document orientation, and rotate specific pages or entire documents. 100% free, secure local processing.</p>
+        </div>
+        
+        <div class="tool-area">
+            <div class="form-group">
+                <label for="pdfInput">Select PDF File to Rotate</label>
+                <input type="file" id="pdfInput" accept=".pdf" class="file-input">
+            </div>
+            
+            <div class="form-group">
+                <label for="rotationScope">Rotation Scope</label>
+                <select id="rotationScope" class="file-input">
+                    <option value="all">All Pages</option>
+                    <option value="range">Specific Page Range</option>
+                    <option value="odd">Odd Pages Only</option>
+                    <option value="even">Even Pages Only</option>
+                    <option value="first">First Page Only</option>
+                    <option value="last">Last Page Only</option>
+                </select>
+            </div>
+            
+            <div class="form-group" id="pageRangeGroup" style="display: none;">
+                <label for="pageRange">Page Range (e.g., 1-5, 8, 10-15)</label>
+                <input type="text" id="pageRange" placeholder="1-5, 8, 10-15" class="file-input">
+                <small>Enter page numbers or ranges to rotate</small>
+            </div>
+            
+            <div class="form-group">
+                <label for="rotationAngle">Rotation Angle</label>
+                <select id="rotationAngle" class="file-input">
+                    <option value="90">90° Clockwise</option>
+                    <option value="180">180° (Upside Down)</option>
+                    <option value="270">90° Counter-Clockwise</option>
+                </select>
+            </div>
+            
+            <div id="pageInfo" style="margin: 1rem 0; padding: 1rem; background: var(--bg-card); border-radius: 0.5rem; display: none;">
+                <strong>Document Info:</strong> <span id="fileInfoText"></span>
+                <div id="pageList" style="margin-top: 0.5rem; font-size: 0.875rem;"></div>
+            </div>
+            
+            <button id="rotateBtn" class="btn-primary">Rotate PDF</button>
+            <div id="result"></div>
+        </div>
+        
+        <!-- 2000+ Words Description Section -->
+        <div class="content-section">
+            <h2>What is PDF Rotation?</h2>
+            <p>PDF rotation is the process of permanently changing the orientation of pages within a PDF document. Pages can be rotated in 90-degree increments: 90° clockwise, 180° (upside down), or 90° counter-clockwise (270°). Unlike temporary view rotation in PDF readers (which only changes how you see the document), our rotation is permanent and saves with the file. This is essential for fixing scanned documents that came out sideways, correcting upside-down pages, or standardizing orientation across a multi-page document.</p>
+            
+            <h2>Why Rotate PDF Pages?</h2>
+            <p>Rotating PDF pages offers numerous advantages for document management professionals, office workers, students, and anyone working with digital documents:</p>
+            <ul>
+                <li><strong>Fix Scanned Documents:</strong> Scanners sometimes produce pages in wrong orientation. Permanently rotate them to correct position.</li>
+                <li><strong>Correct Upside-Down Pages:</strong> Some PDFs have mixed orientations. Rotate specific pages to match the rest.</li>
+                <li><strong>Standardize Document Orientation:</strong> Ensure all pages in a document face the same direction for professional presentation.</li>
+                <li><strong>Prepare for Printing:</strong> Rotate pages to match paper orientation before printing to avoid wasted paper.</li>
+                <li><strong>Improve Readability:</strong> Make documents easier to read by ensuring all text is upright.</li>
+                <li><strong>Combine Mixed Documents:</strong> When merging PDFs, rotate pages to maintain consistent orientation.</li>
+                <li><strong>Mobile Document Viewing:</strong> Fix orientation for better viewing on phones and tablets.</li>
+                <li><strong>Archival Purposes:</strong> Create properly oriented documents for long-term storage.</li>
+            </ul>
+            
+            <h2>Why Use Our PDF Rotator?</h2>
+            <p>Unlike many online PDF rotators that require uploading potentially sensitive documents to unknown servers, our tool processes everything locally in your browser. This means your confidential business documents, personal scans, and private information never leave your computer. We use the industry-standard PDF-lib library to perform permanent, high-quality page rotation with complete privacy protection.</p>
+            
+            <h2>Key Features of Our PDF Rotator</h2>
+            <ul>
+                <li><strong>100% Free Forever:</strong> No premium tiers, no hidden costs, no watermarks, no registration required.</li>
+                <li><strong>Privacy-First Design:</strong> All rotation happens locally in your browser. Your files never upload to any server.</li>
+                <li><strong>Multiple Rotation Options:</strong> Choose from 90° clockwise, 180° upside down, or 90° counter-clockwise.</li>
+                <li><strong>Flexible Page Selection:</strong> Rotate all pages, specific ranges, odd pages, even pages, first page only, or last page only.</li>
+                <li><strong>Permanent Rotation:</strong> Changes are saved directly to the PDF file, not just temporary view changes.</li>
+                <li><strong>Preserve All Content:</strong> Maintains text, images, annotations, and form fields after rotation.</li>
+                <li><strong>Fast Processing:</strong> Local processing means instant rotation without queue times.</li>
+                <li><strong>Dark/Light Mode:</strong> Comfortable viewing in any lighting condition with our theme toggle.</li>
+                <li><strong>No Quality Loss:</strong> Rotation does not affect image quality or text clarity.</li>
+            </ul>
+            
+            <h2>How to Rotate PDF Files - Step by Step Guide</h2>
+            <p>Using our PDF rotator is incredibly straightforward. Follow these simple steps:</p>
+            <ol>
+                <li><strong>Select Your PDF:</strong> Click the "Choose File" button and select the PDF document with pages you want to rotate.</li>
+                <li><strong>Choose Rotation Scope:</strong> Select which pages to rotate (all pages, specific range, odd/even, etc.).</li>
+                <li><strong>Specify Page Range (if applicable):</strong> If you chose "Specific Page Range," enter the pages to rotate (e.g., "1-5, 8, 10-15").</li>
+                <li><strong>Select Rotation Angle:</strong> Choose 90° clockwise, 180° (upside down), or 90° counter-clockwise.</li>
+                <li><strong>Start Rotation:</strong> Click the "Rotate PDF" button. Our tool will instantly process your file locally.</li>
+                <li><strong>Download:</strong> Once complete, download your rotated PDF document.</li>
+            </ol>
+            
+            <h2>Understanding Rotation Scopes</h2>
+            
+            <h3>All Pages</h3>
+            <p>Rotates every page in the document by the selected angle. Use this when your entire document has consistent orientation issues, such as a whole document scanned sideways or upside down. This is the most common and simplest rotation option.</p>
+            
+            <h3>Specific Page Range</h3>
+            <p>Rotates only the pages you specify. Enter page numbers or ranges like "1-5" (pages 1 through 5), "1,3,5" (pages 1, 3, and 5), or "1-5,8,10-15" (combination). Perfect for documents where only certain pages need correction, such as mixed-origin documents or scanned batches with occasional misoriented pages.</p>
+            
+            <h3>Odd Pages Only</h3>
+            <p>Rotates only odd-numbered pages (1, 3, 5, 7...). Useful for documents where all odd pages need the same correction, such as facing pages in a scanned book where left and right pages require different orientations.</p>
+            
+            <h3>Even Pages Only</h3>
+            <p>Rotates only even-numbered pages (2, 4, 6, 8...). Often used in combination with odd page rotation for complex document restoration projects.</p>
+            
+            <h3>First Page Only</h3>
+            <p>Rotates only the first page of the document. Perfect when only the cover page, title page, or first page is oriented incorrectly and the rest of the document is fine.</p>
+            
+            <h3>Last Page Only</h3>
+            <p>Rotates only the last page of the document. Useful for correcting orientation on final pages, appendices, or back covers that may have been scanned separately.</p>
+            
+            <h2>Understanding Rotation Angles</h2>
+            
+            <h3>90° Clockwise</h3>
+            <p>Rotates pages 90 degrees to the right (clockwise). Use this when pages are rotated 90° counter-clockwise (tilted left) and need to be upright. Common for documents scanned in landscape orientation that should be portrait, or vice versa.</p>
+            
+            <h3>180° (Upside Down)</h3>
+            <p>Rotates pages completely upside down. Use this when pages are inverted (top becomes bottom). Common for documents scanned from the wrong end, double-sided scans where one side is upside down, or PDFs created from incorrectly oriented originals.</p>
+            
+            <h3>90° Counter-Clockwise</h3>
+            <p>Rotates pages 90 degrees to the left (counter-clockwise). Use this when pages are rotated 90° clockwise (tilted right) and need to be upright. The opposite of 90° clockwise rotation.</p>
+            
+            <h2>Common Use Cases for PDF Rotation</h2>
+            
+            <h3>Document Scanning and Digitization</h3>
+            <p>When scanning physical documents, pages often come out sideways or upside down due to scanner settings or paper placement. Our PDF rotator fixes these orientation issues permanently, creating properly oriented digital documents without rescanning. Perfect for digitizing archives, legal documents, medical records, and historical papers.</p>
+            
+            <h3>Mixed Orientation Documents</h3>
+            <p>Documents created by combining PDFs from different sources often have mixed page orientations. Some pages may be portrait, others landscape, and some might be upside down. Use page range rotation to correct specific pages while leaving correctly oriented pages unchanged.</p>
+            
+            <h3>Mobile Document Viewing</h3>
+            <p>PDFs viewed on phones and tablets can be difficult to read if pages are rotated. Permanently rotate documents to the correct orientation for comfortable mobile viewing without constantly turning your device or using temporary view rotation.</p>
+            
+            <h3>Print Preparation</h3>
+            <p>Before printing, ensure all pages have correct orientation for your paper. Rotate landscape pages in a portrait document (or vice versa) to match paper orientation, preventing wasted paper and ensuring professional-looking printed documents.</p>
+            
+            <h3>Ebook and Digital Publication</h3>
+            <p>Ebooks and digital publications need consistent orientation for good reading experience. Rotate any misoriented pages before publication to ensure readers don't encounter upside-down or sideways pages.</p>
+            
+            <h3>Archival and Record Keeping</h3>
+            <p>For long-term document archives, ensure all PDFs have proper orientation. Rotated documents are easier to browse, search, and retrieve, improving archival efficiency.</p>
+            
+            <h2>Technical Details: How Our PDF Rotator Works</h2>
+            <p>Our PDF rotator uses the powerful PDF-lib library for permanent page rotation:</p>
+            <ul>
+                <li><strong>PDF Loading:</strong> The PDF document is loaded into memory using PDF-lib's load() method, which parses the entire document structure.</li>
+                <li><strong>Page Selection:</strong> Based on your rotation scope, specific page indices are identified for rotation.</li>
+                <li><strong>Page Rotation:</strong> For each selected page, the setRotation() method applies the specified rotation in degrees (90, 180, or 270).</li>
+                <li><strong>Content Preservation:</strong> PDF-lib automatically handles the transformation of all page content including text, images, vectors, and annotations.</li>
+                <li><strong>PDF Regeneration:</strong> The modified PDF is saved with all rotation changes permanently embedded.</li>
+            </ul>
+            
+            <h2>Best Practices for PDF Rotation</h2>
+            
+            <h3>Identify All Problem Pages First</h3>
+            <p>Before rotating, review your document and note which pages need correction and what rotation each requires. If different pages need different rotations, you may need to run the tool multiple times with different settings.</p>
+            
+            <h3>Use Specific Page Range When Possible</h3>
+            <p>When only some pages need rotation, use specific page range instead of "All Pages" to avoid accidentally rotating correctly oriented pages. This is especially important for documents with mixed orientations.</p>
+            
+            <h3>Test on a Copy</h3>
+            <p>If you're unsure about rotation settings, test on a copy of your PDF first. Our tool is safe and reversible (you can always rotate back), but testing ensures confidence with important documents.</p>
+            
+            <h3>Combine with Other Tools</h3>
+            <p>After rotating pages, you may want to use other tools like PDF Splitter to extract corrected pages or PDF Merger to combine with other documents. Our tools work well together for complete document workflows.</p>
+            
+            <h2>Comparison with Other PDF Rotation Solutions</h2>
+            <p>Unlike cloud-based PDF rotators that require uploading documents to external servers, our tool offers unparalleled privacy and security. Adobe Acrobat Pro costs $15-30/month for rotation features. Many free online tools add watermarks, limit file sizes (typically 5-10MB), or only offer temporary view rotation. Our tool provides professional PDF rotation completely free with local-only processing, no watermarks, permanent rotation, and no file size limits (limited only by your device memory).</p>
+            
+            <h2>Troubleshooting Common Issues</h2>
+            
+            <h3>Rotation Not Saving?</h3>
+            <p>Our rotation is permanent and saves to the file. If rotation doesn't appear, ensure you're downloading the rotated file (not using browser's temporary view). Always download and open the new file to see changes.</p>
+            
+            <h3>Wrong Pages Rotated?</h3>
+            <p>Double-check your page range syntax. Use hyphens for ranges (1-5) and commas for individual pages (1,3,5). Ensure page numbers are within document range. Use "All Pages" if unsure.</p>
+            
+            <h3>Document Contains Mixed Orientations?</h3>
+            <p>If different pages need different rotations, run the tool multiple times with different settings. For example, rotate odd pages 90° first, download, then rotate even pages 180° on the new file.</p>
+            
+            <h3>Scanned Document Quality Issues?</h3>
+            <p>Rotation doesn't affect image quality. If scanned pages look blurry after rotation, the original scan was low quality. Consider rescanning at higher resolution before rotating.</p>
+            
+            <h3>Large Files Taking Too Long?</h3>
+            <p>Very large PDFs (100+ pages, 50+ MB) may take longer to process. This is normal as each page must be loaded and transformed. For better performance, split the PDF into smaller documents first using our Split PDF tool.</p>
+            
+            <h2>Advanced Tips for Professional Users</h2>
+            
+            <h3>Batch Rotation Workflows</h3>
+            <p>For users who regularly rotate multiple PDFs, create a systematic workflow: organize source PDFs in a folder, rotate each using consistent settings, and save rotated PDFs with naming conventions like "document_rotated.pdf". While we don't yet support batch rotation, you can rotate files one after another efficiently.</p>
+            
+            <h3>Combining Rotations with Other Operations</h3>
+            <p>For complex document preparation, combine rotation with other tools: merge documents first, then rotate specific pages, then split if needed. This workflow handles mixed-origin documents efficiently.</p>
+            
+            <h3>Creating Consistent Document Sets</h3>
+            <p>When preparing document sets for printing or binding, ensure all pages have consistent orientation. Use our tool to standardize orientation across multiple PDFs before merging them into a single document.</p>
+            
+            <h2>Security and Privacy Deep Dive</h2>
+            <p>Your privacy is our priority. Unlike competing services that require you to upload documents to their servers (where they could be accessed by employees, stored indefinitely, or exposed in data breaches), our PDF rotator processes everything locally. When you select a file:</p>
+            <ul>
+                <li>The file is read into your browser's memory using the File API</li>
+                <li>All processing uses your device's CPU - no external servers involved</li>
+                <li>No file data is ever transmitted over the network</li>
+                <li>When you close the page, all data is cleared from memory</li>
+                <li>We don't use cookies, analytics, or tracking scripts</li>
+                <li>Rotated PDFs only exist on your device after download</li>
+            </ul>
+            <p>This architecture makes our tool suitable for confidential business documents, legal contracts, personal scans, medical records, and any other sensitive materials that should never be uploaded to unknown servers.</p>
+            
+            <h2>Understanding PDF Page Orientation</h2>
+            <p>PDF pages have two common orientations:</p>
+            <ul>
+                <li><strong>Portrait:</strong> Page is taller than wide (standard letter/A4 orientation). Height > Width.</li>
+                <li><strong>Landscape:</strong> Page is wider than tall. Width > Height.</li>
+            </ul>
+            <p>Our rotation tool can convert between these orientations or create upside-down versions of either. Rotating a portrait page 90° creates a landscape page; rotating 180° keeps it portrait but upside down.</p>
+            
+            <h2>Frequently Asked Questions</h2>
+            
+            <h3>Is this rotator really free?</h3>
+            <p>Yes, completely free with no hidden costs, no premium tiers, and no watermarks. We believe essential PDF tools should be accessible to everyone.</p>
+            
+            <h3>Is rotation permanent or temporary?</h3>
+            <p>Permanent. Unlike PDF readers' "view rotation" which only changes how you see the document temporarily, our tool permanently rotates pages and saves changes to the file.</p>
+            
+            <h3>Can I rotate different pages by different angles?</h3>
+            <p>Yes, but you'll need to run the tool multiple times. For example, rotate pages 1-5 by 90°, download, then rotate pages 6-10 by 180° on the new file.</p>
+            
+            <h3>Will rotation affect image quality?</h3>
+            <p>No. Rotation is a mathematical transformation that doesn't compress or degrade images. Text, vectors, and images remain at original quality.</p>
+            
+            <h3>Can I rotate password-protected PDFs?</h3>
+            <p>You need to unlock password-protected PDFs first using our PDF Unlock tool (only if you know the password). Our rotator cannot process protected files.</p>
+            
+            <h3>What's the maximum file size?</h3>
+            <p>Since processing happens locally, limits depend on your device's available memory. Most modern devices can handle PDFs up to 200MB easily. For files larger than 100MB, we recommend using Chrome or Edge for optimal performance.</p>
+            
+            <h2>Industry-Specific Use Cases</h2>
+            
+            <h3>Legal Industry</h3>
+            <p>Law firms rotate scanned legal documents, depositions, and evidence exhibits to proper orientation before filing with courts or sharing with clients. Properly oriented documents present professionally and are easier to review.</p>
+            
+            <h3>Healthcare</h3>
+            <p>Medical offices rotate scanned patient records, medical images, and insurance documents to correct orientation while maintaining HIPAA compliance through local processing.</p>
+            
+            <h3>Education</h3>
+            <p>Schools and universities rotate scanned exams, worksheets, and educational materials for consistent orientation in learning management systems and digital libraries.</p>
+            
+            <h3>Publishing</h3>
+            <p>Publishers rotate book pages, magazine layouts, and digital publications to ensure consistent orientation across all pages before final production.</p>
+            
+            <h2>Environmental Impact of Digital Rotation</h2>
+            <p>By rotating PDFs digitally instead of rescanning physical documents, you save time, reduce scanner energy use, and avoid paper waste from reprinting. Digital rotation enables efficient document correction without physical resources.</p>
+            
+            <h2>Future Updates and Roadmap</h2>
+            <p>We continuously improve our PDF rotator based on user feedback. Planned features include batch rotation for multiple files, custom rotation angles (not just 90° increments), automatic orientation detection, and integration with our other tools for complete document workflow automation. Have a suggestion? Contact us with your ideas!</p>
+            
+            <h2>Conclusion</h2>
+            <p>Rotating PDF pages is essential for correcting document orientation, fixing scanned documents, and preparing files for printing or sharing. Our free PDF rotator provides professional-quality permanent rotation with uncompromising privacy protection. Whether you're fixing a single upside-down page or correcting orientation across a large document, our tool delivers perfect results instantly. Try our PDF rotator today and experience professional document correction that respects your privacy.</p>
+        </div>
+        
+        <div class="related-tools">
+            <h3>Related Tools</h3>
+            <div class="related-grid">
+                <a href="edit-pdf.html" class="related-link">✏️ Edit PDF</a>
+                <a href="merge-pdf.html" class="related-link">🔗 Merge PDF</a>
+                <a href="split-pdf.html" class="related-link">✂️ Split PDF</a>
+                <a href="compress-pdf.html" class="related-link">🗜️ Compress PDF</a>
+                <a href="pdf-protect.html" class="related-link">🔒 Protect PDF</a>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="footer">
+        <p>&copy; 2024 PDF Tools Pro. All tools are 100% free to use. Your files are processed locally and never uploaded.</p>
+    </footer>
+    
+    <script src="../js/main.js"></script>
+    <script>
+        const rotateBtn = document.getElementById('rotateBtn');
+        const pdfInput = document.getElementById('pdfInput');
+        const rotationScope = document.getElementById('rotationScope');
+        const pageRangeGroup = document.getElementById('pageRangeGroup');
+        const pageRange = document.getElementById('pageRange');
+        const rotationAngle = document.getElementById('rotationAngle');
+        const fileInfo = document.getElementById('pageInfo');
+        const fileInfoText = document.getElementById('fileInfoText');
+        const pageList = document.getElementById('pageList');
+        const resultDiv = document.getElementById('result');
+        
+        let currentPDFData = null;
+        let totalPages = 0;
+        
+        // Show/hide page range input based on scope
+        rotationScope.addEventListener('change', () => {
+            if (rotationScope.value === 'range') {
+                pageRangeGroup.style.display = 'block';
+            } else {
+                pageRangeGroup.style.display = 'none';
+            }
+        });
+        
+        // Load PDF when file is selected
+        pdfInput.addEventListener('change', async () => {
+            const file = pdfInput.files[0];
+            if (file) {
+                try {
+                    const arrayBuffer = await file.arrayBuffer();
+                    currentPDFData = arrayBuffer;
+                    const { PDFDocument } = PDFLib;
+                    const pdfDoc = await PDFDocument.load(arrayBuffer);
+                    totalPages = pdfDoc.getPageCount();
+                    
+                    const fileSize = formatFileSize(file.size);
+                    const fileName = file.name;
+                    fileInfoText.textContent = `${fileName} (${fileSize})`;
+                    
+                    let pageInfoHtml = `Total pages: ${totalPages}<br>`;
+                    pageInfoHtml += `Page dimensions: Page 1 is ${Math.round(pdfDoc.getPages()[0].getWidth())} x ${Math.round(pdfDoc.getPages()[0].getHeight())} points`;
+                    pageList.innerHTML = pageInfoHtml;
+                    fileInfo.style.display = 'block';
+                    resultDiv.innerHTML = '';
+                    
+                    showAlert(`PDF loaded successfully. ${totalPages} page(s) available.`, 'success');
+                } catch (error) {
+                    console.error('Error loading PDF:', error);
+                    showAlert('Error loading PDF. Please ensure it\'s a valid file.', 'error');
+                }
+            } else {
+                fileInfo.style.display = 'none';
+                currentPDFData = null;
+                totalPages = 0;
+            }
+        });
+        
+        // Parse page range string into array of page indices
+        function parsePageRange(rangeStr, totalPages) {
+            if (!rangeStr.trim()) {
+                return [];
+            }
+            
+            const pages = new Set();
+            const parts = rangeStr.split(',');
+            
+            for (const part of parts) {
+                part = part.trim();
+                if (part.includes('-')) {
+                    const [start, end] = part.split('-').map(n => parseInt(n.trim()));
+                    if (isNaN(start) || isNaN(end)) continue;
+                    for (let i = start; i <= end; i++) {
+                        if (i >= 1 && i <= totalPages) pages.add(i - 1);
+                    }
+                } else {
+                    const page = parseInt(part);
+                    if (!isNaN(page) && page >= 1 && page <= totalPages) pages.add(page - 1);
+                }
+            }
+            
+            return Array.from(pages).sort((a, b) => a - b);
+        }
+        
+        // Get pages to rotate based on scope
+        function getPagesToRotate(scope, totalPages, rangeStr) {
+            const pages = [];
+            
+            switch(scope) {
+                case 'all':
+                    for (let i = 0; i < totalPages; i++) pages.push(i);
+                    break;
+                case 'range':
+                    return parsePageRange(rangeStr, totalPages);
+                case 'odd':
+                    for (let i = 0; i < totalPages; i++) {
+                        if ((i + 1) % 2 === 1) pages.push(i);
+                    }
+                    break;
+                case 'even':
+                    for (let i = 0; i < totalPages; i++) {
+                        if ((i + 1) % 2 === 0) pages.push(i);
+                    }
+                    break;
+                case 'first':
+                    if (totalPages > 0) pages.push(0);
+                    break;
+                case 'last':
+                    if (totalPages > 0) pages.push(totalPages - 1);
+                    break;
+            }
+            
+            return pages;
+        }
+        
+        // Handle rotate button click
+        rotateBtn.addEventListener('click', async () => {
+            if (!currentPDFData) {
+                showAlert('Please select a PDF file first', 'error');
+                return;
+            }
+            
+            const scope = rotationScope.value;
+            const rangeStr = pageRange.value;
+            const angle = parseInt(rotationAngle.value);
+            
+            if (scope === 'range' && !rangeStr.trim()) {
+                showAlert('Please enter a page range', 'error');
+                return;
+            }
+            
+            try {
+                rotateBtn.disabled = true;
+                rotateBtn.textContent = 'Rotating...';
+                resultDiv.innerHTML = '<div class="loader"></div> Rotating PDF pages... This may take a moment.';
+                
+                const { PDFDocument, degrees } = PDFLib;
+                const pdfDoc = await PDFDocument.load(currentPDFData);
+                const totalPagesCount = pdfDoc.getPageCount();
+                
+                const pagesToRotate = getPagesToRotate(scope, totalPagesCount, rangeStr);
+                
+                if (pagesToRotate.length === 0) {
+                    throw new Error('No pages selected for rotation');
+                }
+                
+                // Apply rotation to selected pages
+                for (const pageIndex of pagesToRotate) {
+                    const page = pdfDoc.getPages()[pageIndex];
+                    const currentRotation = page.getRotation().angle;
+                    const newRotation = (currentRotation + angle) % 360;
+                    page.setRotation(degrees(newRotation));
+                }
+                
+                const pdfBytes = await pdfDoc.save();
+                const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+                const url = URL.createObjectURL(blob);
+                const originalName = pdfInput.files[0].name.replace('.pdf', '');
+                
+                let rotationText = '';
+                switch(angle) {
+                    case 90: rotationText = '90° clockwise'; break;
+                    case 180: rotationText = '180° (upside down)'; break;
+                    case 270: rotationText = '90° counter-clockwise'; break;
+                }
+                
+                let scopeText = '';
+                switch(scope) {
+                    case 'all': scopeText = 'all pages'; break;
+                    case 'range': scopeText = `${pagesToRotate.length} specific page(s)`; break;
+                    case 'odd': scopeText = 'odd pages'; break;
+                    case 'even': scopeText = 'even pages'; break;
+                    case 'first': scopeText = 'first page'; break;
+                    case 'last': scopeText = 'last page'; break;
+                }
+                
+                resultDiv.innerHTML = `
+                    <div class="alert alert-success" style="margin-bottom: 1rem;">✅ Rotation complete! ${pagesToRotate.length} page(s) rotated ${rotationText}.</div>
+                    <a href="${url}" download="${originalName}_rotated.pdf" class="download-link">📥 Download Rotated PDF</a>
+                    <p style="margin-top: 1rem; font-size: 0.875rem; color: var(--text-muted);">✓ Rotated locally - Your file never left your device</p>
+                    <p style="margin-top: 0.5rem; font-size: 0.875rem; color: var(--text-muted);">✓ ${scopeText} rotated ${rotationText}</p>
+                `;
+                
+                showAlert(`PDF rotated successfully! ${pagesToRotate.length} page(s) rotated.`, 'success');
+                currentPDFData = pdfBytes;
+            } catch (error) {
+                console.error(error);
+                resultDiv.innerHTML = `<div class="alert alert-error">Error: ${error.message || 'Failed to rotate PDF. Please try again.'}</div>`;
+                showAlert('Failed to rotate PDF. Please try again.', 'error');
+            } finally {
+                rotateBtn.disabled = false;
+                rotateBtn.textContent = 'Rotate PDF';
+            }
+        });
+    </script>
+</body>
+</html>

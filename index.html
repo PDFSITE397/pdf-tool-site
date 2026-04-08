@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Tools Pro - 20+ Free PDF Tools Online | Merge, Split, Compress & More</title>
+    <meta name="description" content="Free professional PDF tools online. Merge, split, compress, convert PDFs to Word, Excel, JPG and more. 100% free, no registration required. Dark mode support.">
+    <meta name="keywords" content="PDF tools, merge PDF, split PDF, compress PDF, PDF to Word, PDF converter, free PDF tools, online PDF editor">
+    <meta name="author" content="PDF Tools Pro">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="PDF Tools Pro - 20+ Free PDF Tools Online">
+    <meta property="og:description" content="Professional PDF tools including merge, split, compress, convert and more. 100% free, no signup required.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pdftoolspro.com">
+    <meta property="og:image" content="https://pdftoolspro.com/og-image.jpg">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="PDF Tools Pro - Free PDF Tools">
+    <meta name="twitter:description" content="20+ professional PDF tools completely free">
+    
+    <link rel="stylesheet" href="css/main.css">
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">📄 PDF Tools Pro</a>
+            <button class="mobile-menu-btn">☰</button>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="privacy-policy.html">Privacy</a></li>
+            </ul>
+            <button class="theme-toggle">🌙</button>
+        </div>
+    </nav>
+    
+    <main class="main-container">
+        <div class="breadcrumbs"></div>
+        
+        <section class="hero">
+            <h1>Professional PDF Tools <span style="color: var(--accent);">100% Free</span></h1>
+            <p style="font-size: 1.25rem; color: var(--text-secondary); margin-bottom: 2rem;">
+                Your complete solution for PDF manipulation. Merge, split, compress, convert, and edit PDFs online.
+                No registration, no watermarks, completely free.
+            </p>
+        </section>
+        
+        <h2>All PDF Tools</h2>
+        <div class="tools-grid" id="toolsGrid">
+            <!-- Tools will be populated by JS -->
+        </div>
+    </main>
+    
+    <footer class="footer">
+        <p>&copy; 2024 PDF Tools Pro. All tools are 100% free to use. Your files are processed locally and never uploaded.</p>
+    </footer>
+    
+    <script src="js/main.js"></script>
+    <script>
+        const tools = [
+            { name: "Merge PDF", icon: "🔗", desc: "Combine multiple PDFs into one document", file: "tools/merge-pdf.html" },
+            { name: "Split PDF", icon: "✂️", desc: "Extract specific pages from PDF", file: "tools/split-pdf.html" },
+            { name: "Compress PDF", icon: "🗜️", desc: "Reduce PDF file size", file: "tools/compress-pdf.html" },
+            { name: "PDF to Word", icon: "📝", desc: "Convert PDF to editable Word", file: "tools/pdf-to-word.html" },
+            { name: "Word to PDF", icon: "📄", desc: "Convert Word to PDF", file: "tools/word-to-pdf.html" },
+            { name: "PDF to Excel", icon: "📊", desc: "Extract tables to Excel", file: "tools/pdf-to-excel.html" },
+            { name: "Excel to PDF", icon: "📑", desc: "Convert Excel to PDF", file: "tools/excel-to-pdf.html" },
+            { name: "PDF to JPG", icon: "🖼️", desc: "Convert PDF pages to images", file: "tools/pdf-to-jpg.html" },
+            { name: "JPG to PDF", icon: "📸", desc: "Convert images to PDF", file: "tools/jpg-to-pdf.html" },
+            { name: "Edit PDF", icon: "✏️", desc: "Add text and annotations", file: "tools/edit-pdf.html" },
+            { name: "Rotate PDF", icon: "🔄", desc: "Rotate PDF pages", file: "tools/rotate-pdf.html" },
+            { name: "Protect PDF", icon: "🔒", desc: "Add password protection", file: "tools/pdf-protect.html" },
+            { name: "Unlock PDF", icon: "🔓", desc: "Remove PDF password", file: "tools/pdf-unlock.html" },
+            { name: "Add Watermark", icon: "💧", desc: "Add text watermark", file: "tools/add-watermark.html" },
+            { name: "Remove Watermark", icon: "🧹", desc: "Remove watermarks", file: "tools/remove-watermark.html" },
+            { name: "PDF OCR", icon: "👁️", desc: "Make scanned PDF searchable", file: "tools/pdf-ocr.html" },
+            { name: "Repair PDF", icon: "🔧", desc: "Fix corrupted PDFs", file: "tools/repair-pdf.html" },
+            { name: "PDF Metadata", icon: "ℹ️", desc: "View and edit metadata", file: "tools/pdf-metadata.html" },
+            { name: "Compare PDF", icon: "⚖️", desc: "Compare two PDFs", file: "tools/compare-pdf.html" },
+            { name: "Annotate PDF", icon: "💬", desc: "Add comments and notes", file: "tools/pdf-annotate.html" }
+        ];
+        
+        const grid = document.getElementById('toolsGrid');
+        tools.forEach(tool => {
+            const card = document.createElement('a');
+            card.href = tool.file;
+            card.className = 'tool-card';
+            card.innerHTML = `
+                <div class="tool-icon">${tool.icon}</div>
+                <h3>${tool.name}</h3>
+                <p>${tool.desc}</p>
+            `;
+            grid.appendChild(card);
+        });
+    </script>
+</body>
+</html>

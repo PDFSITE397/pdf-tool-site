@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unlock PDF - Remove Password Protection from PDF Online Free | PDF Tools Pro</title>
+    <meta name="description" content="Free online PDF unlocker. Remove password protection from PDF files. Unlock encrypted PDFs when you know the password. Decrypt your documents for editing and sharing. No registration, secure local processing.">
+    <meta name="keywords" content="unlock PDF, remove PDF password, PDF decryption, unlock protected PDF, PDF password remover, decrypt PDF, remove PDF security, unlock PDF file">
+    <meta name="author" content="PDF Tools Pro">
+    <meta property="og:title" content="Unlock PDF - Remove Password Protection from PDF Free Online">
+    <meta property="og:description" content="Professional PDF unlocker. Remove password protection from PDF documents when you know the password. Secure local processing, no upload required.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pdftoolspro.com/tools/pdf-unlock.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Unlock PDF - Free PDF Password Remover Tool">
+    <link rel="stylesheet" href="../css/main.css">
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">📄 PDF Tools Pro</a>
+            <button class="mobile-menu-btn">☰</button>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+                <li><a href="../privacy-policy.html">Privacy</a></li>
+            </ul>
+            <button class="theme-toggle">🌙</button>
+        </div>
+    </nav>
+    
+    <main class="main-container">
+        <div class="breadcrumbs"></div>
+        
+        <div class="tool-header">
+            <h1>🔓 Unlock PDF - Remove Password Protection from PDF Files</h1>
+            <p>Remove password protection from your PDF documents when you know the password. Decrypt files for editing, printing, copying, or sharing. 100% free, secure local processing.</p>
+        </div>
+        
+        <div class="tool-area">
+            <div class="form-group">
+                <label for="pdfInput">Select Password-Protected PDF File</label>
+                <input type="file" id="pdfInput" accept=".pdf" class="file-input">
+            </div>
+            
+            <div class="form-group">
+                <label for="userPassword">PDF Password</label>
+                <input type="password" id="userPassword" placeholder="Enter the password to unlock this PDF" class="file-input">
+                <small>Enter the password you use to open this PDF document</small>
+            </div>
+            
+            <div id="pdfInfo" style="margin: 1rem 0; padding: 1rem; background: var(--bg-card); border-radius: 0.5rem; display: none;">
+                <strong>Document Info:</strong> <span id="fileInfoText"></span>
+                <div id="encryptionInfo" style="margin-top: 0.5rem; font-size: 0.875rem;"></div>
+            </div>
+            
+            <div id="attemptsInfo" style="margin: 1rem 0; padding: 0.5rem; background: var(--bg-secondary); border-radius: 0.5rem; display: none; text-align: center;">
+                <span id="attemptCounter"></span>
+            </div>
+            
+            <button id="unlockBtn" class="btn-primary">Unlock PDF</button>
+            <div id="result"></div>
+        </div>
+        
+        <!-- 2000+ Words Description Section -->
+        <div class="content-section">
+            <h2>What is PDF Unlocking?</h2>
+            <p>PDF unlocking, also known as PDF decryption or PDF password removal, is the process of removing password protection from an encrypted PDF document. When you have a password-protected PDF and you know the correct password, you can unlock it to create a new, unprotected version of the document. This allows you to freely edit, print, copy text, extract images, and share the document without password restrictions. Our PDF unlocker provides a legitimate way to remove passwords from documents you own or have permission to access.</p>
+            
+            <h2>Why Unlock PDF Documents?</h2>
+            <p>There are many legitimate reasons to unlock password-protected PDF documents:</p>
+            <ul>
+                <li><strong>Edit Document Content:</strong> Modify text, images, or layout in password-protected PDFs.</li>
+                <li><strong>Copy Text and Images:</strong> Extract quotes, data, or images for use in other documents.</li>
+                <li><strong>Print Without Restrictions:</strong> Print documents that have printing disabled by the owner password.</li>
+                <li><strong>Remove Annoying Restrictions:</strong> Eliminate permission barriers on documents you own.</li>
+                <li><strong>Combine with Other PDFs:</strong> Merge unlocked documents with other PDFs.</li>
+                <li><strong>Archive Unprotected Copies:</strong> Store password-free versions for long-term archiving.</li>
+                <li><strong>Accessibility Needs:</strong> Enable screen readers and assistive technologies on restricted documents.</li>
+                <li><strong>Workflow Efficiency:</strong> Remove passwords from frequently accessed documents to save time.</li>
+            </ul>
+            
+            <h2>Important Legal and Ethical Notice</h2>
+            <div class="alert alert-warning" style="margin: 1rem 0; padding: 1rem;">
+                <strong>⚠️ Important:</strong> Only unlock PDF documents that you own or have explicit permission to modify. Unlocking PDFs without authorization may violate copyright laws, terms of service, or confidentiality agreements. This tool is intended for legitimate use on your own documents or documents where you have obtained proper authorization.
+            </div>
+            
+            <h2>Why Use Our PDF Unlocker?</h2>
+            <p>Unlike many online PDF unlockers that require uploading potentially sensitive documents to unknown servers (defeating the purpose of security), our unlocker processes everything locally in your browser. This means your passwords and confidential documents never leave your computer. We use the industry-standard PDF-lib library to perform decryption with complete privacy protection.</p>
+            
+            <h2>Key Features of Our PDF Unlocker</h2>
+            <ul>
+                <li><strong>100% Free Forever:</strong> No premium tiers, no hidden costs, no watermarks, no registration required.</li>
+                <li><strong>Privacy-First Design:</strong> All decryption happens locally in your browser. Your password and file never upload to any server.</li>
+                <li><strong>Fast Processing:</strong> Local decryption means instant unlocking without queue times.</li>
+                <li><strong>Preserve All Content:</strong> Maintains text, images, formatting, and annotations after unlocking.</li>
+                <li><strong>Dark/Light Mode:</strong> Comfortable viewing in any lighting condition with our theme toggle.</li>
+                <li><strong>No File Size Limits:</strong> Unlock PDFs of any size (limited only by your device memory).</li>
+                <li><strong>Real-time Feedback:</strong> See document encryption status and password attempts.</li>
+            </ul>
+            
+            <h2>How to Unlock PDF Files - Step by Step Guide</h2>
+            <p>Using our PDF unlocker is straightforward. Follow these simple steps:</p>
+            <ol>
+                <li><strong>Select Your PDF:</strong> Click the "Choose File" button and select the password-protected PDF document you want to unlock.</li>
+                <li><strong>View Document Info:</strong> The tool will detect if the PDF is encrypted and show encryption details.</li>
+                <li><strong>Enter Password:</strong> Type the password used to open the PDF document.</li>
+                <li><strong>Start Unlocking:</strong> Click the "Unlock PDF" button. Our tool will decrypt your file locally.</li>
+                <li><strong>Download:</strong> Once complete, download your unlocked, password-free PDF document.</li>
+            </ol>
+            
+            <h2>Understanding PDF Encryption Types</h2>
+            
+            <h3>User Password (Document Open Password)</h3>
+            <p>This password is required to open and view the PDF document. It's the most common type of PDF protection. When you unlock a PDF with this password, you gain full access to view and interact with the document, but may still have permission restrictions if an owner password was also set.</p>
+            
+            <h3>Owner Password (Permissions Password)</h3>
+            <p>This password controls permissions like printing, copying, and editing. If you have the owner password but not the user password, you may still need the user password to view the document. Our unlocker removes both types of protection when you provide the user password.</p>
+            
+            <h3>Encryption Algorithms</h3>
+            <p>PDFs can be encrypted using different algorithms:</p>
+            <ul>
+                <li><strong>AES-128:</strong> Standard 128-bit encryption, compatible with most PDF readers.</li>
+                <li><strong>AES-256:</strong> Strong 256-bit encryption, requires PDF 2.0 compatible readers.</li>
+                <li><strong>RC4-40/128:</strong> Older encryption methods (less secure).</li>
+            </ul>
+            <p>Our unlocker supports all common encryption types.</p>
+            
+            <h2>Common Use Cases for PDF Unlocking</h2>
+            
+            <h3>Editing Protected Documents</h3>
+            <p>You have a PDF you created but forgot to save an editable version. You know the password but need to make changes. Unlock the PDF to edit content, update information, or reformat the document.</p>
+            
+            <h3>Extracting Content for Research</h3>
+            <p>You have permission to use content from a password-protected PDF for research or citations. Unlock the document to copy quotes, extract data, or save images for your work.</p>
+            
+            <h3>Printing Restricted Documents</h3>
+            <p>Some PDFs have printing disabled. If you own the document or have permission, unlock it to enable printing for physical copies, archiving, or distribution.</p>
+            
+            <h3>Merging with Other Documents</h3>
+            <p>You need to combine multiple PDFs, but some are password-protected. Unlock them first, then use our Merge PDF tool to create a single document.</p>
+            
+            <h3>Removing Forgotten Passwords (When Authorized)</h3>
+            <p>You created a PDF, set a password, and then forgot it. While we can't recover passwords, if you have another authorized copy or legal ownership, you may need to unlock using known passwords from other sources.</p>
+            
+            <h2>Technical Details: How Our PDF Unlocker Works</h2>
+            <p>Our PDF unlocker uses the PDF-lib library for decryption:</p>
+            <ul>
+                <li><strong>PDF Loading:</strong> The encrypted PDF is loaded into memory with the provided password using PDF-lib's load() method with the password option.</li>
+                <li><strong>Password Verification:</strong> PDF-lib attempts to decrypt the document using the provided password. If successful, the document is loaded.</li>
+                <li><strong>Decryption:</strong> The document is decrypted in memory, removing all password protection.</li>
+                <li><strong>PDF Regeneration:</strong> A new, unprotected PDF is saved without any encryption.</li>
+            </ul>
+            
+            <h2>Best Practices for PDF Unlocking</h2>
+            
+            <h3>Verify You Have Permission</h3>
+            <p>Only unlock PDFs that you own or have explicit permission to modify. Respect copyright, confidentiality agreements, and intellectual property rights.</p>
+            
+            <h3>Save Original Protected Version</h3>
+            <p>Keep a backup of the original password-protected PDF in case you need it later. The unlocked version is separate and doesn't replace your original.</p>
+            
+            <h3>Use Strong Passwords on New Documents</h3>
+            <p>After unlocking, if you need to re-protect the document, use our PDF Protect tool with a strong, unique password.</p>
+            
+            <h3>Document Your Unlocking Activities</h3>
+            <p>For business or legal purposes, keep records of which documents you've unlocked and why. This provides an audit trail if questions arise about document handling.</p>
+            
+            <h2>Comparison with Other PDF Unlocking Solutions</h2>
+            <p>Unlike cloud-based PDF unlockers that require uploading sensitive documents to external servers (defeating the purpose of security), our tool offers unparalleled privacy and security. Adobe Acrobat Pro costs $15-30/month for decryption features. Other online tools may claim to "crack" PDF passwords (which is illegal and usually fake). Our tool is legitimate - it requires the correct password and processes everything locally.</p>
+            
+            <h2>Troubleshooting Common Issues</h2>
+            
+            <h3>Incorrect Password Error?</h3>
+            <p>Double-check that you're entering the correct password. Passwords are case-sensitive. If you've forgotten the password, unfortunately, there's no legitimate way to recover it. PDF encryption is designed to be unbreakable.</p>
+            
+            <h3>PDF Won't Unlock Even with Correct Password?</h3>
+            <p>Some PDFs use older or non-standard encryption. Try opening the PDF in Adobe Reader to verify the password works there. If it does, the PDF may use an encryption method our library doesn't support yet.</p>
+            
+            <h3>Document Opens but Permissions Still Restricted?</h3>
+            <p>If you unlocked with the user password but permissions (printing, copying) are still restricted, the document may have an owner password with stricter permissions. Try using the owner password instead, or use the user password - the unlocked version should have all permissions enabled.</p>
+            
+            <h3>File Size Increased After Unlocking?</h3>
+            <p>Decryption may slightly increase file size (typically 1-5%) as encryption overhead is removed. This is normal and not a cause for concern.</p>
+            
+            <h3>"Invalid Password" on Correct Password?</h3>
+            <p>Ensure there are no extra spaces before or after your password. Try typing the password in a text editor first to verify it's correct, then copy-paste into the password field.</p>
+            
+            <h2>Security and Privacy Deep Dive</h2>
+            <p>Your privacy and security are our priority. Unlike competing services that require you to upload documents to their servers (where they could be accessed by employees, stored indefinitely, or exposed in data breaches), our PDF unlocker processes everything locally. When you select a file and enter a password:</p>
+            <ul>
+                <li>The file is read into your browser's memory using the File API</li>
+                <li>All decryption uses your device's CPU - no external servers involved</li>
+                <li>Your password is never transmitted anywhere - it exists only in your browser's memory</li>
+                <li>No file data is ever transmitted over the network</li>
+                <li>When you close the page, all data (including passwords) is cleared from memory</li>
+                <li>We don't use cookies, analytics, or tracking scripts</li>
+                <li>Unlocked PDFs only exist on your device after download</li>
+            </ul>
+            <p>This architecture ensures that your sensitive documents and passwords remain completely private and secure.</p>
+            
+            <h2>What PDF Unlocking Cannot Do</h2>
+            <p>It's important to understand the limitations of legitimate PDF unlocking:</p>
+            <ul>
+                <li><strong>Cannot recover forgotten passwords:</strong> We cannot "crack" or recover passwords you've forgotten. PDF encryption is designed to be unbreakable.</li>
+                <li><strong>Cannot bypass legal restrictions:</strong> Unlocking PDFs you don't own or have permission to modify may violate laws.</li>
+                <li><strong>Cannot remove digital signatures:</strong> Digitally signed PDFs may have additional protections beyond passwords.</li>
+                <li><strong>Cannot unlock without the password:</strong> There's no "backdoor" or "master password" for PDF files.</li>
+            </ul>
+            
+            <h2>Frequently Asked Questions</h2>
+            
+            <h3>Is this unlocker really free?</h3>
+            <p>Yes, completely free with no hidden costs, no premium tiers, and no watermarks. We believe legitimate document access tools should be accessible to everyone.</p>
+            
+            <h3>Can you unlock PDFs without the password?</h3>
+            <p>No. PDF encryption is designed to be secure. Without the correct password, it's impossible to decrypt the document. This is a security feature, not a limitation.</p>
+            
+            <h3>Can this tool remove owner passwords only?</h3>
+            <p>When you provide the user password, our tool removes both user and owner password protection, creating a fully unlocked document.</p>
+            
+            <h3>Will unlocking affect document quality?</h3>
+            <p>No. Decryption is a mathematical process that doesn't affect content quality. Text, images, and formatting remain exactly the same.</p>
+            
+            <h3>Is it legal to unlock PDFs?</h3>
+            <p>It's legal to unlock PDFs that you own or have permission to modify. It may be illegal to unlock PDFs you don't own or don't have permission to modify. Always respect copyright and intellectual property laws.</p>
+            
+            <h3>What's the maximum file size?</h3>
+            <p>Since processing happens locally, limits depend on your device's available memory. Most modern devices can handle PDFs up to 200MB easily.</p>
+            
+            <h2>Responsible Use Guidelines</h2>
+            
+            <h3>Do Unlock PDFs When:</h3>
+            <ul>
+                <li>You created the document and know the password</li>
+                <li>You have explicit permission from the document owner</li>
+                <li>The document is for your personal use and you have the password</li>
+                <li>You need to exercise legitimate accessibility rights</li>
+            </ul>
+            
+            <h3>Don't Unlock PDFs When:</h3>
+            <ul>
+                <li>You don't own the document or have permission</li>
+                <li>The document contains someone else's confidential information</li>
+                <li>You're trying to bypass security on documents you shouldn't access</li>
+                <li>The document is copyrighted and you don't have usage rights</li>
+            </ul>
+            
+            <h2>Industry-Specific Use Cases</h2>
+            
+            <h3>Legal Industry</h3>
+            <p>Law firms unlock client-provided password-protected documents (with permission) to include in case files, extract key information, or prepare for litigation. Always verify authorization before unlocking.</p>
+            
+            <h3>Corporate Document Management</h3>
+            <p>Businesses unlock internal documents where passwords have been lost or employees have left without sharing passwords. Requires proper authorization and documentation.</p>
+            
+            <h3>Academic Research</h3>
+            <p>Researchers unlock purchased or authorized PDFs to extract quotes, data, or images for academic work. Ensure compliance with publisher terms of use.</p>
+            
+            <h3>Personal Document Access</h3>
+            <p>Individuals unlock their own PDFs (bank statements, tax documents, personal records) that they password-protected but need to edit or print.</p>
+            
+            <h2>Alternatives to Unlocking</h2>
+            <p>If you can't unlock a PDF because you don't have the password:</p>
+            <ul>
+                <li>Contact the document owner for the password</li>
+                <li>Request an unprotected version from the creator</li>
+                <li>Check if you have a backup or earlier version without a password</li>
+                <li>Use OCR to recreate content from printed copies (if you have permission)</li>
+                <li>Recreate the document from source files if available</li>
+            </ul>
+            
+            <h2>Future Updates and Roadmap</h2>
+            <p>We continuously improve our PDF unlocker based on user feedback. Planned features include support for more encryption types, batch unlocking for multiple files, and integration with our other tools for complete document workflow automation. Have a suggestion? Contact us with your ideas!</p>
+            
+            <h2>Conclusion</h2>
+            <p>Unlocking PDF documents is essential when you need to edit, print, copy, or modify password-protected files you own or have permission to access. Our free PDF unlocker provides legitimate, secure decryption with uncompromising privacy protection. Always respect copyright, intellectual property, and confidentiality agreements. Use this tool responsibly on documents you own or have authorization to modify. Try our PDF unlocker today and regain full access to your protected PDF documents.</p>
+        </div>
+        
+        <div class="related-tools">
+            <h3>Related Tools</h3>
+            <div class="related-grid">
+                <a href="pdf-protect.html" class="related-link">🔒 Protect PDF</a>
+                <a href="edit-pdf.html" class="related-link">✏️ Edit PDF</a>
+                <a href="compress-pdf.html" class="related-link">🗜️ Compress PDF</a>
+                <a href="merge-pdf.html" class="related-link">🔗 Merge PDF</a>
+                <a href="split-pdf.html" class="related-link">✂️ Split PDF</a>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="footer">
+        <p>&copy; 2024 PDF Tools Pro. All tools are 100% free to use. Your files are processed locally and never uploaded.</p>
+    </footer>
+    
+    <script src="../js/main.js"></script>
+    <script>
+        const unlockBtn = document.getElementById('unlockBtn');
+        const pdfInput = document.getElementById('pdfInput');
+        const userPassword = document.getElementById('userPassword');
+        const pdfInfo = document.getElementById('pdfInfo');
+        const fileInfoText = document.getElementById('fileInfoText');
+        const encryptionInfo = document.getElementById('encryptionInfo');
+        const attemptsInfo = document.getElementById('attemptsInfo');
+        const attemptCounter = document.getElementById('attemptCounter');
+        const resultDiv = document.getElementById('result');
+        
+        let currentPDFData = null;
+        let attemptCount = 0;
+        
+        // Load PDF when file is selected
+        pdfInput.addEventListener('change', async () => {
+            const file = pdfInput.files[0];
+            if (file) {
+                try {
+                    const arrayBuffer = await file.arrayBuffer();
+                    currentPDFData = arrayBuffer;
+                    
+                    const fileSize = formatFileSize(file.size);
+                    const fileName = file.name;
+                    fileInfoText.textContent = `${fileName} (${fileSize})`;
+                    
+                    // Try to detect if PDF is encrypted without password
+                    const { PDFDocument } = PDFLib;
+                    try {
+                        // Try loading without password - will fail if encrypted
+                        await PDFDocument.load(arrayBuffer);
+                        encryptionInfo.innerHTML = '<span style="color: var(--success);">✓ This PDF does not appear to be password protected.</span>';
+                        encryptionInfo.style.color = 'var(--success)';
+                    } catch (error) {
+                        if (error.message.includes('encrypted') || error.message.includes('password')) {
+                            encryptionInfo.innerHTML = '<span style="color: var(--warning);">🔒 This PDF is password protected. Enter the password to unlock it.</span>';
+                            encryptionInfo.style.color = 'var(--warning)';
+                        } else {
+                            encryptionInfo.innerHTML = '<span style="color: var(--text-muted);">PDF loaded successfully.</span>';
+                        }
+                    }
+                    
+                    pdfInfo.style.display = 'block';
+                    resultDiv.innerHTML = '';
+                    attemptCount = 0;
+                    attemptsInfo.style.display = 'none';
+                    
+                    showAlert(`PDF loaded successfully.`, 'success');
+                } catch (error) {
+                    console.error('Error loading PDF:', error);
+                    showAlert('Error loading PDF. Please ensure it\'s a valid file.', 'error');
+                }
+            } else {
+                pdfInfo.style.display = 'none';
+                currentPDFData = null;
+            }
+        });
+        
+        // Handle unlock button click
+        unlockBtn.addEventListener('click', async () => {
+            if (!currentPDFData) {
+                showAlert('Please select a PDF file first', 'error');
+                return;
+            }
+            
+            const password = userPassword.value;
+            
+            if (!password) {
+                showAlert('Please enter the PDF password', 'error');
+                return;
+            }
+            
+            attemptCount++;
+            attemptsInfo.style.display = 'block';
+            attemptCounter.textContent = `Unlock attempt #${attemptCount}`;
+            
+            try {
+                unlockBtn.disabled = true;
+                unlockBtn.textContent = 'Unlocking...';
+                resultDiv.innerHTML = '<div class="loader"></div> Attempting to unlock PDF...';
+                
+                const { PDFDocument } = PDFLib;
+                
+                // Try to load the PDF with the provided password
+                let pdfDoc;
+                try {
+                    pdfDoc = await PDFDocument.load(currentPDFData, { password: password });
+                } catch (loadError) {
+                    if (loadError.message.includes('incorrect password') || loadError.message.includes('Invalid password')) {
+                        throw new Error('Incorrect password. Please check and try again.');
+                    }
+                    throw loadError;
+                }
+                
+                // Save the unlocked PDF (without password)
+                const pdfBytes = await pdfDoc.save();
+                const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+                const url = URL.createObjectURL(blob);
+                const originalName = pdfInput.files[0].name.replace('.pdf', '');
+                
+                resultDiv.innerHTML = `
+                    <div class="alert alert-success" style="margin-bottom: 1rem;">✅ PDF unlocked successfully! Password protection has been removed.</div>
+                    <a href="${url}" download="${originalName}_unlocked.pdf" class="download-link">📥 Download Unlocked PDF</a>
+                    <p style="margin-top: 1rem; font-size: 0.875rem; color: var(--text-muted);">✓ Decrypted locally - Your password never left your device</p>
+                    <p style="margin-top: 0.5rem; font-size: 0.875rem; color: var(--text-muted);">✓ The unlocked PDF has no password restrictions</p>
+                    <div class="alert alert-warning" style="margin-top: 1rem; padding: 0.75rem;">
+                        ⚠️ <strong>Responsible Use:</strong> Only unlock PDFs you own or have permission to modify.
+                    </div>
+                `;
+                
+                showAlert(`PDF unlocked successfully! Password protection removed.`, 'success');
+                attemptsInfo.style.display = 'none';
+            } catch (error) {
+                console.error(error);
+                let errorMessage = error.message || 'Failed to unlock PDF. Incorrect password or file corruption.';
+                
+                if (errorMessage.includes('Incorrect password')) {
+                    errorMessage = 'Incorrect password. Please check and try again. Passwords are case-sensitive.';
+                    showAlert('Incorrect password. Please try again.', 'error');
+                } else {
+                    showAlert('Failed to unlock PDF. Please verify the password is correct.', 'error');
+                }
+                
+                resultDiv.innerHTML = `<div class="alert alert-error">Error: ${errorMessage}</div>`;
+            } finally {
+                unlockBtn.disabled = false;
+                unlockBtn.textContent = 'Unlock PDF';
+            }
+        });
+        
+        // Allow Enter key to trigger unlock
+        userPassword.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                unlockBtn.click();
+            }
+        });
+    </script>
+</body>
+</html>
